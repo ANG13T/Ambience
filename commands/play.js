@@ -3,6 +3,8 @@ const ytdl = require("ytdl-core");
 module.exports = {
   name: "play",
   description: "Play a song in your channel!",
+  
+  
   async execute(message) {
     try {
       const args = message.content.split(" ");
@@ -27,6 +29,8 @@ module.exports = {
         url: songInfo.videoDetails.video_url
       };
 
+      console.log("the song is", song)
+
       if (!serverQueue) {
         const queueContruct = {
           textChannel: message.channel,
@@ -44,6 +48,7 @@ module.exports = {
         try {
           var connection = await voiceChannel.join();
           queueContruct.connection = connection;
+          console.log("playing song with", message, queueContruct.songs[0])
           this.play(message, queueContruct.songs[0]);
         } catch (err) {
           console.log(err);
@@ -63,16 +68,20 @@ module.exports = {
   },
 
   play(message, song) {
+    console.log("the sone is", song)
     const queue = message.client.queue;
     const guild = message.guild;
     const serverQueue = queue.get(message.guild.id);
 
     if (!song) {
+      console.log("not a song")
       serverQueue.voiceChannel.leave();
       queue.delete(guild.id);
       return;
     }
 
+    console.log("continue with dispatch")
+    console.log("song url is ", song.url)
     const dispatcher = serverQueue.connection
       .play(ytdl(song.url))
       .on("finish", () => {
@@ -82,5 +91,6 @@ module.exports = {
       .on("error", error => console.error(error));
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
     serverQueue.textChannel.send(`Start playing: **${song.title}**`);
+    
   }
 };
