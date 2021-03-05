@@ -1,7 +1,6 @@
-
 const { Client, Collection } = require('discord.js');
 
-class extends Client {
+module.exports = class extends Client {
 	constructor(config) {
 		super({
 			disableEveryone: true,
@@ -13,7 +12,5 @@ class extends Client {
 		this.queue = new Map();
 
 		this.config = config;
-    }
-}
-
-module.exports = Client;
+	}
+};
