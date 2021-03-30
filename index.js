@@ -1,4 +1,5 @@
 var Discord = require('discord.js');
+var config = require('./config.json');
 var bot = new Discord.Client();
 var isReady = true;
 
@@ -19,4 +20,4 @@ bot.on('message', message => {
 });
 
 
-bot.login('ODE1NzAwMjkzNjA5MzI0NTU1.YDwOGA.3pvscuhrem0Igwm8qO1LQlC7tkY');
+bot.login(config.token);
