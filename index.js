@@ -3,13 +3,13 @@ var bot = new Discord.Client();
 var isReady = true;
 
 bot.on('message', message => {
-  if (isReady && message.content === 'Gotcha Bitch')
+  if (isReady && message.content === 'play')
   {
   isReady = false;
-  var voiceChannel = message.member.voiceChannel;
+  var voiceChannel = message.member.voice.channel;
   voiceChannel.join().then(connection =>
   {
-     const dispatcher = connection.playFile('./Audio/gab.mp3');
+    const dispatcher = connection.play(require("path").join(__dirname, './sea_waves.mp3'));
      dispatcher.on("end", end => {
        voiceChannel.leave();
        });
@@ -19,4 +19,4 @@ bot.on('message', message => {
 });
 
 
-bot.login('MjY3NDE5MDk5NDk4NDE0MDgx.C1bTgw.0BgHbVq4YQClh0JZvKZ5DzP_-SA');
+bot.login('ODE1NzAwMjkzNjA5MzI0NTU1.YDwOGA.3pvscuhrem0Igwm8qO1LQlC7tkY');
