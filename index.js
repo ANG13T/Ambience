@@ -12,22 +12,32 @@ bot.on('guildCreate', guild => {
   channel.send("Thanks for inviting me")
 })
 
-bot.on('message', async message => {
+bot.on('message', async (message) => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
-  if(message.content === 'help'){
+  if(command === 'help'){
     message.channel.send("Here is a list of my commands: \n \n play \n next \n pause \n stop \n loop \n queue \n categories \n songs \n search \n help \n \n You can send `$help [command name]` to get info on a specific command!");
+    return;
   }
 
   if(command === 'play'){
-    let song = await bot.player.play(message, args.join(' '));
-    
-    // If there were no errors the Player#songAdd event will fire and the song will not be null.
-    if(song)
-        console.log(`Started playing ${song.name}`);
-    return;
-}
+    if(bot.player.isPlaying(message)) {
+      let song = await bot.player.addToQueue(message, args.join(' '));
+
+      // If there were no errors the Player#songAdd event will fire and the song will not be null.
+      if(song)
+          console.log(`Added ${song.name} to the queue`);
+      return;
+  } else {
+      let song = await bot.player.play(message, args.join(' '));
+
+      // If there were no errors the Player#songAdd event will fire and the song will not be null.
+      if(song)
+          console.log(`Started playing ${song.name}`);
+      return;
+  }
+  }
 
   if(getKeyWord('help', message.content)){
     let content = message.content.split(" ")[1];
@@ -37,14 +47,8 @@ bot.on('message', async message => {
     }else{
       message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
     }
-  }
 
-  if(message.content === "easter"){
-    let song = await bot.player.play("!play Titanium");
-        
-    // If there were no errors the Player#songAdd event will fire and the song will not be null.
-    if(song)
-        console.log(`Started playing ${song.name}`); 
+    return;
   }
 
 });
