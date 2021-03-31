@@ -1,7 +1,5 @@
 var Discord = require('discord.js');
 var config = require('./config.json');
-var SpotifyWebApi = require('spotify-web-api-node');
-var spotify = new SpotifyWebApi();
 var bot = new Discord.Client();
 var isReady = true;
 let commands = ["play", "next", "pause", "stop", "loop", "queue", "categories", "songs", "search", "help"];
@@ -42,18 +40,8 @@ bot.on('message', message => {
   }
 
   if(message.content === "easter"){
-    spotify.clientCredentialsGrant().then(
-      function(data) {
-        console.log('The token expires in ' + data.body['expires_in']);
-        console.log('The access token is ' + data.body['access_token']);
-        spotify.setAccessToken(data.body['access_token'])
-
-        spotify.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE', function (err, data) {
-        if (err) console.error(err);
-        else console.log('Artist albums', data);
-      });
-      }
-    )
+   
+  
   }
 
 });
