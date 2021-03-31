@@ -32,13 +32,27 @@ bot.on('message', async (message) => {
   }
 
   if(command === 'help'){
-    message.channel.send("Here is a list of my commands: \n play \n next \n pause \n stop \n loop \n queue \n categories \n songs \n search \n help \n \n You can send `$help [command name]` to get info on a specific command!");
+    message.channel.send("Here is a list of my commands: \n play \n next \n pause \n resume \n stop \n loop \n queue \n categories \n songs \n search \n help \n \n You can send `$help [command name]` to get info on a specific command!");
     return;
   }
 
   if(command == 'categories'){
     message.channel.send("Categories: \n\n 🌊  Beach \n\n 🌳  Forest \n\n 🏔  Mountain \n\n 🏠  Home \n\n ✈️  Airlplane \n\n ☕️  Cafe \n\n 🎻  Classical \n\n 🔉  Waves \n\n 🎬  Cinema \n\n 🦄  Fiction \n\n 🎮  Video Games \n\n To see songs within a category type `$song [category_name]`")
   }
+
+  if(command === 'pause'){
+    let song = client.player.pause(message);
+    if(song){
+      message.channel.send(`${song.name} was paused!`);
+    }   
+  }
+
+  if(command === 'resume'){
+    let song = client.player.resume(message);
+    if(song){
+      message.channel.send(`${song.name} was resumed!`);
+    }   
+  } 
 
   if(command === 'play'){
     if(bot.player.isPlaying(message)) {

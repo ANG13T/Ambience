@@ -13,6 +13,10 @@
             "description": ""
         },
         {
+            "command": "resume",
+            "description": ""
+        },
+        {
             "command": "stop",
             "description": ""
         },
