@@ -2,6 +2,9 @@ var Discord = require('discord.js');
 var config = require('./config.json');
 var bot = new Discord.Client();
 var isReady = true;
+const { Player } = require("discord-music-player");
+const player = new Player(client);
+client.player = player;
 let commands = ["play", "next", "pause", "stop", "loop", "queue", "categories", "songs", "search", "help"];
 let descriptions = ["a","b","c","d","e","f","g","h","i", "j"];
 
