@@ -1,5 +1,6 @@
 var Discord = require('discord.js');
 var config = require('./config.json');
+var songsData = require('./songs.json');
 var bot = new Discord.Client();
 const { Player } = require("discord-music-player");
 const player = new Player(bot);
@@ -19,6 +20,10 @@ bot.on('message', async (message) => {
   if(command === 'help'){
     message.channel.send("Here is a list of my commands: \n \n play \n next \n pause \n stop \n loop \n queue \n categories \n songs \n search \n help \n \n You can send `$help [command name]` to get info on a specific command!");
     return;
+  }
+
+  if(command == 'categories'){
+    message.channel.send("Categories: \n\n 🌊  Beach \n\n 🌳  Forest \n\n 🏔  Mountain \n\n 🏠  Home \n\n ✈️  Airlplane \n\n ☕️  Cafe \n\n 🎻  Classical \n\n 🔉  Waves \n\n 🎬  Cinema \n\n 🦄  Fiction \n\n 🎮  Video Games \n\n To see songs within a category type `$song [category_name]`")
   }
 
   if(command === 'play'){

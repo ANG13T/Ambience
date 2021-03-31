@@ -1,0 +1,46 @@
+{
+    "Beach": {
+        "emoji": "🌊",
+        "songs": []
+    },
+    "Forest": {
+        "emoji":"🌳",
+        "songs":[]
+    },
+    "Mountain": {
+        "emoji":"🏔",
+        "songs":[]
+    },
+    "Home": {
+        "emoji":"🏠",
+        "songs":[]
+    },
+    "Airplane": {
+        "emoji":"✈️",
+        "songs":[]
+    },
+    "Cafe": {
+        "emoji":"☕️",
+        "songs":[]
+    },
+    "Classical": {
+        "emoji":"🎻",
+        "songs":[]
+    },
+    "Waves": {
+        "emoji":"🔉",
+        "songs":[]
+    },
+    "Cinema": {
+        "emoji":"🎬",
+        "songs":[]
+    },
+    "Fiction": {
+        "emoji":"🦄",
+        "songs":[]
+    },
+    "Video Games ": {
+        "emoji":"🎮",
+        "songs":[]
+    }
+}
