@@ -55,12 +55,46 @@
         {
             "name": "Mountain",
             "emoji":"🏔",
-            "songs":[]
+            "songs":[
+                {
+                    "name":"Mountain Morning",
+                    "link": "https://open.spotify.com/track/72uS6sz1VCmeHPGrhu7K9C?si=2400cfbe0b884757"
+                },
+                {
+                    "name":"Snowstorm",
+                    "link": "https://open.spotify.com/track/4eyrPKNomPYKqAbD04vdd6?si=6e9f2d24af8a43be"
+                },
+                {
+                    "name":"Everglades Swamp",
+                    "link": "https://open.spotify.com/track/0B8aqy1bhBfVKh3lig6kNP?si=776a3e9dca22412e"
+                },
+                {
+                    "name":"Blizzard",
+                    "link": "https://open.spotify.com/track/5K6TA5jDfgxEyl26iEyVid?si=6233a4867f0042fe"
+                },
+                {
+                    "name":"Wind and Bugs",
+                    "link": "https://open.spotify.com/track/3UwaQNTMD6fwCBd6296cHH?si=e1f12db5af4e4783"
+                }
+            ]
         },
         {
             "name": "Home",
             "emoji":"🏠",
-            "songs":[]
+            "songs":[
+                {
+                    "name":"Air Conditioner",
+                    "link":"https://open.spotify.com/track/3Jc2ZYFTcBMlaokocsKz3F?si=f2ec012c63994df6"
+                },
+                {
+                    "name":"",
+                    "link":""
+                },
+                {
+                    "name":"",
+                    "link":""
+                }
+            ]
         },
         {
             "name": "Airplane",
