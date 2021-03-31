@@ -1,9 +1,11 @@
 var Discord = require('discord.js');
 var config = require('./config.json');
+var SpotifyWebApi = require('spotify-web-api-node');
+var spotify = new SpotifyWebApi();
 var bot = new Discord.Client();
 var isReady = true;
-let commands = ["play", "next", "pause", "stop", "queue", "categories", "songs", "search", "help"];
-let descriptions = ["a","b","c","d","e","f","g","h","i"];
+let commands = ["play", "next", "pause", "stop", "loop", "queue", "categories", "songs", "search", "help"];
+let descriptions = ["a","b","c","d","e","f","g","h","i", "j"];
 
 bot.on('guildCreate', guild => {
   const channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
@@ -26,7 +28,7 @@ bot.on('message', message => {
   }
 
   if(message.content === 'help'){
-    message.channel.send("Here is a list of my commands: \n \n play \n next \n pause \n stop \n queue \n categories \n songs \n search \n help \n \n You can send `$help [command name]` to get info on a specific command!");
+    message.channel.send("Here is a list of my commands: \n \n play \n next \n pause \n stop \n loop \n queue \n categories \n songs \n search \n help \n \n You can send `$help [command name]` to get info on a specific command!");
   }
 
   if(getKeyWord('help', message.content)){
@@ -37,6 +39,21 @@ bot.on('message', message => {
     }else{
       message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
     }
+  }
+
+  if(message.content === "easter"){
+    spotify.clientCredentialsGrant().then(
+      function(data) {
+        console.log('The token expires in ' + data.body['expires_in']);
+        console.log('The access token is ' + data.body['access_token']);
+        spotify.setAccessToken(data.body['access_token'])
+
+        spotify.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE', function (err, data) {
+        if (err) console.error(err);
+        else console.log('Artist albums', data);
+      });
+      }
+    )
   }
 
 });
