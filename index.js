@@ -1,10 +1,9 @@
 var Discord = require('discord.js');
 var config = require('./config.json');
 var bot = new Discord.Client();
-var isReady = true;
 const { Player } = require("discord-music-player");
-const player = new Player(client);
-client.player = player;
+const player = new Player(bot);
+bot.player = player;
 let commands = ["play", "next", "pause", "stop", "loop", "queue", "categories", "songs", "search", "help"];
 let descriptions = ["a","b","c","d","e","f","g","h","i", "j"];
 
@@ -13,24 +12,22 @@ bot.on('guildCreate', guild => {
   channel.send("Thanks for inviting me")
 })
 
-bot.on('message', message => {
-  if (isReady && message.content === 'play')
-  {
-  isReady = false;
-  var voiceChannel = message.member.voice.channel;
-  voiceChannel.join().then(connection =>
-  {
-    const dispatcher = connection.play(require("path").join(__dirname, './sea_waves.mp3'));
-     dispatcher.on("end", end => {
-       voiceChannel.leave();
-       });
-   }).catch(err => console.log(err));
-   isReady = true;
-  }
+bot.on('message', async message => {
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
 
   if(message.content === 'help'){
     message.channel.send("Here is a list of my commands: \n \n play \n next \n pause \n stop \n loop \n queue \n categories \n songs \n search \n help \n \n You can send `$help [command name]` to get info on a specific command!");
   }
+
+  if(command === 'play'){
+    let song = await bot.player.play(message, args.join(' '));
+    
+    // If there were no errors the Player#songAdd event will fire and the song will not be null.
+    if(song)
+        console.log(`Started playing ${song.name}`);
+    return;
+}
 
   if(getKeyWord('help', message.content)){
     let content = message.content.split(" ")[1];
@@ -43,8 +40,11 @@ bot.on('message', message => {
   }
 
   if(message.content === "easter"){
-   
-  
+    let song = await bot.player.play("!play Titanium");
+        
+    // If there were no errors the Player#songAdd event will fire and the song will not be null.
+    if(song)
+        console.log(`Started playing ${song.name}`); 
   }
 
 });
