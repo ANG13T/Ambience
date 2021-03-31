@@ -1,6 +1,7 @@
 var Discord = require('discord.js');
 var config = require('./config.json');
 var songsData = require('./songs.json');
+var categories = songsData.categories;
 var commandsData = require('./commands.json');
 commandsData = commandsData.commands;
 var bot = new Discord.Client();
@@ -32,12 +33,18 @@ bot.on('message', async (message) => {
   }
 
   if(command === 'help'){
-    message.channel.send("Here is a list of my commands: \n play \n next \n pause \n resume \n stop \n loop \n queue \n categories \n songs \n search \n help \n \n You can send `$help [command name]` to get info on a specific command!");
+    let text = "Here is a list of my commands: ";
+    commands.forEach((command) => { text = text.concat(` \n ${command}`)});
+    text = text.concat(" \n \n You can send `$help [command name]` to get info on a specific command!")
+    message.channel.send(text);
     return;
   }
 
   if(command == 'categories'){
-    message.channel.send("Categories: \n\n 🌊  Beach \n\n 🌳  Forest \n\n 🏔  Mountain \n\n 🏠  Home \n\n ✈️  Airlplane \n\n ☕️  Cafe \n\n 🎻  Classical \n\n 🔉  Waves \n\n 🎬  Cinema \n\n 🦄  Fiction \n\n 🎮  Video Games \n\n To see songs within a category type `$song [category_name]`")
+    let text = "Categories:";
+    categories.forEach((category) => {text = text.concat(` \n\n ${category.emoji}  ${category.name}`)})
+    text = text.concat("\n\n To see songs within a category type `$song [category_name]");
+    message.channel.send(text);
   }
 
   if(command === 'pause'){
