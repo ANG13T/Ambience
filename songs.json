@@ -87,49 +87,127 @@
                     "link":"https://open.spotify.com/track/3Jc2ZYFTcBMlaokocsKz3F?si=f2ec012c63994df6"
                 },
                 {
-                    "name":"",
-                    "link":""
+                    "name":"Box Fan",
+                    "link":"https://open.spotify.com/track/1pi3vV0SIKf8ZYfRKOJdFc?si=27b39c167413494d"
                 },
                 {
-                    "name":"",
-                    "link":""
+                    "name":"Washing Machine",
+                    "link":"https://open.spotify.com/track/3RvUq1Mnz1NOZHx3OxR0ZR?si=db85f294ad3142c3"
+                },
+                {
+                    "name":"Running Faucet",
+                    "link":"https://open.spotify.com/track/1QgmqNoireoIEyMA006JpI?si=45d9fc59cacf4634"
+                },
+                {
+                    "name":"Making Breakfast",
+                    "link":"https://open.spotify.com/track/4aTpr7sMwRZK54MWWkaH2U?si=efee1578a4e84d0f"
                 }
             ]
         },
         {
             "name": "Airplane",
             "emoji":"✈️",
-            "songs":[]
+            "songs":[
+                {
+                    "name":"Calm Airplane",
+                    "link":"https://open.spotify.com/track/6t9YGClbkZ2CMC7YBFs9jb?si=2a2a7be9dc824960"
+                },
+                {
+                    "name":"Jet Cabin",
+                    "link":"https://open.spotify.com/track/5ky54y8rxJwrhlvJQssFYK?si=e38e121d44ff46aa"
+                },
+                {
+                    "name":"White Noise",
+                    "link":"https://open.spotify.com/track/4nRJJCN8ynGXCZTf9bgPFx?si=303e6176b3f24ea2"
+                }
+            ]
         },
         {
             "name": "Cafe",
             "emoji":"☕️",
-            "songs":[]
+            "songs":[
+                {
+                    "name":"Calm Airplane",
+                    "link":"https://open.spotify.com/track/6t9YGClbkZ2CMC7YBFs9jb?si=2a2a7be9dc824960"
+                },
+                {
+                    "name":"Cafe and Jazz",
+                    "link":"https://open.spotify.com/track/6lE1sFfXBlr7litI8LD6Ff?si=528f8bb584c440bd"
+                },
+                {
+                    "name":"Cozy Cafe",
+                    "link":"https://open.spotify.com/track/35lWmvMTNClV7EQWFW62va?si=219df4f24cb342432"
+                },
+                {
+                    "name": "Social Cafe",
+                    "link": "https://open.spotify.com/track/6P42lLiH4U4bfy6Swb69m5?si=852df5f7d0d643c5"
+                }
+            ]
         },
         {
             "name": "Classical",
             "emoji":"🎻",
-            "songs":[]
+            "songs":[
+                {
+                    "name":"Danse Macabre",
+                    "link":"https://open.spotify.com/track/4PRnYCH5hoxypKVcOBvx3a?si=56224932b18c40c4"
+                },
+                {
+                    "name":"In the Hall of the Mountain King",
+                    "link":"https://www.youtube.com/watch?v=kLp_Hh6DKWc"
+                },
+                {
+                    "name":"Dance of the Knights",
+                    "link":"https://www.youtube.com/watch?v=bBsKplb2E6Q"
+                },
+                {
+                    "name":"Chopin - Nocturne op.9 No.2",
+                    "link":"https://www.youtube.com/watch?v=9E6b3swbnWg"
+                },
+                {
+                    "name":"Dvorak - Symphony No. 9",
+                    "link":"https://www.youtube.com/watch?v=89jOPAGJq-M"
+                },
+                {
+                    "name":"Beethoven - 7th Symphony - 2nd movement",
+                    "link":"https://www.youtube.com/watch?v=mgHxmAsINDk"
+                }
+            ]
         },
         {
             "name": "Waves",
             "emoji":"🔉",
-            "songs":[]
+            "songs":[
+
+            ]
         },
         {
             "name": "Cinema",
             "emoji":"🎬",
-            "songs":[]
+            "songs":[
+
+            ]
         },
         {
             "name":"Fiction",
             "emoji":"🦄",
-            "songs":[]
+            "songs":[
+
+            ]
         },
         {
             "name": "Video Games",
             "emoji":"🎮",
-            "songs":[]
+            "songs":[
+
+            ]
+        },
+        {
+            "name": "ASMR",
+            "emoji":"☺️",
+            "songs":[
+                
+            ]
         }
     ]
 }
