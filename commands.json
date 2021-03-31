@@ -2,47 +2,47 @@
     "commands": [
         {
             "command": "play",
-            "description": ""
+            "description": "Play a Song or add one to the queue"
         },
         {
-            "command": "next",
-            "description": ""
+            "command": "skip",
+            "description": "Skip to the next song on queue"
         },
         {
             "command": "pause",
-            "description": ""
+            "description": "Pause the current song"
         },
         {
             "command": "resume",
-            "description": ""
+            "description": "Resume the current song"
         },
         {
             "command": "stop",
-            "description": ""
+            "description": "Stop playing music and delete the server queue"
         },
         {
             "command": "loop",
-            "description": ""
+            "description": "Loop a song"
         },
         {
             "command": "queue",
-            "description": ""
+            "description": "Display songs in the queue"
         },
         {
             "command": "categories",
-            "description": ""
+            "description": "View music categories"
         },
         {
             "command": "songs",
-            "description": ""
+            "description": "View songs within a category or a specific song"
         },
         {
             "command": "search",
-            "description": ""
+            "description": "Search for songs"
         },
         {
             "command": "help",
-            "description": ""
+            "description": "List commands or give information about a command"
         }
     ]
 }
