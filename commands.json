@@ -1,0 +1,44 @@
+{
+    "commands": [
+        {
+            "command": "play",
+            "description": ""
+        },
+        {
+            "command": "next",
+            "description": ""
+        },
+        {
+            "command": "pause",
+            "description": ""
+        },
+        {
+            "command": "stop",
+            "description": ""
+        },
+        {
+            "command": "loop",
+            "description": ""
+        },
+        {
+            "command": "queue",
+            "description": ""
+        },
+        {
+            "command": "categories",
+            "description": ""
+        },
+        {
+            "command": "songs",
+            "description": ""
+        },
+        {
+            "command": "search",
+            "description": ""
+        },
+        {
+            "command": "help",
+            "description": ""
+        }
+    ]
+}
