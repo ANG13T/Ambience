@@ -36,6 +36,13 @@ bot.on('message', async (message) => {
 
   if(getKeyWord('!sound', message.content)){
     let content = message.content.split(" ")[1];
+    let contentArray = message.content.split(" ");
+    let refinedContent = contentArray.slice(Math.max(contentArray.length - 1, 0));
+    content = refinedContent[0];
+    console.log("gottem -1", contentArray);
+    console.log("gottem 0", refinedContent[0]);
+    console.log("gottem", message.content);
+    console.log("gottem2", purifyInput(content));
     // check categories - compile early
     if(matchCategoryByName(content)){
       let matchedCategory = matchCategoryByName(content);
@@ -129,6 +136,16 @@ function getSongsFromData(data){
   return songs;
 }
 
+// lowercase and remove emoji for user song and category name input
+// this makes searching for the category or song more accurate and efficent
+function purifyInput(input){
+  let removeEmojiString = input.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
+  console.log("rm emoji", removeEmojiString);
+  let lowercase = removeEmojiString.replace(/\s/g, "").toLowerCase();
+  console.log("lowercase", lowercase);
+  return lowercase;
+}
+
 function getSongsForCategory(category){
 
 }
@@ -143,11 +160,12 @@ function matchSongByName(title){
 }
 
 function matchCategoryByName(name){
-  console.log("selected category", name);
+  let purifiedInput = purifyInput(name);
+  console.log("selected category", purifiedInput);
 
   for(let category of categories){
-    console.log("category name", category.name);
-    if(category.name == name){
+    let categoryName = category.name.toLowerCase();
+    if(categoryName == purifiedInput){
       console.log("found a match");
       return category;
     }
