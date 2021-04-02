@@ -2,6 +2,7 @@ var Discord = require('discord.js');
 var config = require('./config.json');
 var songsData = require('./songs.json');
 var categories = songsData.categories;
+var songs = getSongsFromData(categories);
 var commandsData = require('./commands.json');
 commandsData = commandsData.commands;
 var bot = new Discord.Client();
@@ -29,6 +30,23 @@ bot.on('message', async (message) => {
       message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
     }
 
+    return;
+  }
+
+  console.log(message.content)
+
+  if(getKeyWord('!song', message.content)){
+    let content = message.content.split(" ")[1];
+    // check categories - compile early
+    // if(categories.includes(content)){
+
+    // }
+    // check all songs - compile early
+    if(matchSongByName(content)){
+
+    }
+
+    message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
     return;
   }
 
@@ -62,21 +80,7 @@ bot.on('message', async (message) => {
   } 
 
   if(command === 'play'){
-    if(bot.player.isPlaying(message)) {
-      let song = await bot.player.addToQueue(message, args.join(' '));
-
-      // If there were no errors the Player#songAdd event will fire and the song will not be null.
-      if(song)
-          console.log(`Added ${song.name} to the queue`);
-      return;
-  } else {
-      let song = await bot.player.play(message, args.join(' '));
-
-      // If there were no errors the Player#songAdd event will fire and the song will not be null.
-      if(song)
-          console.log(`Started playing ${song.name}`);
-      return;
-  }
+    playCommand(message);
   }
 });
 
@@ -85,11 +89,46 @@ bot.login(config.token);
 
 // Helper Functions
 
+function playCommand(message){
+  if(bot.player.isPlaying(message)) {
+    let song = await bot.player.addToQueue(message, args.join(' '));
+
+    // If there were no errors the Player#songAdd event will fire and the song will not be null.
+    if(song)
+        console.log(`Added ${song.name} to the queue`);
+    return;
+} else {
+    let song = await bot.player.play(message, args.join(' '));
+
+    // If there were no errors the Player#songAdd event will fire and the song will not be null.
+    if(song)
+        console.log(`Started playing ${song.name}`);
+    return;
+}
+}
+
 function getKeyWord(keyword, command){
   let split = command.split(" ");
   if(split[0] == keyword && split.length > 1){
     return true;
   }
 
+  return false;
+}
+
+function getSongsFromData(data){
+  let songs = [];
+  data.forEach((category) => {
+    songs.concat(category.songs);
+  })
+  return songs;
+}
+
+function matchSongByName(title){
+  songs.forEach((song) => {
+    if(song.name == title){
+      return true;
+    }
+  })
   return false;
 }
