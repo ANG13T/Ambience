@@ -33,12 +33,14 @@ bot.on('message', async (message) => {
     return;
   }
 
-  console.log(message.content)
 
   if(getKeyWord('!song', message.content)){
     let content = message.content.split(" ")[1];
     // check categories - compile early
-    if(categories.includes(content)){
+    console.log("the song command is seleceted");
+    if(matchCategoryByName(content)){
+      let matchedCategory = matchCategoryByName(content);
+      console.log("yaya");
       let text = "Categories:";
       categories.forEach((category) => {text = text.concat(` \n\n ${category.emoji}  ${category.name}`)})
       text = text.concat("\n\n To see songs within a category type `$song [category_name]");
@@ -94,7 +96,7 @@ bot.login(config.token);
 
 // Helper Functions
 
-function playCommand(message){
+async function playCommand(message){
   if(bot.player.isPlaying(message)) {
     let song = await bot.player.addToQueue(message, args.join(' '));
 
@@ -129,6 +131,10 @@ function getSongsFromData(data){
   return songs;
 }
 
+function getSongsForCategory(category){
+
+}
+
 function matchSongByName(title){
   songs.forEach((song) => {
     if(song.name == title){
@@ -137,3 +143,18 @@ function matchSongByName(title){
   })
   return false;
 }
+
+function matchCategoryByName(name){
+  console.log("selected category", name);
+
+  for(let category of categories){
+    console.log("category name", category.name);
+    if(category.name == name){
+      console.log("found a match");
+      return category;
+    }
+  }
+
+  return false;
+}
+
