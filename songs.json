@@ -5,19 +5,23 @@
             "emoji": "🌊",
             "songs": [
                 {
-                    "name": "Ocean Waves 🌊",
+                    "name": "Ocean Waves",
+                    "emoji": "🌊",
                     "link": "https://open.spotify.com/track/2bPAX8bgA99aDcLveZpZeW?si=fa1250cd09494849"
                 },
                 {
-                    "name": "Coral Reef 🐠",
+                    "name": "Coral Reef",
+                    "emoji": "🐠",
                     "link": "https://open.spotify.com/track/4dtHcusKTa5lK9odym87oh?si=9698346217bb42b9"
                 },
                 {
-                    "name": "Sailing Ship ⛵️",
+                    "name": "Sailing Ship",
+                    "emoji": "⛵️",
                     "link": "https://open.spotify.com/track/0KBmQnH9AKuTFfI4J5Vt9y?si=6804586a00eb4f9d"
                 },
                 {
-                    "name": "Submarine ⚓️",
+                    "name": "Submarine",
+                    "emoji": "⚓️",
                     "link": "https://open.spotify.com/track/6sQnPwOZcXn7nXGUVloILp?si=39ce8727332243c7"
                 }
             ]

@@ -34,14 +34,14 @@ bot.on('message', async (message) => {
   }
 
 
-  if(getKeyWord('!song', message.content)){
+  if(getKeyWord('!sound', message.content)){
     let content = message.content.split(" ")[1];
     // check categories - compile early
     if(matchCategoryByName(content)){
       let matchedCategory = matchCategoryByName(content);
-      let text = `${matchedCategory.emoji}  Songs for ${matchedCategory.name} category: `;
-      matchedCategory.songs.forEach((song) => {text = text.concat(` \n\n ${song.emoji}  ${song.name}`)})
-      text = text.concat("\n\n To play a specific song type `$song [song_name]");
+      let text = `${matchedCategory.emoji}  Sounds for ${matchedCategory.name} category: `;
+      matchedCategory.songs.forEach((song) => {text = text.concat(` \n\n -  ${song.name}`)})
+      text = text.concat("\n\n To play a specific sound type `$sound [sound_name]");
       message.channel.send(text);
       return;
     }
