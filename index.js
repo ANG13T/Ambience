@@ -38,12 +38,17 @@ bot.on('message', async (message) => {
   if(getKeyWord('!song', message.content)){
     let content = message.content.split(" ")[1];
     // check categories - compile early
-    // if(categories.includes(content)){
-
-    // }
+    if(categories.includes(content)){
+      let text = "Categories:";
+      categories.forEach((category) => {text = text.concat(` \n\n ${category.emoji}  ${category.name}`)})
+      text = text.concat("\n\n To see songs within a category type `$song [category_name]");
+      message.channel.send(text);
+      return;
+    }
     // check all songs - compile early
     if(matchSongByName(content)){
-
+      playCommand(message);
+      return;
     }
 
     message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
