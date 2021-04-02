@@ -37,13 +37,11 @@ bot.on('message', async (message) => {
   if(getKeyWord('!song', message.content)){
     let content = message.content.split(" ")[1];
     // check categories - compile early
-    console.log("the song command is seleceted");
     if(matchCategoryByName(content)){
       let matchedCategory = matchCategoryByName(content);
-      console.log("yaya");
-      let text = "Categories:";
-      categories.forEach((category) => {text = text.concat(` \n\n ${category.emoji}  ${category.name}`)})
-      text = text.concat("\n\n To see songs within a category type `$song [category_name]");
+      let text = `${matchedCategory.emoji}  Songs for ${matchedCategory.name} category: `;
+      matchedCategory.songs.forEach((song) => {text = text.concat(` \n\n ${song.emoji}  ${song.name}`)})
+      text = text.concat("\n\n To play a specific song type `$song [song_name]");
       message.channel.send(text);
       return;
     }
