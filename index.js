@@ -39,17 +39,9 @@ bot.on('message', async (message) => {
     let contentArray = message.content.split(" ");
     let refinedContent = contentArray.slice(Math.max(contentArray.length - 1, 0));
     content = refinedContent[0];
-    console.log("gottem -1", contentArray);
-    console.log("gottem 0", refinedContent[0]);
-    console.log("gottem", message.content);
-    console.log("gottem2", purifyInput(content));
     // check categories - compile early
     if(matchCategoryByName(content)){
-      let matchedCategory = matchCategoryByName(content);
-      let text = `${matchedCategory.emoji}  Sounds for ${matchedCategory.name} category: `;
-      matchedCategory.songs.forEach((song) => {text = text.concat(` \n\n -  ${song.name}`)})
-      text = text.concat("\n\n To play a specific sound type `$sound [sound_name]");
-      message.channel.send(text);
+      message.channel.send(listCategorySongs(content));
       return;
     }
     // check all songs - compile early
@@ -62,37 +54,36 @@ bot.on('message', async (message) => {
     return;
   }
 
-  if(command === 'help'){
-    let text = "Here is a list of my commands: ";
-    commands.forEach((command) => { text = text.concat(` \n ${command}`)});
-    text = text.concat(" \n \n You can send `$help [command name]` to get info on a specific command!")
-    message.channel.send(text);
-    return;
-  }
+  let song;
+  switch(command){
+    
+    case 'help':
+      message.channel.send(listCommands());
+    break;
 
-  if(command == 'categories'){
-    let text = "Categories:";
-    categories.forEach((category) => {text = text.concat(` \n\n ${category.emoji}  ${category.name}`)})
-    text = text.concat("\n\n To see songs within a category type `$song [category_name]");
-    message.channel.send(text);
-  }
+    case 'categories':
+      message.channel.send(listCategories());
+    break;
 
-  if(command === 'pause'){
-    let song = client.player.pause(message);
-    if(song){
-      message.channel.send(`${song.name} was paused!`);
-    }   
-  }
+    case 'pause':
+      song = client.player.pause(message);
+      if(song){
+        message.channel.send(`${song.name} was paused!`);
+      }  
+    break;
 
-  if(command === 'resume'){
-    let song = client.player.resume(message);
-    if(song){
-      message.channel.send(`${song.name} was resumed!`);
-    }   
-  } 
 
-  if(command === 'play'){
-    playCommand(message);
+    case 'resume':
+      song = client.player.resume(message);
+      if(song){
+        message.channel.send(`${song.name} was resumed!`);
+      }  
+    break;
+
+    case 'play':
+      playCommand(message);
+    break;
+
   }
 });
 
@@ -140,14 +131,34 @@ function getSongsFromData(data){
 // this makes searching for the category or song more accurate and efficent
 function purifyInput(input){
   let removeEmojiString = input.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
-  console.log("rm emoji", removeEmojiString);
   let lowercase = removeEmojiString.replace(/\s/g, "").toLowerCase();
-  console.log("lowercase", lowercase);
   return lowercase;
 }
 
 function getSongsForCategory(category){
 
+}
+
+function listCategories(){
+  let text = "Categories:";
+  categories.forEach((category) => {text = text.concat(` \n\n ${category.emoji}  ${category.name}`)})
+  text = text.concat("\n\n To see songs within a category type `$song [category_name]");
+  return text;
+}
+
+function listCommands(){
+  let text = "Here is a list of my commands: ";
+  commands.forEach((command) => { text = text.concat(` \n ${command}`)});
+  text = text.concat(" \n \n You can send `$help [command name]` to get info on a specific command!")
+  return text;
+}
+
+function listCategorySongs(content){
+  let matchedCategory = matchCategoryByName(content);
+  let text = `${matchedCategory.emoji}  Sounds for ${matchedCategory.name} category: `;
+  matchedCategory.songs.forEach((song) => {text = text.concat(` \n\n -  ${song.name}`)})
+  text = text.concat("\n\n To play a specific sound type: \n `$sound [sound_name]` \n or \n `$sound [category_name] [sound_index]`");
+  return text;
 }
 
 function matchSongByName(title){
@@ -161,12 +172,10 @@ function matchSongByName(title){
 
 function matchCategoryByName(name){
   let purifiedInput = purifyInput(name);
-  console.log("selected category", purifiedInput);
 
   for(let category of categories){
     let categoryName = category.name.toLowerCase();
     if(categoryName == purifiedInput){
-      console.log("found a match");
       return category;
     }
   }
