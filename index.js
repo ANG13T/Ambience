@@ -87,33 +87,44 @@ bot.on('message', async (message) => {
     return;
   }
 
-  // if(getKeyWord('!play', message.content)){
-  //   let content = message.content.split(" ")[1];
-  //   let contentArray = message.content.split(" ");
-  //   let refinedContent = contentArray.slice(1, contentArray.length);
-  //   content = refinedContent.join(" ");
-  //   // check all songs - compile early
-  //   if(matchSongByName(content)){
-  //     console.log("playing");
-  //     if(bot.player.isPlaying(message)) {
-  //       console.log("add to queue")
-  //       let song = await bot.player.addToQueue(message, args.join(' '));
-  //       if(song) console.log(`Added ${song.name} to the queue`);
-  //       return;
-  //   } else {
-  //       let song = await bot.player.play(message, args.join(' '));
-  //       if(song) console.log(`Started playing ${song.name}`);
-  //       return;
-  //    }
-  //   }
-  //   // check categories - compile early
-  //   if(matchCategoryByName(content)){
-  //     message.channel.send(listCategorySongs(content));
-  //     return;
-  //   }
-  //   message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
-  //   return;
-  // }
+  if(getKeyWord('!sound', message.content)){
+    let content = message.content.split(" ")[1];
+    let contentArray = message.content.split(" ");
+    let refinedContent = contentArray.slice(1, contentArray.length);
+    content = refinedContent.join(" ");
+    // check all songs - compile early
+    if(matchSongByName(content)){
+      playCommand(message, args);
+      return;
+    }
+    // check categories - compile early
+    if(matchCategoryByName(content)){
+      message.channel.send(listCategorySongs(content));
+      return;
+    }
+    message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
+    return;
+  }
+
+  if(getKeyWord('!play', message.content)){
+    console.log("the play command")
+    let content = message.content.split(" ")[1];
+    let contentArray = message.content.split(" ");
+    let refinedContent = contentArray.slice(1, contentArray.length);
+    content = refinedContent.join(" ");
+    // check all songs - compile early
+    if(matchSongByName(content)){
+      console.log("the message is ", message);
+      playCommand(message, args);
+    }
+    // check categories - compile early
+    if(matchCategoryByName(content)){
+      message.channel.send(listCategorySongs(content));
+      return;
+    }
+    message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
+    return;
+  }
 
   if(getKeyWord(('!search'), message.content)){
     console.log("searching")
@@ -149,17 +160,6 @@ bot.on('message', async (message) => {
   
     case 'play':
       playCommand(message, args);
-    //   if(bot.player.isPlaying(message)) {
-    //     console.log("add to queue")
-    //     let song = await bot.player.addToQueue(message, args.join(' '));
-    //     if(song) console.log(`Added ${song.name} to the queue`);
-    //     break;
-    // } else {
-    //     let song = await bot.player.play(message, args.join(' '));
-    //     if(song) console.log(`Started playing ${song.name}`);
-    //     break;
-    //  }
-
   }
 });
 
@@ -270,6 +270,7 @@ function matchSongByName(title){
   for(let song of songs){
     let purifiedSongName = purifyInput(song.name);
     if(purifiedSongName == purifiedTitle){
+      console.log("matched", purifiedSongName, purifiedTitle);
       return true;
     }
   }
