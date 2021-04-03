@@ -17,6 +17,15 @@ bot.on('guildCreate', guild => {
   channel.send("Thanks for inviting me")
 })
 
+bot.on("ready", () => {
+  console.log("I am ready to Play with DMP 🎶");
+});
+
+bot.player.on('songAdd',  (message, queue, song) =>
+    message.channel.send(`**${song.name}** has been added to the queue!`))
+    .on('songFirst',  (message, song) =>
+        message.channel.send(`**${song.name}** is now playing!`));
+
 bot.on('message', async (message) => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
@@ -33,6 +42,16 @@ bot.on('message', async (message) => {
     return;
   }
 
+  if(command == "play"){
+    console.log("playing");
+    let song = await bot.player.play(message, args.join(' '));
+        
+    // If there were no errors the Player#songAdd event will fire and the song will not be null.
+    if(song)
+        console.log(`Started playing ${song.name}`);
+    return;
+  }
+
 
   if(getKeyWord('!sound', message.content)){
     let content = message.content.split(" ")[1];
@@ -41,8 +60,17 @@ bot.on('message', async (message) => {
     content = refinedContent.join(" ");
     // check all songs - compile early
     if(matchSongByName(content)){
-      playCommand(message);
-      return;
+      console.log("playing");
+      if(bot.player.isPlaying(message)) {
+        console.log("add to queue")
+        let song = await bot.player.addToQueue(message, args.join(' '));
+        if(song) console.log(`Added ${song.name} to the queue`);
+        return;
+    } else {
+        let song = await bot.player.play(message, args.join(' '));
+        if(song) console.log(`Started playing ${song.name}`);
+        return;
+     }
     }
     // check categories - compile early
     if(matchCategoryByName(content)){
@@ -80,8 +108,17 @@ bot.on('message', async (message) => {
     break;
 
     case 'play':
-      playCommand(message);
-    break;
+      // playCommand(message);
+      if(bot.player.isPlaying(message)) {
+        console.log("add to queue")
+        let song = await bot.player.addToQueue(message, args.join(' '));
+        if(song) console.log(`Added ${song.name} to the queue`);
+        break;
+    } else {
+        let song = await bot.player.play(message, args.join(' '));
+        if(song) console.log(`Started playing ${song.name}`);
+        break;
+     }
 
   }
 });
@@ -93,6 +130,7 @@ bot.login(config.token);
 
 async function playCommand(message){
   if(bot.player.isPlaying(message)) {
+    console.log("add to queue")
     let song = await bot.player.addToQueue(message, args.join(' '));
 
     // If there were no errors the Player#songAdd event will fire and the song will not be null.
@@ -162,13 +200,13 @@ function listCategorySongs(content){
 }
 
 function matchSongByName(title){
-  console.log("matching song name", title, songs);
-  songs.forEach((song) => {
-    console.log("song name", song.name);
-    if(song.name == title){
+  let purifiedTitle = purifyInput(title);
+  for(let song of songs){
+    let purifiedSongName = purifyInput(song.name);
+    if(purifiedSongName == purifiedTitle){
       return true;
     }
-  })
+  }
   return false;
 }
 
