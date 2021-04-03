@@ -21,6 +21,7 @@ client.on("message", async (message) => {
 
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
+    console.log("got the command", command)
 
     // !play Despacito
     // will play "Despacito" in the member voice channel

@@ -87,24 +87,7 @@ bot.on('message', async (message) => {
     return;
   }
 
-  if(command == "play"){
-    console.log("playing");
-    let song = await bot.player.play(message, args.join(' '));
-        
-  
-    // If there were no errors the Player#songAdd event will fire and the song will not be null.
-    if(song)
-        console.log(`Started playing ${song.name}`);
-    return;
-  }
-
-  if(getKeyWord(('!search'), message.content)){
-    console.log("searching")
-    message.channel.send(listSearchResults(soundSearch(message.content)));
-    return;
-  }
-
-  if(getKeyWord('!sound', message.content)){
+  if(getKeyWord('!play', message.content)){
     let content = message.content.split(" ")[1];
     let contentArray = message.content.split(" ");
     let refinedContent = contentArray.slice(1, contentArray.length);
@@ -129,6 +112,24 @@ bot.on('message', async (message) => {
       return;
     }
     message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
+    return;
+  }
+
+  if(command == "play"){
+    // TODO: update functioanlity
+    console.log("playing");
+    let song = await bot.player.play(message, args.join(' '));
+        
+  
+    // If there were no errors the Player#songAdd event will fire and the song will not be null.
+    if(song)
+        console.log(`Started playing ${song.name}`);
+    return;
+  }
+
+  if(getKeyWord(('!search'), message.content)){
+    console.log("searching")
+    message.channel.send(listSearchResults(soundSearch(message.content)));
     return;
   }
 
@@ -263,7 +264,7 @@ function listSearchResults(searchResultOutput){
   results.forEach((result) => {
     text = text.concat(`- ${result.name} \n`);
   })
-  text = text.concat("\n To play a specific sound type: \n `$sound [sound_name]` \n or \n `$sound [category_name] [sound_index]`");
+  text = text.concat("\n To play a specific sound type: \n `$play [sound_name]` \n or \n `$play [category_name] [sound_index]`");
   return text;
 }
 
@@ -272,7 +273,7 @@ function listCategorySongs(content){
   let text = `${matchedCategory.emoji}  Sounds for ${matchedCategory.name} category: `;
   let count = 1;
   matchedCategory.songs.forEach((song) => {text = text.concat(` \n\n ${count})  ${song.name}`); count++})
-  text = text.concat("\n\n To play a specific sound type: \n `$sound [sound_name]` \n or \n `$sound [category_name] [sound_index]`");
+  text = text.concat("\n\n To play a specific sound type: \n `$play [sound_name]` \n or \n `$play [category_name] [sound_index]`");
   return text;
 }
 
