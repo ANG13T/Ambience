@@ -121,7 +121,7 @@ function getKeyWord(keyword, command){
 function getSongsFromData(data){
   let songs = [];
   data.forEach((category) => {
-    songs.concat(category.songs);
+    Array.prototype.push.apply(songs,category.songs); 
   })
   return songs;
 }
@@ -162,7 +162,7 @@ function listCategorySongs(content){
 }
 
 function matchSongByName(title){
-  console.log("matching song name", title);
+  console.log("matching song name", title, songs);
   songs.forEach((song) => {
     console.log("song name", song.name);
     if(song.name == title){
