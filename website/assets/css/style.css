@@ -1,0 +1,12 @@
+/* NAVBAR */
+.top-header{
+    position: fixed;
+    width: 100%;
+    height: 3vh;
+}
+
+nav{
+    background-color: #e3f2fd;
+    height: 3vh;
+    min-height: 50px !important;
+}
