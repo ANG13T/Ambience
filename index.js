@@ -87,45 +87,33 @@ bot.on('message', async (message) => {
     return;
   }
 
-  if(getKeyWord('!play', message.content)){
-    let content = message.content.split(" ")[1];
-    let contentArray = message.content.split(" ");
-    let refinedContent = contentArray.slice(1, contentArray.length);
-    content = refinedContent.join(" ");
-    // check all songs - compile early
-    if(matchSongByName(content)){
-      console.log("playing");
-      if(bot.player.isPlaying(message)) {
-        console.log("add to queue")
-        let song = await bot.player.addToQueue(message, args.join(' '));
-        if(song) console.log(`Added ${song.name} to the queue`);
-        return;
-    } else {
-        let song = await bot.player.play(message, args.join(' '));
-        if(song) console.log(`Started playing ${song.name}`);
-        return;
-     }
-    }
-    // check categories - compile early
-    if(matchCategoryByName(content)){
-      message.channel.send(listCategorySongs(content));
-      return;
-    }
-    message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
-    return;
-  }
-
-  if(command == "play"){
-    // TODO: update functioanlity
-    console.log("playing");
-    let song = await bot.player.play(message, args.join(' '));
-        
-  
-    // If there were no errors the Player#songAdd event will fire and the song will not be null.
-    if(song)
-        console.log(`Started playing ${song.name}`);
-    return;
-  }
+  // if(getKeyWord('!play', message.content)){
+  //   let content = message.content.split(" ")[1];
+  //   let contentArray = message.content.split(" ");
+  //   let refinedContent = contentArray.slice(1, contentArray.length);
+  //   content = refinedContent.join(" ");
+  //   // check all songs - compile early
+  //   if(matchSongByName(content)){
+  //     console.log("playing");
+  //     if(bot.player.isPlaying(message)) {
+  //       console.log("add to queue")
+  //       let song = await bot.player.addToQueue(message, args.join(' '));
+  //       if(song) console.log(`Added ${song.name} to the queue`);
+  //       return;
+  //   } else {
+  //       let song = await bot.player.play(message, args.join(' '));
+  //       if(song) console.log(`Started playing ${song.name}`);
+  //       return;
+  //    }
+  //   }
+  //   // check categories - compile early
+  //   if(matchCategoryByName(content)){
+  //     message.channel.send(listCategorySongs(content));
+  //     return;
+  //   }
+  //   message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
+  //   return;
+  // }
 
   if(getKeyWord(('!search'), message.content)){
     console.log("searching")
@@ -160,17 +148,17 @@ bot.on('message', async (message) => {
     break;
   
     case 'play':
-      // playCommand(message);
-      if(bot.player.isPlaying(message)) {
-        console.log("add to queue")
-        let song = await bot.player.addToQueue(message, args.join(' '));
-        if(song) console.log(`Added ${song.name} to the queue`);
-        break;
-    } else {
-        let song = await bot.player.play(message, args.join(' '));
-        if(song) console.log(`Started playing ${song.name}`);
-        break;
-     }
+      playCommand(message, args);
+    //   if(bot.player.isPlaying(message)) {
+    //     console.log("add to queue")
+    //     let song = await bot.player.addToQueue(message, args.join(' '));
+    //     if(song) console.log(`Added ${song.name} to the queue`);
+    //     break;
+    // } else {
+    //     let song = await bot.player.play(message, args.join(' '));
+    //     if(song) console.log(`Started playing ${song.name}`);
+    //     break;
+    //  }
 
   }
 });
@@ -180,7 +168,7 @@ bot.login(config.token);
 
 // Helper Functions
 
-async function playCommand(message){
+async function playCommand(message, args){
   if(bot.player.isPlaying(message)) {
     console.log("add to queue")
     let song = await bot.player.addToQueue(message, args.join(' '));
