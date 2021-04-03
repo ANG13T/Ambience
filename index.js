@@ -299,4 +299,3 @@ function matchCategoryByName(name){
 
   return false;
 }
-
