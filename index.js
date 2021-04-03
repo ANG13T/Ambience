@@ -52,6 +52,10 @@ bot.on('message', async (message) => {
     return;
   }
 
+  if(getKeyWord(('!search'), message.content)){
+    console.log("searching")
+    soundSearch(message.content);
+  }
 
   if(getKeyWord('!sound', message.content)){
     let content = message.content.split(" ")[1];
@@ -106,7 +110,7 @@ bot.on('message', async (message) => {
         message.channel.send(`${song.name} was resumed!`);
       }  
     break;
-
+  
     case 'play':
       // playCommand(message);
       if(bot.player.isPlaying(message)) {
@@ -188,6 +192,29 @@ function listCommands(){
   commands.forEach((command) => { text = text.concat(` \n ${command}`)});
   text = text.concat(" \n \n You can send `$help [command name]` to get info on a specific command!")
   return text;
+}
+
+
+function soundSearch(input){
+  let soundContent = input.split(" ")[1];
+  let contentArray = input.split(" ");
+  let refinedContent = contentArray.slice(1, contentArray.length);
+  soundContent = refinedContent.join(" ");
+  let purifiedSoundContent = purifyInput(soundContent);
+  console.log("sound content is", soundContent);
+  for(let song of songs){    
+    if(song.name.toLowerCase().includes(input)){
+      console.log("gorrem")
+    }
+  }
+  const filteredSounds = songs.filter(song => {
+    return (
+      song.name.toLowerCase().includes(purifiedSoundContent) ||
+      song.name.toLowerCase().includes(purifiedSoundContent)
+    );
+  });
+  console.log("the filtered songs are ", filteredSounds)
+  return filteredSounds
 }
 
 function listCategorySongs(content){
