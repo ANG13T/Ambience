@@ -54,7 +54,8 @@ bot.on('message', async (message) => {
 
   if(getKeyWord(('!search'), message.content)){
     console.log("searching")
-    soundSearch(message.content);
+    message.channel.send(listSearchResults(soundSearch(message.content)));
+    return;
   }
 
   if(getKeyWord('!sound', message.content)){
@@ -201,20 +202,23 @@ function soundSearch(input){
   let refinedContent = contentArray.slice(1, contentArray.length);
   soundContent = refinedContent.join(" ");
   let purifiedSoundContent = purifyInput(soundContent);
-  console.log("sound content is", soundContent);
-  for(let song of songs){    
-    if(song.name.toLowerCase().includes(input)){
-      console.log("gorrem")
-    }
-  }
   const filteredSounds = songs.filter(song => {
     return (
       song.name.toLowerCase().includes(purifiedSoundContent) ||
       song.name.toLowerCase().includes(purifiedSoundContent)
     );
   });
-  console.log("the filtered songs are ", filteredSounds)
-  return filteredSounds
+  return [filteredSounds, soundContent]
+}
+
+function listSearchResults(searchResultOutput){
+  let text = `Search Results for ${searchResultOutput[1]}: \n`;
+  let results = searchResultOutput[0];
+  results.forEach((result) => {
+    text = text.concat(`- ${result.name} \n`);
+  })
+  text = text.concat("\n To play a specific sound type: \n `$sound [sound_name]` \n or \n `$sound [category_name] [sound_index]`");
+  return text;
 }
 
 function listCategorySongs(content){
