@@ -37,19 +37,18 @@ bot.on('message', async (message) => {
   if(getKeyWord('!sound', message.content)){
     let content = message.content.split(" ")[1];
     let contentArray = message.content.split(" ");
-    let refinedContent = contentArray.slice(Math.max(contentArray.length - 1, 0));
-    content = refinedContent[0];
-    // check categories - compile early
-    if(matchCategoryByName(content)){
-      message.channel.send(listCategorySongs(content));
-      return;
-    }
+    let refinedContent = contentArray.slice(1, contentArray.length);
+    content = refinedContent.join(" ");
     // check all songs - compile early
     if(matchSongByName(content)){
       playCommand(message);
       return;
     }
-
+    // check categories - compile early
+    if(matchCategoryByName(content)){
+      message.channel.send(listCategorySongs(content));
+      return;
+    }
     message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
     return;
   }
@@ -156,13 +155,16 @@ function listCommands(){
 function listCategorySongs(content){
   let matchedCategory = matchCategoryByName(content);
   let text = `${matchedCategory.emoji}  Sounds for ${matchedCategory.name} category: `;
-  matchedCategory.songs.forEach((song) => {text = text.concat(` \n\n -  ${song.name}`)})
+  let count = 1;
+  matchedCategory.songs.forEach((song) => {text = text.concat(` \n\n ${count})  ${song.name}`); count++})
   text = text.concat("\n\n To play a specific sound type: \n `$sound [sound_name]` \n or \n `$sound [category_name] [sound_index]`");
   return text;
 }
 
 function matchSongByName(title){
+  console.log("matching song name", title);
   songs.forEach((song) => {
+    console.log("song name", song.name);
     if(song.name == title){
       return true;
     }
