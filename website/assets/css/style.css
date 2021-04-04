@@ -19,7 +19,9 @@ nav{
 }
 
 .carousel-item{
-    background-color: blue;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    background-color: rgb(100, 100, 177);
 }
 
 /* Carasouel Styles */
@@ -28,15 +30,32 @@ nav{
   display: flex;
   width: 80%;
   margin: auto;
+  text-align: center;
+  justify-content: center;
 }
 
 .content-information .content{
-
+  margin-right: 2rem;
+  margin-top: 10%;
 }
 
 
 .content-information .content-image{
 
+}
+
+.carousel-control-next-icon{
+  width: 3.3rem !important;
+  height: 3.3rem !important;
+}
+
+.carousel-control-prev-icon{
+  width: 3rem !important;
+  height: 3rem !important;
+}
+
+.content-image img{
+  width: 40vw;
 }
 
 
