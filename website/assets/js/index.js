@@ -7,20 +7,7 @@
 
 $(document).ready(function () {
     let image = getRandomBgImage();
-    $('.navbar').css('display', 'none');
-    $('.navbar').css('background', 'transparent');
     $('#bgImage').css('background-image', 'url(' + image + ')');
-});
-
-
-$(window).scroll(function () {
-    if ($(window).scrollTop() >= 150) {
-        $('.navbar').css('display', 'block');
-        $('.navbar').css('background', 'red');
-    } else {
-        // $('.navbar').css('background', 'transparent');
-        $('.navbar').css('display', 'none');
-    }
 });
 
 function getRandomBgImage() {

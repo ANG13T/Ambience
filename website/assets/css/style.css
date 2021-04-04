@@ -8,3 +8,12 @@
 nav{
     background-color: #e3f2fd;
 }
+
+.carasouel-container{
+    width: 100%;
+    margin: auto;
+}
+
+.carousel-item{
+    background-color: blue;
+}
