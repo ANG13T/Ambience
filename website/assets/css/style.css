@@ -32,6 +32,7 @@ nav{
   margin: auto;
   text-align: center;
   justify-content: center;
+  margin-bottom: 3rem;
 }
 
 .content-information .content{
@@ -66,6 +67,7 @@ nav{
   border-radius: 5px;
   width: 18rem;
 }
+
 
 .content-information .content .buttons .invite{
   background-color: rgb(18, 33, 116);
