@@ -37,8 +37,45 @@ nav{
 .content-information .content{
   margin-right: 2rem;
   margin-top: 10%;
+  color: rgb(216, 204, 204);
+  text-align: center;
 }
 
+.content-information .content h3{
+  font-weight: bold;
+  color: white;
+  font-size: 3rem;
+}
+
+.content-information .content .buttons{
+  display: flex;
+  text-align: center;
+  margin-top: 4rem;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+.content-information .content .buttons button{
+  /* display: flex; */
+  margin-right: 2rem;
+  font-size: 2rem;
+  padding: 1rem;
+  border-color: transparent;
+  border-radius: 5px;
+  width: 18rem;
+}
+
+.content-information .content .buttons .invite{
+  background-color: rgb(18, 33, 116);
+}
+
+.content-information .content .buttons .read{
+  /* background-color: rgb(86, 94, 139); */
+  background-color: transparent;
+  border: 3px solid white;
+}
 
 .content-information .content-image{
 
