@@ -19,8 +19,8 @@ nav{
 }
 
 .carousel-item{
-    padding-top: 8rem;
-    padding-bottom: 8rem;
+    padding-top: 9rem;
+    padding-bottom: 9rem;
     background-color: rgb(100, 100, 177);
 }
 
@@ -97,7 +97,20 @@ nav{
   width: 40vw;
 }
 
+/* Info Container */
 
+.info-container h2{
+  color: white;
+}
+
+.info-container h2:after{
+  color: white !important;
+}
+
+.info-container .card{
+  height: 17rem;
+  color: gray;
+}
 
 /* Card Styles */
 
@@ -119,6 +132,11 @@ nav{
     transition: 0.4s;
   }
   
+  .info-container .card {
+    display:table-cell;
+    vertical-align: middle;
+  }
+
   .cards-list .card .card_image {
     width: inherit;
     height: inherit;
