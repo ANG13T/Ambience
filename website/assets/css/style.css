@@ -22,6 +22,25 @@ nav{
     background-color: blue;
 }
 
+/* Carasouel Styles */
+
+.content-information{
+  display: flex;
+  width: 80%;
+  margin: auto;
+}
+
+.content-information .content{
+
+}
+
+
+.content-information .content-image{
+
+}
+
+
+
 /* Card Styles */
 
 .cards-list {
