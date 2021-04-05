@@ -112,9 +112,15 @@ bot.on('message', async (message) => {
     let contentArray = message.content.split(" ");
     let refinedContent = contentArray.slice(1, contentArray.length);
     content = refinedContent.join(" ");
+    console.log("dee content", content)
     // check all songs - compile early
     if (matchSongByName(content)) {
       playAmbienceSong(message, args, matchSongByName(content));
+      return;
+    }
+
+    if(matchSongByCategoryIndex(content)){
+      playAmbienceSong(message, args, matchSongByCategoryIndex(content));
       return;
     }
     // check categories - compile early
@@ -202,20 +208,11 @@ async function playCommand(message, args) {
 
 async function playAmbienceSong(message, args, musicLink) {
   if (bot.player.isPlaying(message)) {
-    console.log("add to queue")
     let song = await bot.player.addToQueue(message, { search: musicLink });
-    if (song)
-      console.log(`Added ${song.name} to the queue`);
-    return;
   } else {
-    console.log("playing2", message);
     let song = await bot.player.play(message, {
       search: musicLink
     });
-
-    if (song)
-      console.log(`Started playing ${song.name}`);
-    return;
   }
 }
 
@@ -244,8 +241,9 @@ function purifyInput(input) {
   return lowercase;
 }
 
-function getSongsForCategory(category) {
-
+function getSongsForCategory(categoryInput) {
+  let matchedCategory = matchCategoryByName(categoryInput);
+  return matchedCategory.songs;
 }
 
 function listCategories() {
@@ -303,6 +301,21 @@ function matchSongByName(title) {
     let purifiedSongName = purifyInput(song.name);
     if (purifiedSongName == purifiedTitle) {
       return song.link;
+    }
+  }
+  return false;
+}
+
+function matchSongByCategoryIndex(content){
+  let results = content.split(" ");
+  console.log("cat index results", results)
+  if(matchCategoryByName(results[0])){
+    let categorySongs = getSongsForCategory(results[0]);
+    if(categorySongs[results[1] - 1]){
+      return categorySongs[results[1] - 1].link;
+    }else{
+      // give user a descriptive error message
+      return false;
     }
   }
   return false;

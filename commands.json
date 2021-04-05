@@ -2,7 +2,7 @@
     "commands": [
         {
             "command": "play",
-            "description": "Play a Song or add one to the queue"
+            "description": "Play a sound or add one to the queue"
         },
         {
             "command": "skip",
@@ -33,8 +33,8 @@
             "description": "View music categories"
         },
         {
-            "command": "songs",
-            "description": "View songs within a category or a specific song"
+            "command": "sound",
+            "description": "View songs within a category or a play specific sound"
         },
         {
             "command": "search",
