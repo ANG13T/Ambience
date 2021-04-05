@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap');
+
 /* NAVBAR */
 .top-header{
     position: fixed;
@@ -112,6 +114,20 @@ nav{
   color: gray;
 }
 
+.info-container .card .card-text:hover{
+  text-decoration: none !important;
+}
+
+.info-container .card:hover{
+  cursor: pointer;
+  background-color: rgb(190, 221, 236);
+  transition: background-color 1s linear;
+}
+.info-container .card:hover .card-title{
+  text-decoration: 2px underline rgb(96, 96, 179);
+}
+
+
 /* Card Styles */
 
 .cards-list {
@@ -159,6 +175,7 @@ nav{
     margin-top: -80px;
     height: 40px;
   }
+
   
   .cards-list .card:hover {
     transform: scale(1.05, 1.05);
@@ -197,3 +214,5 @@ nav{
     transition: 0.4s;
   }
   */
+
+   
