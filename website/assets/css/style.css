@@ -182,9 +182,6 @@ transition:0.25s;
   color: gray;
 }
 
-.info-container .card .card-text:hover{
-  text-decoration: none !important;
-}
 
 .info-container .card:hover{
   cursor: pointer;
