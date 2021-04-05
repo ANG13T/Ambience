@@ -94,7 +94,7 @@ bot.on('message', async (message) => {
     content = refinedContent.join(" ");
     // check all songs - compile early
     if(matchSongByName(content)){
-      playCommand(message, args);
+      playCommand(message, args, matchSongByName(content));
       return;
     }
     // check categories - compile early
@@ -114,8 +114,8 @@ bot.on('message', async (message) => {
     content = refinedContent.join(" ");
     // check all songs - compile early
     if(matchSongByName(content)){
-      console.log("the message is ", message);
-      playCommand(message, args);
+      playCommand(message, args, matchSongByName(content));
+      return;
     }
     // check categories - compile early
     if(matchCategoryByName(content)){
@@ -159,7 +159,7 @@ bot.on('message', async (message) => {
     break;
   
     case 'play':
-      playCommand(message, args);
+      playCommand(message, args, "");
   }
 });
 
@@ -168,7 +168,21 @@ bot.login(config.token);
 
 // Helper Functions
 
-async function playCommand(message, args){
+async function playCommand(message, args, musicLink){
+  console.log("playing", message.content, "because", musicLink);
+  console.log("playing", message.content);
+
+  if(musicLink != ""){
+    let song = await bot.player.play(message, {
+      search: musicLink
+    });
+  
+    if(song)
+         console.log(`Started playing ${song.name}`);
+    return;
+  }
+  
+
   if(bot.player.isPlaying(message)) {
     console.log("add to queue")
     let song = await bot.player.addToQueue(message, args.join(' '));
@@ -178,6 +192,7 @@ async function playCommand(message, args){
         console.log(`Added ${song.name} to the queue`);
     return;
 } else {
+  console.log("playing2", message);
     let song = await bot.player.play(message, args.join(' '));
 
     // If there were no errors the Player#songAdd event will fire and the song will not be null.
@@ -271,7 +286,7 @@ function matchSongByName(title){
     let purifiedSongName = purifyInput(song.name);
     if(purifiedSongName == purifiedTitle){
       console.log("matched", purifiedSongName, purifiedTitle);
-      return true;
+      return song.link;
     }
   }
   return false;
