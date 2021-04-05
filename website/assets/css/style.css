@@ -259,11 +259,13 @@ transition:0.25s;
     color: black;
   }
 
+
 #bottom-content .link{
   margin-left: 2rem;
   margin-right: 2rem;
   color: white;
 }
+
 
 #bottom-content {
   padding-top: 1rem;
@@ -274,6 +276,25 @@ transition:0.25s;
 
 #bottom-content .link:hover{
   cursor: pointer;
+}
+
+/* Contact Button */
+
+#contact-button{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 70px;
+  height: 70px;
+  border-color: transparent;
+  border-radius: 50%;
+  color: white;
+  background-color: #7289da;
+  transition: background .5s;
+}
+
+#contact-button:hover{
+  background-color: #3e529b;
 }
   
   @media all and (max-width: 500px) {
