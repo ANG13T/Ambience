@@ -31,9 +31,26 @@ function listCommands() {
     return text;
 }
 
+function soundSearch(input) {
+    let soundContent = input.split(" ")[1];
+    let contentArray = input.split(" ");
+    let refinedContent = contentArray.slice(1, contentArray.length);
+    soundContent = refinedContent.join(" ");
+    let purifiedSoundContent = purifyInput(soundContent);
+    const filteredSounds = songs.filter(song => {
+      return (
+        song.name.toLowerCase().includes(purifiedSoundContent) ||
+        song.name.toLowerCase().includes(purifiedSoundContent)
+      );
+    });
+    return [filteredSounds, soundContent]
+  }
+  
+
 module.exports = {
     listSearchResults: listSearchResults,
     listCategorySongs: listCategorySongs,
     listCategories: listCategories,
-    listCommands: listCommands
+    listCommands: listCommands,
+    soundSearch: soundSearch
 };

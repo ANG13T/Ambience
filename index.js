@@ -208,57 +208,12 @@ async function playCommand(message, args) {
 
 async function playAmbienceSong(message, args, musicLink) {
   if (bot.player.isPlaying(message)) {
-    let song = await bot.player.addToQueue(message, { search: musicLink });
+    await bot.player.addToQueue(message, { search: musicLink });
   } else {
-    let song = await bot.player.play(message, {
+    await bot.player.play(message, {
       search: musicLink
     });
   }
-}
-
-function getKeyWord(keyword, command) {
-  let split = command.split(" ");
-  if (split[0] == keyword && split.length > 1) {
-    return true;
-  }
-
-  return false;
-}
-
-function getSongsFromData(data) {
-  let songs = [];
-  data.forEach((category) => {
-    Array.prototype.push.apply(songs, category.songs);
-  })
-  return songs;
-}
-
-// lowercase and remove emoji for user song and category name input
-// this makes searching for the category or song more accurate and efficent
-function purifyInput(input) {
-  let removeEmojiString = input.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
-  let lowercase = removeEmojiString.replace(/\s/g, "").toLowerCase();
-  return lowercase;
-}
-
-function getSongsForCategory(categoryInput) {
-  let matchedCategory = matchCategoryByName(categoryInput);
-  return matchedCategory.songs;
-}
-
-function soundSearch(input) {
-  let soundContent = input.split(" ")[1];
-  let contentArray = input.split(" ");
-  let refinedContent = contentArray.slice(1, contentArray.length);
-  soundContent = refinedContent.join(" ");
-  let purifiedSoundContent = purifyInput(soundContent);
-  const filteredSounds = songs.filter(song => {
-    return (
-      song.name.toLowerCase().includes(purifiedSoundContent) ||
-      song.name.toLowerCase().includes(purifiedSoundContent)
-    );
-  });
-  return [filteredSounds, soundContent]
 }
 
 
