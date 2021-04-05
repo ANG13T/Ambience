@@ -144,9 +144,23 @@ bot.on('message', async (message) => {
       break;
 
     case 'pause':
-      song = client.player.pause(message);
+      song = bot.player.pause(message);
       if (song) {
         message.channel.send(`${song.name} was paused!`);
+      }
+      break;
+
+    case 'resume':
+      song = bot.player.resume(message);
+      if (song) {
+        message.channel.send(`${song.name} was resumed!`);
+      }
+      break;
+
+    case 'skip':
+      song = bot.player.skip(message);
+      if (song) {
+        message.channel.send(`${song.name} was skipped!`);
       }
       break;
 
@@ -170,7 +184,6 @@ bot.login(config.token);
 
 async function playCommand(message, args) {
   if (bot.player.isPlaying(message)) {
-    console.log("add to queue")
     let song = await bot.player.addToQueue(message, args.join(' '));
 
     // If there were no errors the Player#songAdd event will fire and the song will not be null.
@@ -178,7 +191,6 @@ async function playCommand(message, args) {
       console.log(`Added ${song.name} to the queue`);
     return;
   } else {
-    console.log("playing2", message);
     let song = await bot.player.play(message, args.join(' '));
 
     // If there were no errors the Player#songAdd event will fire and the song will not be null.
@@ -290,7 +302,6 @@ function matchSongByName(title) {
   for (let song of songs) {
     let purifiedSongName = purifyInput(song.name);
     if (purifiedSongName == purifiedTitle) {
-      console.log("matched", purifiedSongName, purifiedTitle);
       return song.link;
     }
   }
