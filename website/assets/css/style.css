@@ -132,17 +132,26 @@ transition:0.25s;
 
 .content-information .content .buttons .invite{
   background-color: rgb(18, 33, 116);
+  transition: background .5s;
+}
+
+.content-information .content .buttons .invite:hover{
+  background-color: rgb(48, 65, 141);
 }
 
 .content-information .content .buttons .read{
   /* background-color: rgb(86, 94, 139); */
   background-color: transparent;
   border: 3px solid white;
+  transition: background .5s;
 }
 
-.content-information .content-image{
+.content-information .content .buttons .read:hover{
+  background-color: white;
+  color: rgb(18, 33, 116);
 
 }
+
 
 .carousel-control-next-icon{
   width: 3.3rem !important;
@@ -249,6 +258,23 @@ transition:0.25s;
   .title-black {
     color: black;
   }
+
+#bottom-content .link{
+  margin-left: 2rem;
+  margin-right: 2rem;
+  color: white;
+}
+
+#bottom-content {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgb(100, 100, 177);
+  color: white;
+}
+
+#bottom-content .link:hover{
+  cursor: pointer;
+}
   
   @media all and (max-width: 500px) {
     .card-list {
