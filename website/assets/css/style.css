@@ -146,6 +146,19 @@ transition:0.25s;
   transition: background .5s;
 }
 
+.content-information .content .buttons .read a{
+  text-decoration: none;
+  color: white;
+}
+
+.content-information .content .buttons .read:hover a{
+  color: rgb(48, 65, 141);
+}
+
+.content-information .content .buttons .read:hover{
+  color: rgb(48, 65, 141);
+}
+
 .content-information .content .buttons .read:hover{
   background-color: white;
   color: rgb(18, 33, 116);
