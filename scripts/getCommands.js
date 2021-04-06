@@ -1,3 +1,6 @@
+import { matchCategoryByName } from "./matchCommands.js";
+
+
 function getKeyWord(keyword, command) {
     let split = command.split(" ");
     if (split[0] == keyword && split.length > 1) {

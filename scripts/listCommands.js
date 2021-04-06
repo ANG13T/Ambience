@@ -1,3 +1,8 @@
+import { matchCategoryByName } from "./matchCommands.js";
+import { getPurifiedInput, getSongsFromData } from "./getCommands.js";
+import { categories, commands } from '../index.js';
+var songs = getSongsFromData(categories);
+
 function listSearchResults(searchResultOutput) {
     let text = `Search Results for ${searchResultOutput[1]}: \n`;
     let results = searchResultOutput[0];
@@ -36,7 +41,7 @@ function soundSearch(input) {
     let contentArray = input.split(" ");
     let refinedContent = contentArray.slice(1, contentArray.length);
     soundContent = refinedContent.join(" ");
-    let purifiedSoundContent = purifyInput(soundContent);
+    let purifiedSoundContent = getPurifiedInput(soundContent);
     const filteredSounds = songs.filter(song => {
       return (
         song.name.toLowerCase().includes(purifiedSoundContent) ||

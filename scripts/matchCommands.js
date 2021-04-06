@@ -1,7 +1,11 @@
+import { getPurifiedInput, getSongsFromData, getSongsForCategory } from "./getCommands.js";
+import { categories } from '../index.js';
+var songs = getSongsFromData(categories);
+
 function matchSongByName(title) {
-    let purifiedTitle = purifyInput(title);
+    let purifiedTitle = getPurifiedInput(title);
     for (let song of songs) {
-        let purifiedSongName = purifyInput(song.name);
+        let purifiedSongName = getPurifiedInput(song.name);
         if (purifiedSongName == purifiedTitle) {
             return song.link;
         }
@@ -25,7 +29,7 @@ function matchSongByCategoryIndex(content) {
 }
 
 function matchCategoryByName(name) {
-    let purifiedInput = purifyInput(name);
+    let purifiedInput = getPurifiedInput(name);
 
     for (let category of categories) {
         let categoryName = category.name.toLowerCase();

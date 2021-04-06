@@ -1,16 +1,22 @@
 var Discord = require('discord.js');
-var config = require('./config.json');
-var songsData = require('./songs.json');
-var categories = songsData.categories;
-var songs = getSongsFromData(categories);
-var commandsData = require('./commands.json');
-commandsData = commandsData.commands;
-var bot = new Discord.Client();
 const { Player } = require("discord-music-player");
-const player = new Player(bot);
-bot.player = player;
+var config = require('./data/config.json');
+var songsData = require('./data/songs.json');
+var commandsData = require('./data/commands.json');
+import {getKeyWord} from './scripts/getCommands.js';
+import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch} from './scripts/matchCommands.js';
+import {matchSongByName, matchSongByCategoryIndex, matchSongByName} from './scripts/listCommands.js';
+
+
+var categories = songsData.categories;
+commandsData = commandsData.commands;
 let commands = commandsData.map(c => c.command);
 let descriptions = commandsData.map(c => c.description);
+
+var bot = new Discord.Client();
+const player = new Player(bot);
+bot.player = player;
+
 
 bot.on('guildCreate', guild => {
   const channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
@@ -216,5 +222,7 @@ async function playAmbienceSong(message, args, musicLink) {
   }
 }
 
-
-
+module.exports = {
+  categories: categories,
+  commands: commands
+}
