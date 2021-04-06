@@ -1,9 +1,13 @@
 import { matchCategoryByName } from "./matchCommands.js";
 import { getPurifiedInput, getSongsFromData } from "./getCommands.js";
-import { categories, commands } from '../index.js';
+var commandsData = require('../data/commands.json');
+commandsData = commandsData.commands;
+let commands = commandsData.map(c => c.command);
+var songsData = require('../data/songs.json');
+const categories = songsData.categories;;
 var songs = getSongsFromData(categories);
 
-function listSearchResults(searchResultOutput) {
+export function listSearchResults(searchResultOutput) {
     let text = `Search Results for ${searchResultOutput[1]}: \n`;
     let results = searchResultOutput[0];
     results.forEach((result) => {
@@ -13,7 +17,7 @@ function listSearchResults(searchResultOutput) {
     return text;
 }
 
-function listCategorySongs(content) {
+export function listCategorySongs(content) {
     let matchedCategory = matchCategoryByName(content);
     let text = `${matchedCategory.emoji}  Sounds for ${matchedCategory.name} category: `;
     let count = 1;
@@ -22,21 +26,21 @@ function listCategorySongs(content) {
     return text;
 }
 
-function listCategories() {
+export function listCategories() {
     let text = "Categories:";
     categories.forEach((category) => { text = text.concat(` \n\n ${category.emoji}  ${category.name}`) })
     text = text.concat("\n\n To see songs within a category type `$song [category_name]");
     return text;
 }
 
-function listCommands() {
+export function listCommands() {
     let text = "Here is a list of my commands: ";
     commands.forEach((command) => { text = text.concat(` \n ${command}`) });
     text = text.concat(" \n \n You can send `$help [command name]` to get info on a specific command!")
     return text;
 }
 
-function soundSearch(input) {
+export function soundSearch(input) {
     let soundContent = input.split(" ")[1];
     let contentArray = input.split(" ");
     let refinedContent = contentArray.slice(1, contentArray.length);
@@ -52,10 +56,10 @@ function soundSearch(input) {
   }
   
 
-module.exports = {
-    listSearchResults: listSearchResults,
-    listCategorySongs: listCategorySongs,
-    listCategories: listCategories,
-    listCommands: listCommands,
-    soundSearch: soundSearch
-};
+// module.exports = {
+//     listSearchResults: listSearchResults,
+//     listCategorySongs: listCategorySongs,
+//     listCategories: listCategories,
+//     listCommands: listCommands,
+//     soundSearch: soundSearch
+// };

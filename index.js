@@ -4,8 +4,8 @@ var config = require('./data/config.json');
 var songsData = require('./data/songs.json');
 var commandsData = require('./data/commands.json');
 import {getKeyWord} from './scripts/getCommands.js';
-import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch} from './scripts/matchCommands.js';
-import {matchSongByName, matchSongByCategoryIndex, matchSongByName} from './scripts/listCommands.js';
+import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch} from './scripts/listCommands.js';
+import {matchSongByName, matchSongByCategoryIndex} from './scripts/matchCommands.js';
 
 
 var categories = songsData.categories;
@@ -220,9 +220,4 @@ async function playAmbienceSong(message, args, musicLink) {
       search: musicLink
     });
   }
-}
-
-module.exports = {
-  categories: categories,
-  commands: commands
 }

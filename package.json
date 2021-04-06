@@ -1,0 +1,20 @@
+{
+  "name": "discordbotspeak",
+  "version": "1.0.0",
+  "description": "Coming Soon... Spring 2021",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angelina-tsuboi/DiscordBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angelina-tsuboi/DiscordBot/issues"
+  },
+  "homepage": "https://github.com/angelina-tsuboi/DiscordBot#readme"
+}

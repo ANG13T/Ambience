@@ -1,8 +1,9 @@
 import { getPurifiedInput, getSongsFromData, getSongsForCategory } from "./getCommands.js";
-import { categories } from '../index.js';
+var songsData = require('../data/songs.json');
+const categories = songsData.categories;
 var songs = getSongsFromData(categories);
 
-function matchSongByName(title) {
+export function matchSongByName(title) {
     let purifiedTitle = getPurifiedInput(title);
     for (let song of songs) {
         let purifiedSongName = getPurifiedInput(song.name);
@@ -13,7 +14,7 @@ function matchSongByName(title) {
     return false;
 }
 
-function matchSongByCategoryIndex(content) {
+export function matchSongByCategoryIndex(content) {
     let results = content.split(" ");
     console.log("cat index results", results)
     if (matchCategoryByName(results[0])) {
@@ -28,7 +29,7 @@ function matchSongByCategoryIndex(content) {
     return false;
 }
 
-function matchCategoryByName(name) {
+export function matchCategoryByName(name) {
     let purifiedInput = getPurifiedInput(name);
 
     for (let category of categories) {
@@ -41,8 +42,8 @@ function matchCategoryByName(name) {
     return false;
 }
 
-module.exports = {
-    matchCategoryByName: matchCategoryByName,
-    matchSongByCategoryIndex: matchSongByCategoryIndex,
-    matchSongByName: matchSongByName
-};
+// module.exports = {
+//     matchCategoryByName: matchCategoryByName,
+//     matchSongByCategoryIndex: matchSongByCategoryIndex,
+//     matchSongByName: matchSongByName
+// };
