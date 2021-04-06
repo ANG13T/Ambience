@@ -1,15 +1,16 @@
-var Discord = require('discord.js');
-const { Player } = require("discord-music-player");
-var config = require('./data/config');
-var songsData = require('./data/songs');
-var commandsData = require('./data/commands');
+import Discord from 'discord.js';
+import pkg from 'discord-music-player';
+const { Player } = pkg;
+import config from './data/config.js';
+import songsData from './data/songs.js';
+import commandsInput from './data/commands.js';
 import {getKeyWord} from './scripts/getCommands.js';
 import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex} from './scripts/matchCommands.js';
 
 
 var categories = songsData.categories;
-commandsData = commandsData.commands;
+const commandsData = commandsInput.commands;
 let commands = commandsData.map(c => c.command);
 let descriptions = commandsData.map(c => c.description);
 
