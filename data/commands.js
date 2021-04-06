@@ -21,6 +21,10 @@ export default {
             "description": "Stop playing music and delete the server queue"
         },
         {
+            "command": "remove",
+            "description": "Remove a song from the queue by position"
+        },
+        {
             "command": "loop",
             "description": "Loop a song"
         },

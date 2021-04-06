@@ -6,6 +6,6 @@
 
 # BOT LIST:
     - add more example code blocks to command help
-    - remove index song queue, shuffle, set volume, progress bar, 
+    - progress bar,repeatQueue, view volume
     - create easter eggs
     - invalid song message

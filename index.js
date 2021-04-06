@@ -190,12 +190,31 @@ bot.on('message', async (message) => {
       break;
 
     // case 'repeatQueue':
+
+    case 'remove':
+      let songID = parseInt(args[0])-1; 
+        
+        let song = bot.player.remove(message, songID);
+        if(song)
+            message.channel.send(`Removed song ${song.name} (${args[0]}) from the Queue!`);
+      break;
+
+    case 'shuffle':
+      let songs = bot.player.shuffle(message);
+        if(songs)
+            message.channel.send('Server Queue was shuffled.');
+      break;
+    
+    case 'setVolume':
+      let isDone = bot.player.setVolume(message, parseInt(args[0]));
+        if(isDone)
+            message.channel.send(`Volume set to ${args[0]}%!`);
+      break;
     
     case 'queue':
       let queue = bot.player.getQueue(message);
         if(queue)
             message.channel.send('Queue:\n'+(queue.songs.map((song, i) => {
-              console.log("the song", song);
                 return `${i === 0 ? 'Now Playing' : `#${i+1}`} - ${getSongFromURL(song).name}`
             }).join('\n')));
       break;
