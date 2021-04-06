@@ -29,7 +29,7 @@ export function listCategorySongs(content) {
 export function listCategories() {
     let text = "Categories:";
     categories.forEach((category) => { text = text.concat(` \n\n ${category.emoji}  ${category.name}`) })
-    text = text.concat("\n\n To see songs within a category type `$song [category_name]");
+    text = text.concat("\n\n To see sounds within a category type `$sound [category_name]");
     return text;
 }
 

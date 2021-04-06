@@ -2,14 +2,12 @@ import Discord from 'discord.js';
 import pkg from 'discord-music-player';
 const { Player } = pkg;
 import config from './data/config.js';
-import songsData from './data/songs.js';
 import commandsInput from './data/commands.js';
 import {getKeyWord} from './scripts/getCommands.js';
 import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch} from './scripts/listCommands.js';
-import {matchSongByName, matchSongByCategoryIndex} from './scripts/matchCommands.js';
+import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
 
-var categories = songsData.categories;
 const commandsData = commandsInput.commands;
 let commands = commandsData.map(c => c.command);
 let descriptions = commandsData.map(c => c.description);
@@ -177,6 +175,29 @@ bot.on('message', async (message) => {
       }
       break;
 
+    case 'stop':
+      let isComplete = bot.player.stop(message);
+      if(isComplete){
+        message.channel.send('Sounds stopped, the Queue has been cleared');
+      }
+      break;
+
+    case 'loop':
+      let toggle = bot.player.toggleLoop(message);
+      if(toggle === null) return;
+      else if(toggle) message.channel.send("The current sound is now on loop")
+      else message.channel.send("The current sound will no longer be on loop")
+      break;
+
+    // case 'repeatQueue':
+    
+    case 'queue':
+      let queue = bot.player.getQueue(message);
+        if(queue)
+            message.channel.send('Queue:\n'+(queue.songs.map((song, i) => {
+                return `${i === 0 ? 'Now Playing' : `#${i+1}`} - ${song.name} | ${song.author}`
+            }).join('\n')));
+      break;
 
     case 'resume':
       song = client.player.resume(message);
@@ -187,6 +208,12 @@ bot.on('message', async (message) => {
 
     case 'play':
       playCommand(message, args);
+    break;
+
+    default:
+      // add more info
+      message.channel.send("Command not found. Please try entering another command");
+      break;
   }
 });
 
