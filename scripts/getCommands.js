@@ -1,4 +1,7 @@
 import { matchCategoryByName } from "./matchCommands.js";
+import songsData from '../data/songs.js';
+const categories = songsData.categories;;
+var songs = getSongsFromData(categories);
 
 
 export function getKeyWord(keyword, command) {
@@ -18,6 +21,17 @@ export function getSongsFromData(data) {
     return songs;
 }
 
+export function getSongFromURL(songData){
+    let songLink = songData.requestedBy;
+    for(let song of songs){
+        if(song.link == songLink){
+            songData.name = song.name;
+            return songData;
+        }
+    }
+    return false;
+}
+
 // lowercase and remove emoji for user song and category name input
 // this makes searching for the category or song more accurate and efficent
 export function getPurifiedInput(input) {
@@ -30,10 +44,3 @@ export function getSongsForCategory(categoryInput) {
     let matchedCategory = matchCategoryByName(categoryInput);
     return matchedCategory.songs;
 }
-
-// module.exports = {
-//     getKeyWord: getKeyWord,
-//     getSongsFromData: getSongsFromData,
-//     getPurifiedInput: getPurifiedInput,
-//     getSongsForCategory: getSongsForCategory
-// };

@@ -3,7 +3,7 @@ import pkg from 'discord-music-player';
 const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
-import {getKeyWord} from './scripts/getCommands.js';
+import {getKeyWord, getSongFromURL} from './scripts/getCommands.js';
 import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
@@ -195,7 +195,8 @@ bot.on('message', async (message) => {
       let queue = bot.player.getQueue(message);
         if(queue)
             message.channel.send('Queue:\n'+(queue.songs.map((song, i) => {
-                return `${i === 0 ? 'Now Playing' : `#${i+1}`} - ${song.name} | ${song.author}`
+              console.log("the song", song);
+                return `${i === 0 ? 'Now Playing' : `#${i+1}`} - ${getSongFromURL(song).name}`
             }).join('\n')));
       break;
 
@@ -210,10 +211,6 @@ bot.on('message', async (message) => {
       playCommand(message, args);
     break;
 
-    default:
-      // add more info
-      message.channel.send("Command not found. Please try entering another command");
-      break;
   }
 });
 
@@ -242,10 +239,11 @@ async function playCommand(message, args) {
 
 async function playAmbienceSong(message, args, musicLink) {
   if (bot.player.isPlaying(message)) {
-    await bot.player.addToQueue(message, { search: musicLink });
+    await bot.player.addToQueue(message, { search: musicLink, requestedBy: musicLink });
   } else {
     await bot.player.play(message, {
-      search: musicLink
+      search: musicLink,
+      requestedBy: musicLink
     });
   }
 }
