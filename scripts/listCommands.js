@@ -1,9 +1,9 @@
 import { matchCategoryByName } from "./matchCommands.js";
 import { getPurifiedInput, getSongsFromData } from "./getCommands.js";
-var commandsData = require('../data/commands.json');
+var commandsData = require('../data/commands');
 commandsData = commandsData.commands;
 let commands = commandsData.map(c => c.command);
-var songsData = require('../data/songs.json');
+var songsData = require('../data/songs');
 const categories = songsData.categories;;
 var songs = getSongsFromData(categories);
 

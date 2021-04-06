@@ -1,8 +1,8 @@
 var Discord = require('discord.js');
 const { Player } = require("discord-music-player");
-var config = require('./data/config.json');
-var songsData = require('./data/songs.json');
-var commandsData = require('./data/commands.json');
+var config = require('./data/config');
+var songsData = require('./data/songs');
+var commandsData = require('./data/commands');
 import {getKeyWord} from './scripts/getCommands.js';
 import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex} from './scripts/matchCommands.js';

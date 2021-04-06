@@ -1,5 +1,5 @@
 import { getPurifiedInput, getSongsFromData, getSongsForCategory } from "./getCommands.js";
-var songsData = require('../data/songs.json');
+var songsData = require('../data/songs');
 const categories = songsData.categories;
 var songs = getSongsFromData(categories);
 
