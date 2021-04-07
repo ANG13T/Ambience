@@ -1,11 +1,12 @@
 # WEBSITE LIST: 
     - write documentation
+    - add more background images
     - add all external links
     - change images
-    - add more background images
 
 # BOT LIST:
     - add more example code blocks to command help
-    - progress bar,repeatQueue, view volume
+    - progress bar,repeatQueue, fix set Volume
+    - view volume, play song change song name
     - create easter eggs
     - invalid song message

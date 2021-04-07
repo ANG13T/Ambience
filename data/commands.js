@@ -45,6 +45,14 @@ export default {
             "description": "Search for songs"
         },
         {
+            "command": "shuffle",
+            "description": "Shuffle Songs in Server Queue"
+        },
+        {
+            "command": "setVolume",
+            "description": "Set Sound Volume"
+        },
+        {
             "command": "help",
             "description": "List commands or give information about a command"
         }

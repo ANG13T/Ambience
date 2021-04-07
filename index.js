@@ -205,11 +205,12 @@ bot.on('message', async (message) => {
             message.channel.send('Server Queue was shuffled.');
       break;
     
-    case 'setVolume':
-      let isDone = bot.player.setVolume(message, parseInt(args[0]));
-        if(isDone)
-            message.channel.send(`Volume set to ${args[0]}%!`);
-      break;
+      // change this code
+    // case 'setVolume':
+    //   let isDone = bot.player.setVolume(message, parseInt(args[0]));
+    //     if(isDone)
+    //         message.channel.send(`Volume set to ${args[0]}%!`);
+    //   break;
     
     case 'queue':
       let queue = bot.player.getQueue(message);
