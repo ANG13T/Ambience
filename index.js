@@ -71,11 +71,12 @@ bot.on("ready", () => {
   console.log("I am ready to Play with DMP 🎶");
 });
 
-bot.player.on('songAdd', (message, queue, song) =>
-  message.channel.send(`**${song.name}** has been added to the queue!`))
+bot.player.on('songAdd', (message, queue, song) => {
+  let selectedSong = getSongFromURL(song.requestedBy);
+  message.channel.send(`**${selectedSong.name}** has been added to the queue!`);
+  })
   .on('songFirst', (message, song) => {
-    let selectedSong = getSongFromURL(song.requestedBy);
-    console.log("requested by", selectedSong)
+    let selectedSong = getSongFromURL(song.requestedBy);    
     message.channel.send(`**${selectedSong.name}** is now playing!`);
   })
     
@@ -137,12 +138,11 @@ bot.on('message', async (message) => {
       message.channel.send(listCategorySongs(content));
       return;
     }
-    message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
+    message.channel.send("Sound not found for " + content + ". \n Type `$sounds` to see all available sounds");
     return;
   }
 
   if (getKeyWord(('!search'), message.content)) {
-    console.log("searching")
     message.channel.send(listSearchResults(soundSearch(message.content)));
     return;
   }
@@ -284,12 +284,18 @@ async function playCommand(message, args) {
 }
 
 async function playAmbienceSong(message, args, musicLink) {
-  if (bot.player.isPlaying(message)) {
-    await bot.player.addToQueue(message, { search: musicLink, requestedBy: musicLink });
-  } else {
-    await bot.player.play(message, {
-      search: musicLink,
-      requestedBy: musicLink
-    });
+  try{
+    if (bot.player.isPlaying(message)) {
+      await bot.player.addToQueue(message, { search: musicLink, requestedBy: musicLink });
+    } else {
+      await bot.player.play(message, {
+        search: musicLink,
+        requestedBy: musicLink
+      });
+    }
+  }catch(err){
+    console.log("caught tne erroe");
+    message.channel.send("You have to be in a voice channel to use this command.");
   }
+  
 }

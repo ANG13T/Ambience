@@ -49,17 +49,9 @@ export function soundSearch(input) {
     const filteredSounds = songs.filter(song => {
       return (
         song.name.toLowerCase().includes(purifiedSoundContent) ||
-        song.name.toLowerCase().includes(purifiedSoundContent)
+        purifiedSoundContent.includes(song.name.toLowerCase())
       );
     });
     return [filteredSounds, soundContent]
   }
   
-
-// module.exports = {
-//     listSearchResults: listSearchResults,
-//     listCategorySongs: listCategorySongs,
-//     listCategories: listCategories,
-//     listCommands: listCommands,
-//     soundSearch: soundSearch
-// };
