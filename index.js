@@ -189,7 +189,17 @@ bot.on('message', async (message) => {
       else message.channel.send("The current sound will no longer be on loop")
       break;
 
-    // case 'repeatQueue':
+    case 'repeatQueue':
+      let status = bot.player.setQueueRepeatMode(message, true);
+        if(status === null)
+            return;
+        message.channel.send(`Queue will be repeated indefinitely!`);
+
+    case 'disableRepeatQueue':
+      let status = bot.player.setQueueRepeatMode(message, false);
+      if(status === null)
+          return;
+      message.channel.send(`Queue will not be longer repeated indefinitely!`);
 
     case 'remove':
       let songID = parseInt(args[0])-1; 
@@ -206,11 +216,11 @@ bot.on('message', async (message) => {
       break;
     
       // change this code
-    // case 'setVolume':
-    //   let isDone = bot.player.setVolume(message, parseInt(args[0]));
-    //     if(isDone)
-    //         message.channel.send(`Volume set to ${args[0]}%!`);
-    //   break;
+    case 'setVolume':
+      let isDone = bot.player.setVolume(message, parseInt(args[0]));
+        if(isDone)
+            message.channel.send(`Volume set to ${args[0]}%!`);
+      break;
     
     case 'queue':
       let queue = bot.player.getQueue(message);

@@ -33,6 +33,18 @@ export default {
             "description": "Display songs in the queue"
         },
         {
+            "command": "repeatQueue",
+            "description": "Repeat server sound queue"
+        },
+        {
+            "command": "disableRepeatQueue",
+            "description": "Repeat server sound queue"
+        },
+        {
+            "command": "progress",
+            "description": "View progess bar of current song"
+        },
+        {
             "command": "categories",
             "description": "View music categories"
         },
