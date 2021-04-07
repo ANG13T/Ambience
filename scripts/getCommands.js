@@ -21,12 +21,10 @@ export function getSongsFromData(data) {
     return songs;
 }
 
-export function getSongFromURL(songData){
-    let songLink = songData.requestedBy;
+export function getSongFromURL(songLink){
     for(let song of songs){
         if(song.link == songLink){
-            songData.name = song.name;
-            return songData;
+            return song;
         }
     }
     return false;

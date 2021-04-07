@@ -73,8 +73,12 @@ bot.on("ready", () => {
 
 bot.player.on('songAdd', (message, queue, song) =>
   message.channel.send(`**${song.name}** has been added to the queue!`))
-  .on('songFirst', (message, song) =>
-    message.channel.send(`**${song.name}** is now playing!`));
+  .on('songFirst', (message, song) => {
+    let selectedSong = getSongFromURL(song.requestedBy);
+    console.log("requested by", selectedSong)
+    message.channel.send(`**${selectedSong.name}** is now playing!`);
+  })
+    
 
 bot.on('message', async (message) => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
@@ -189,17 +193,29 @@ bot.on('message', async (message) => {
       else message.channel.send("The current sound will no longer be on loop")
       break;
 
+    case 'progress':
+      let progressBar = bot.player.createProgressBar(message, {
+        size: 25,
+        block: '=',
+        arrow: '>'
+    });
+    if(progressBar)
+        message.channel.send(progressBar);
+    break;
+
     case 'repeatQueue':
       let status = bot.player.setQueueRepeatMode(message, true);
         if(status === null)
             return;
         message.channel.send(`Queue will be repeated indefinitely!`);
+      break;
 
     case 'disableRepeatQueue':
-      let status = bot.player.setQueueRepeatMode(message, false);
-      if(status === null)
+      let result = bot.player.setQueueRepeatMode(message, false);
+      if(result === null)
           return;
       message.channel.send(`Queue will not be longer repeated indefinitely!`);
+      break;
 
     case 'remove':
       let songID = parseInt(args[0])-1; 
