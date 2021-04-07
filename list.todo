@@ -5,7 +5,7 @@
 
 # BOT LIST:
     - add more example code blocks to command help
-    - progress bar,repeatQueue, fix set Volume
+    - repeatQueue
     - view volume, play song change song name
     - create easter eggs
     - invalid song message

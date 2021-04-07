@@ -142,6 +142,19 @@ bot.on('message', async (message) => {
     return;
   }
 
+  if (getKeyWord(('!setVolume'), message.content)) {
+    let content = message.content.split(" ")[1];
+    let contentArray = message.content.split(" ");
+    let refinedContent = contentArray.slice(1, contentArray.length);
+    content = refinedContent.join(" ");
+    console.log("your vol input is", content);
+    let isDone = bot.player.setVolume(message, parseInt(content));
+        if(isDone)
+            message.channel.send(`Volume set to ${args[0]}!`);
+
+    return;
+  }
+
   if (getKeyWord(('!search'), message.content)) {
     message.channel.send(listSearchResults(soundSearch(message.content)));
     return;
@@ -195,7 +208,7 @@ bot.on('message', async (message) => {
 
     case 'progress':
       let progressBar = bot.player.createProgressBar(message, {
-        size: 25,
+        size: 30,
         block: '=',
         arrow: '>'
     });
@@ -231,12 +244,6 @@ bot.on('message', async (message) => {
             message.channel.send('Server Queue was shuffled.');
       break;
     
-      // change this code
-    case 'setVolume':
-      let isDone = bot.player.setVolume(message, parseInt(args[0]));
-        if(isDone)
-            message.channel.send(`Volume set to ${args[0]}%!`);
-      break;
     
     case 'queue':
       let queue = bot.player.getQueue(message);
