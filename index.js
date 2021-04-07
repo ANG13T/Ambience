@@ -112,7 +112,7 @@ bot.on('message', async (message) => {
       message.channel.send(listCategorySongs(content));
       return;
     }
-    message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
+    message.channel.send("Sound not found for " + content + ". \n Type `$sounds` to see all available sounds");
     return;
   }
 
@@ -216,17 +216,18 @@ bot.on('message', async (message) => {
         message.channel.send(progressBar);
     break;
 
-    case 'repeatQueue':
+    case 'repeatqueue':
       let status = bot.player.setQueueRepeatMode(message, true);
         if(status === null)
-            return;
+          break;
         message.channel.send(`Queue will be repeated indefinitely!`);
       break;
 
-    case 'disableRepeatQueue':
+    
+    case 'disablerepeatqueue':
       let result = bot.player.setQueueRepeatMode(message, false);
       if(result === null)
-          return;
+          break;
       message.channel.send(`Queue will not be longer repeated indefinitely!`);
       break;
 
