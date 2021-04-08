@@ -35,7 +35,7 @@ export function listCategories() {
 
 export function listCommands() {
     let text = "Here is a list of my commands: ";
-    commands.forEach((command) => { text = text.concat(` \n ${command}`) });
+    commands.forEach((command) => { text = text.concat(` \n - ${command}`) });
     text = text.concat(" \n \n You can send `$help [command name]` to get info on a specific command!")
     return text;
 }

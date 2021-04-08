@@ -167,6 +167,10 @@ bot.on('message', async (message) => {
       message.channel.send(listCommands());
       break;
 
+    case 'commands':
+        message.channel.send(listCommands());
+      break;
+
     case 'categories':
       message.channel.send(listCategories());
       break;

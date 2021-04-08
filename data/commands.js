@@ -67,6 +67,14 @@ export default {
         {
             "command": "help",
             "description": "List commands or give information about a command"
+        },
+        {
+            "command": "commands",
+            "description": "List commands of the bot"
+        },
+        {
+            "command": "settings",
+            "description": "Set specific settings on the bot"
         }
     ]
 }
