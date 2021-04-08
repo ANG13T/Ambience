@@ -40,6 +40,11 @@ export function listCommands() {
     return text;
 }
 
+export function listSettings(){
+    let text = "This is the settings for the Ambience bot";
+    return text;
+}
+
 export function soundSearch(input) {
     let soundContent = input.split(" ")[1];
     let contentArray = input.split(" ");

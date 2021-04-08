@@ -4,7 +4,7 @@ const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
 import {getKeyWord, getSongFromURL} from './scripts/getCommands.js';
-import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch} from './scripts/listCommands.js';
+import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
 
@@ -98,10 +98,7 @@ bot.on('message', async (message) => {
   }
 
   if (getKeyWord('!sound', message.content)) {
-    let content = message.content.split(" ")[1];
-    let contentArray = message.content.split(" ");
-    let refinedContent = contentArray.slice(1, contentArray.length);
-    content = refinedContent.join(" ");
+   let content = refineContent(message.content);
     // check all songs - compile early
     if (matchSongByName(content)) {
       playAmbienceSong(message, args, matchSongByName(content));
@@ -118,10 +115,7 @@ bot.on('message', async (message) => {
 
   if (getKeyWord('!play', message.content)) {
     console.log("the play command")
-    let content = message.content.split(" ")[1];
-    let contentArray = message.content.split(" ");
-    let refinedContent = contentArray.slice(1, contentArray.length);
-    content = refinedContent.join(" ");
+    let content = refineContent(message.content);
     console.log("dee content", content)
     // check all songs - compile early
     if (matchSongByName(content)) {
@@ -160,11 +154,21 @@ bot.on('message', async (message) => {
     return;
   }
 
+  if (getKeyWord(('!settings'), message.content)) {
+    let content = refineContent(message.content);
+    console.log("settings prefix is ", content);
+    return;
+  }
+
   let song;
   switch (command) {
 
     case 'help':
       message.channel.send(listCommands());
+      break;
+
+    case 'settings':
+        message.channel.send(listSettings());
       break;
 
     case 'commands':
@@ -310,4 +314,12 @@ async function playAmbienceSong(message, args, musicLink) {
     message.channel.send("You have to be in a voice channel to use this command.");
   }
   
+}
+
+function refineContent(input){
+    let content = input.split(" ")[1];
+    let contentArray = input.split(" ");
+    let refinedContent = contentArray.slice(1, contentArray.length);
+    content = refinedContent.join(" ");
+    return content;
 }
