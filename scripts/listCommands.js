@@ -1,4 +1,5 @@
 import { matchCategoryByName } from "./matchCommands.js";
+import Discord from 'discord.js';
 import { getPurifiedInput, getSongsFromData } from "./getCommands.js";
 import commandsInput from '../data/commands.js';
 const commandsData = commandsInput.commands;
@@ -40,9 +41,25 @@ export function listCommands() {
     return text;
 }
 
+export function listHelpSettings(){
+    const helpEmbed = new Discord.MessageEmbed()
+	.setColor('#0099ff')
+	.setTitle('Ambience Help')
+	.setURL('https://discord.js.org/')
+	.setDescription('📄 Click Here to View All Commands \n\n 🛠 Need Help? Please visit our Troubleshooting page. \n\n 🌌 New to Ambience? Join our community');
+    return helpEmbed;
+}
+
 export function listSettings(){
-    let text = "This is the settings for the Ambience bot";
-    return text;
+    const settingsEmbed = new Discord.MessageEmbed()
+	.setColor('#0099ff')
+	.setTitle('Some title')
+	.setURL('https://discord.js.org/')
+	.setDescription('Some description here')
+	.addFields(
+		{ name: 'Regular field title', value: 'Some value here' },
+	)
+    return settingsEmbed;
 }
 
 export function soundSearch(input) {

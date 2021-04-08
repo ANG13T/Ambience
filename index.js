@@ -4,7 +4,7 @@ const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
 import {getKeyWord, getSongFromURL} from './scripts/getCommands.js';
-import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings} from './scripts/listCommands.js';
+import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
 
@@ -164,7 +164,7 @@ bot.on('message', async (message) => {
   switch (command) {
 
     case 'help':
-      message.channel.send(listCommands());
+      message.channel.send(listHelpSettings());
       break;
 
     case 'settings':
