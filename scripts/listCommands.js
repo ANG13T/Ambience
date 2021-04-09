@@ -56,8 +56,7 @@ export function listCommands() {
     .setColor('#0099ff')
     .setTitle('Ambience Commands')
     .setDescription(text)
-    .addField(`To get more information about a specific command type: `,` \`\`\` ${"$help [command name]"} \`\`\` `)
-    // change above to $command [commmand_name]
+    .addField(`To get more information about a specific command type: `,` \`\`\` ${"$command [command name]"} \`\`\` `)
     return commandsEmbed;
 }
 
@@ -99,6 +98,17 @@ export function listSettings(){
 		{ name: 'Regular field title', value: 'Some value here' },
 	)
     return settingsEmbed;
+}
+
+export function getCommandInfo(command){
+    const commandInfoEmbed = new Discord.MessageEmbed()
+	.setColor('#0099ff')
+	.setTitle(`The **${command.command}** command: `)
+	.setDescription(command.description)
+	.addFields(
+		{ name: 'To use the command, type: ', value: `${command.code}` },
+	)
+    return commandInfoEmbed;
 }
 
 export function soundSearch(input) {

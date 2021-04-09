@@ -56,6 +56,14 @@ export function getCommandsForCategory(category){
     return selectedCommands;
 }
 
+export function getCommandByName(commandName){
+    for(let command of commands){
+        console.log("chech", commandName)
+        if(command.command == commandName) return command;
+    }
+    return null;
+}
+
 // lowercase and remove emoji for user song and category name input
 // this makes searching for the category or song more accurate and efficent
 export function getPurifiedInput(input) {

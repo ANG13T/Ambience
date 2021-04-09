@@ -3,7 +3,7 @@ import pkg from 'discord-music-player';
 const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
-import {getKeyWord, getSongFromURL, getQueueEmbed} from './scripts/getCommands.js';
+import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName} from './scripts/getCommands.js';
 import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
@@ -89,7 +89,9 @@ bot.on('message', async (message) => {
     let content = message.content.split(" ")[1];
     if (commands.includes(content)) {
       let description = descriptions[commands.indexOf(content)];
-      message.channel.send(`The ${content} command: \n ${description}`);
+      console.log("cmd", command);
+      console.log("cmd set", getCommandByName(command));
+      message.channel.send(getCommandInfo(getCommandByName(command)));
     } else {
       message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
     }
