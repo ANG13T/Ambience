@@ -28,10 +28,15 @@ export function listCategorySongs(content) {
 }
 
 export function listCategories() {
-    let text = "Categories:";
-    categories.forEach((category) => { text = text.concat(` \n\n ${category.emoji}  ${category.name}`) })
-    text = text.concat("\n\n To see sounds within a category type `$sound [category_name]");
-    return text;
+    let text = "";
+    categories.forEach((category) => { text = text.concat(` \n\n ${category.emoji} \u200b ${category.name}`) })
+    text = text.concat("\n \u200b");
+    const categoryEmbed = new Discord.MessageEmbed()
+    .setColor('#0099ff')
+    .setTitle('Sound Categories')
+    .setDescription(text)
+    .addField(`To see sounds within a category type: `,` \`\`\` ${"$sound [category_name]"} \`\`\` `)
+    return categoryEmbed;
 }
 
 export function listCommands() {
@@ -45,7 +50,6 @@ export function listHelpSettings(){
     const helpEmbed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
 	.setTitle('Ambience Help')
-	.setURL('https://discord.js.org/')
 	.setDescription('📄 [Click Here](https://angelina-tsuboi.github.io/Ambience/website/docs.html#section-3) to View All Commands \n\n 🛠 Need Help? Please visit our [Troubleshooting page](https://angelina-tsuboi.github.io/Ambience/website/docs.html#section-6). \n\n 🌌 New to Ambience? [Join our community](https://discord.gg/w3Tp9x88Nw)');
     return helpEmbed;
 }
