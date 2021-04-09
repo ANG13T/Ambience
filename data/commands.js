@@ -61,11 +61,6 @@ export default {
             "category": "sound"
         },
         {
-            "command": "sound",
-            "description": "View songs within a category or a play specific sound",
-            "category": "sound"
-        },
-        {
             "command": "search",
             "description": "Search for songs",
             "category": "sound"

@@ -85,7 +85,7 @@ bot.on('message', async (message) => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
-  if (getKeyWord('!help', message.content)) {
+  if (getKeyWord('!help', message.content) || getKeyWord('!command', message.content)) {
     let content = message.content.split(" ")[1];
     if (commands.includes(content)) {
       let description = descriptions[commands.indexOf(content)];
@@ -97,19 +97,14 @@ bot.on('message', async (message) => {
     return;
   }
 
-  if (getKeyWord('!sound', message.content)) {
+  if (getKeyWord('!categories', message.content)) {
    let content = refineContent(message.content);
-    // check all songs - compile early
-    if (matchSongByName(content)) {
-      playAmbienceSong(message, args, matchSongByName(content));
-      return;
-    }
     // check categories - compile early
     if (matchCategoryByName(content)) {
       message.channel.send(listCategorySongs(content));
       return;
     }
-    message.channel.send("Sound not found for " + content + ". \n Type `$sounds` to see all available sounds");
+    message.channel.send("Category not found for " + content + ". \n Type `$categories` to see all available categories");
     return;
   }
 

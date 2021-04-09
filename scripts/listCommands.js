@@ -45,7 +45,7 @@ export function listCategories() {
     .setColor('#0099ff')
     .setTitle('Sound Categories')
     .setDescription(text)
-    .addField(`To see sounds within a category type: `,` \`\`\` ${"$sound [category_name]"} \`\`\` `)
+    .addField(`To see sounds within a category type: `,` \`\`\` ${"$categories [category_name]"} \`\`\` `)
     return categoryEmbed;
 }
 
@@ -62,29 +62,29 @@ export function listCommands() {
 }
 
 export function listHelpSettings(){
-    let text = '📄 [Click Here](https://angelina-tsuboi.github.io/Ambience/website/docs.html#section-3) to View All Commands \n\n 🛠 Need Help? Please visit our [Troubleshooting page](https://angelina-tsuboi.github.io/Ambience/website/docs.html#section-6). \n\n 🌌 New to Ambience? [Join our community](https://discord.gg/w3Tp9x88Nw)';
+    let text = '📄 [Click Here](https://angelina-tsuboi.github.io/Ambience/website/docs.html#section-3) to View All Commands \n\n 🛠 Need Help? Please visit our [Troubleshooting page](https://angelina-tsuboi.github.io/Ambience/website/docs.html#section-6). \n\n 🌌 New to Ambience? [Join our community](https://discord.gg/w3Tp9x88Nw) \n';
     let queueCommands = getCommandsForCategory("queue");
     let queueText = "";
-    queueCommands.forEach((command) => queueText = queueText.concat(command.command + " \n"));
+    queueCommands.forEach((command) => queueText = queueText.concat(` - ${command.command} \n`));
     let musicText = "";
     let musicCommands = getCommandsForCategory("music");
-    musicCommands.forEach((command) => musicText = musicText.concat(command.command + " \n"));
+    musicCommands.forEach((command) => musicText = musicText.concat(` - ${command.command} \n`));
     let settingsText = "";
     let settingsCommands = getCommandsForCategory("settings");
-    settingsCommands.forEach((command) => settingsText = settingsText.concat(command.command + " \n"));
+    settingsCommands.forEach((command) => settingsText = settingsText.concat(` - ${command.command} \n`));
     let soundText = "";
     let soundCommands = getCommandsForCategory("sound");
-    soundCommands.forEach((command) => soundText = soundText.concat(command.command + " \n"));
+    soundCommands.forEach((command) => soundText = soundText.concat(` - ${command.command} \n`));
 
     const helpEmbed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
 	.setTitle('Ambience Help')
     .setDescription(text)
     .addFields(
-        {name: "Music Commands", value: musicText},
-        {name: "Sound Commands", value: soundText},
-        {name: "Queue Settings", value: queueText},
-        {name: "Bot Settings", value: settingsText}
+        {name: "\n \n \n 🎵  Music Commands", value: musicText},
+        {name: "\n 🔊  Sound Commands", value: soundText},
+        {name: "\n 🎶  Queue Settings", value: queueText},
+        {name: "\n 🤖  Bot Settings", value: settingsText}
     )
     return helpEmbed;
 }
