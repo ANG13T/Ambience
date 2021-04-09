@@ -1,6 +1,6 @@
 import { matchCategoryByName } from "./matchCommands.js";
 import Discord from 'discord.js';
-import { getPurifiedInput, getSongsFromData } from "./getCommands.js";
+import { getPurifiedInput, getSongsFromData, getCommandsForCategory } from "./getCommands.js";
 import commandsInput from '../data/commands.js';
 const commandsData = commandsInput.commands;
 let commands = commandsData.map(c => c.command);
@@ -62,10 +62,24 @@ export function listCommands() {
 }
 
 export function listHelpSettings(){
+    let text = '📄 [Click Here](https://angelina-tsuboi.github.io/Ambience/website/docs.html#section-3) to View All Commands \n\n 🛠 Need Help? Please visit our [Troubleshooting page](https://angelina-tsuboi.github.io/Ambience/website/docs.html#section-6). \n\n 🌌 New to Ambience? [Join our community](https://discord.gg/w3Tp9x88Nw)';
+    let queueCommands = getCommandsForCategory("queue");
+    let queueText = "";
+    queueCommands.forEach((command) => queueText = queueText.concat(command.command + " \n"));
+    let musicCommands = getCommandsForCategory("music");
+    let settingsCommands = getCommandsForCategory("settings");
+    let soundCommands = getCommandsForCategory("sound");
+
     const helpEmbed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
 	.setTitle('Ambience Help')
-	.setDescription('📄 [Click Here](https://angelina-tsuboi.github.io/Ambience/website/docs.html#section-3) to View All Commands \n\n 🛠 Need Help? Please visit our [Troubleshooting page](https://angelina-tsuboi.github.io/Ambience/website/docs.html#section-6). \n\n 🌌 New to Ambience? [Join our community](https://discord.gg/w3Tp9x88Nw)');
+    .setDescription(text)
+    .addFields(
+        {name: "Music Commands", value: 'ahskjs'},
+        {name: "Sound Commands", value: 'hjskd'},
+        {name: "Queue Settings", value: queueText},
+        {name: "Bot Settings", value: 'hjskd'}
+    )
     return helpEmbed;
 }
 

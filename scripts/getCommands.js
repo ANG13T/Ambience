@@ -1,6 +1,7 @@
 import { matchCategoryByName } from "./matchCommands.js";
 import Discord from 'discord.js';
 import songsData from '../data/songs.js';
+import commands from "../data/commands.js";
 const categories = songsData.categories;;
 var songs = getSongsFromData(categories);
 
@@ -44,6 +45,14 @@ export function getSongFromURL(songLink){
         }
     }
     return false;
+}
+
+export function getCommandsForCategory(category){
+    let selectedCommands = [];
+    commands.forEach((command) => {
+        if(command.category == category) selectedCommands.push(command);
+    })
+    return selectedCommands;
 }
 
 // lowercase and remove emoji for user song and category name input
