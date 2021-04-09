@@ -3,7 +3,7 @@ import pkg from 'discord-music-player';
 const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
-import {getKeyWord, getSongFromURL} from './scripts/getCommands.js';
+import {getKeyWord, getSongFromURL, getQueueEmbed} from './scripts/getCommands.js';
 import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
@@ -257,9 +257,7 @@ bot.on('message', async (message) => {
     case 'queue':
       let queue = bot.player.getQueue(message);
         if(queue)
-            message.channel.send('Queue:\n'+(queue.songs.map((song, i) => {
-                return `${i === 0 ? 'Now Playing' : `#${i+1}`} - ${getSongFromURL(song).name}`
-            }).join('\n')));
+            message.channel.send(getQueueEmbed(queue.songs));
       break;
 
     case 'resume':
@@ -311,7 +309,7 @@ async function playAmbienceSong(message, args, musicLink) {
     }
   }catch(err){
     console.log("caught tne erroe");
-    message.channel.send("You have to be in a voice channel to use this command.");
+    message.channel.send("❌ You must be in a voice channel to use this command.");
   }
   
 }

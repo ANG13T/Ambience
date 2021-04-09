@@ -1,4 +1,5 @@
 import { matchCategoryByName } from "./matchCommands.js";
+import Discord from 'discord.js';
 import songsData from '../data/songs.js';
 const categories = songsData.categories;;
 var songs = getSongsFromData(categories);
@@ -11,6 +12,21 @@ export function getKeyWord(keyword, command) {
     }
 
     return false;
+}
+
+export function getQueueEmbed(songs){
+    let text = `**Now Playing:** ${songs[0].name} \n`;
+    if(songs.length > 1){
+        for(let i = 1; i < songs.length; i++){
+            text = text.concat(`\n **#${i}** - ${getSongFromURL(songs[i].requestedBy).name}`)
+        }
+    }
+    
+    const queueEmbed = new Discord.MessageEmbed()
+	.setColor('#0099ff')
+	.setTitle('🎶 Channel Queue 🎶')
+	.setDescription(text);
+    return queueEmbed;
 }
 
 export function getSongsFromData(data) {

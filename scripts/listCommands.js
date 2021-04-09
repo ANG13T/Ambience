@@ -52,8 +52,13 @@ export function listCategories() {
 export function listCommands() {
     let text = "Here is a list of my commands: ";
     commands.forEach((command) => { text = text.concat(` \n - ${command}`) });
-    text = text.concat(" \n \n You can send `$help [command name]` to get info on a specific command!")
-    return text;
+    const commandsEmbed = new Discord.MessageEmbed()
+    .setColor('#0099ff')
+    .setTitle('Ambience Commands')
+    .setDescription(text)
+    .addField(`To get more information about a specific command type: `,` \`\`\` ${"$help [command name]"} \`\`\` `)
+    // change above to $command [commmand_name]
+    return commandsEmbed;
 }
 
 export function listHelpSettings(){
