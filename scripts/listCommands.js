@@ -9,28 +9,38 @@ const categories = songsData.categories;;
 var songs = getSongsFromData(categories);
 
 export function listSearchResults(searchResultOutput) {
-    let text = `Search Results for ${searchResultOutput[1]}: \n`;
+    let text = "";
     let results = searchResultOutput[0];
     results.forEach((result) => {
         text = text.concat(`- ${result.name} \n`);
     })
-    text = text.concat("\n To play a specific sound type: \n `$play [sound_name]` \n or \n `$play [category_name] [sound_index]`");
-    return text;
+    text = text.concat("\n \u200b ");
+    const searchEmbed = new Discord.MessageEmbed()
+    .setColor('#0099ff')
+    .setTitle(`🔍 Search Results for "${searchResultOutput[1]}": \n`)
+    .setDescription(text)
+    .addField(`To play a specific sound type: `,` \`\`\` ${"$play [sound_name]"} \`\`\` or \`\`\` ${"$play [category_name] [sound_index]"} \`\`\``)
+    return searchEmbed;
 }
 
 export function listCategorySongs(content) {
     let matchedCategory = matchCategoryByName(content);
-    let text = `${matchedCategory.emoji}  Sounds for ${matchedCategory.name} category: `;
+    let text = "";
     let count = 1;
-    matchedCategory.songs.forEach((song) => { text = text.concat(` \n\n ${count})  ${song.name}`); count++ })
-    text = text.concat("\n\n To play a specific sound type: \n `$play [sound_name]` \n or \n `$play [category_name] [sound_index]`");
-    return text;
+    matchedCategory.songs.forEach((song) => { text = text.concat(` \n\n ${count})  ${song.name}`); count++ });
+    text = text.concat("\n \u200b ");
+    const categorySongsEmbed = new Discord.MessageEmbed()
+    .setColor('#0099ff')
+    .setTitle(`${matchedCategory.emoji}  Sounds for ${matchedCategory.name} category: `)
+    .setDescription(text)
+    .addField(`To play a specific sound type: `,` \`\`\` ${"$play [sound_name]"} \`\`\` or \`\`\` ${"$play [category_name] [sound_index]"} \`\`\``)
+    return categorySongsEmbed;
 }
 
 export function listCategories() {
     let text = "";
     categories.forEach((category) => { text = text.concat(` \n\n ${category.emoji} \u200b ${category.name}`) })
-    text = text.concat("\n \u200b");
+    text = text.concat("\n \u200b ");
     const categoryEmbed = new Discord.MessageEmbed()
     .setColor('#0099ff')
     .setTitle('Sound Categories')
