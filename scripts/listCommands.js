@@ -46,7 +46,7 @@ export function listHelpSettings(){
 	.setColor('#0099ff')
 	.setTitle('Ambience Help')
 	.setURL('https://discord.js.org/')
-	.setDescription('📄 [Click Here](https://countrycode.org/) to View All Commands \n\n 🛠 Need Help? Please visit our Troubleshooting page. \n\n 🌌 New to Ambience? Join our community');
+	.setDescription('📄 [Click Here](https://angelina-tsuboi.github.io/Ambience/website/docs.html#section-3) to View All Commands \n\n 🛠 Need Help? Please visit our [Troubleshooting page](https://angelina-tsuboi.github.io/Ambience/website/docs.html#section-6). \n\n 🌌 New to Ambience? [Join our community](https://discord.gg/w3Tp9x88Nw)');
     return helpEmbed;
 }
 
