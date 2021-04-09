@@ -66,19 +66,25 @@ export function listHelpSettings(){
     let queueCommands = getCommandsForCategory("queue");
     let queueText = "";
     queueCommands.forEach((command) => queueText = queueText.concat(command.command + " \n"));
+    let musicText = "";
     let musicCommands = getCommandsForCategory("music");
+    musicCommands.forEach((command) => musicText = musicText.concat(command.command + " \n"));
+    let settingsText = "";
     let settingsCommands = getCommandsForCategory("settings");
+    settingsCommands.forEach((command) => settingsText = settingsText.concat(command.command + " \n"));
+    let soundText = "";
     let soundCommands = getCommandsForCategory("sound");
+    soundCommands.forEach((command) => soundText = soundText.concat(command.command + " \n"));
 
     const helpEmbed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
 	.setTitle('Ambience Help')
     .setDescription(text)
     .addFields(
-        {name: "Music Commands", value: 'ahskjs'},
-        {name: "Sound Commands", value: 'hjskd'},
+        {name: "Music Commands", value: musicText},
+        {name: "Sound Commands", value: soundText},
         {name: "Queue Settings", value: queueText},
-        {name: "Bot Settings", value: 'hjskd'}
+        {name: "Bot Settings", value: settingsText}
     )
     return helpEmbed;
 }

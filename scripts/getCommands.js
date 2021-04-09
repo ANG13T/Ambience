@@ -1,9 +1,10 @@
 import { matchCategoryByName } from "./matchCommands.js";
 import Discord from 'discord.js';
 import songsData from '../data/songs.js';
-import commands from "../data/commands.js";
+import commandsData from "../data/commands.js";
 const categories = songsData.categories;;
 var songs = getSongsFromData(categories);
+var commands = commandsData.commands;
 
 
 export function getKeyWord(keyword, command) {
