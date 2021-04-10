@@ -27,6 +27,10 @@
     color: #747f94 !important;
 }
 
+.darkModeContainer .docs-nav .nav-link.active .theme-icon-holder{
+  background: #174888;
+}
+
 .darkModeContainer .docs-sidebar{
     background-color: #4a80c5;
 }
