@@ -5,7 +5,8 @@
 
 # BOT LIST:
     - make custom song command
-    - prefix command
+    - invalid command error
+    - modify message for prefix
     - add emojis
     -add more songs
     - create easter eggs

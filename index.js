@@ -3,7 +3,7 @@ import pkg from 'discord-music-player';
 const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
-import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix} from './scripts/getCommands.js';
+import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic} from './scripts/getCommands.js';
 import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
@@ -153,7 +153,7 @@ bot.on('message', async (message) => {
       message.channel.send(listValidPrefixes());
       return;
     }
-    message.channel.send(`Prefix set to ${content}!`);
+    message.channel.send(`Prefix set to ${content}`);
   }
 
   if (getKeyWord(('settings'), message.content)) {
@@ -283,14 +283,14 @@ bot.login(config.token);
 
 async function playCommand(message, args) {
   if (bot.player.isPlaying(message)) {
-    let song = await bot.player.addToQueue(message, args.join(' '));
+    let song = await bot.player.addToQueue(modifyMessageForMusic(message), args.join(' '));
 
     // If there were no errors the Player#songAdd event will fire and the song will not be null.
     if (song)
       console.log(`Added ${song.name} to the queue`);
     return;
   } else {
-    let song = await bot.player.play(message, args.join(' '));
+    let song = await bot.player.play(modifyMessageForMusic(message), args.join(' '));
 
     // If there were no errors the Player#songAdd event will fire and the song will not be null.
     if (song)

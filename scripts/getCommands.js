@@ -6,6 +6,7 @@ const categories = songsData.categories;;
 var songs = getSongsFromData(categories);
 var commands = commandsData.commands;
 import config from '../data/config.js';
+import { refineContent } from "../index.js";
 let prefix = config.prefix;
 
 
@@ -25,6 +26,12 @@ export function getPrefix(){
 
 export function changePrefix(newPrefix){
     prefix = newPrefix;
+}
+
+export function modifyMessageForMusic(message){
+    let refinedText = message.slice(1, message.length);
+    refinedText = "will " + refinedText;
+    return refinedText;
 }
 
 export function getQueueEmbed(songs){
