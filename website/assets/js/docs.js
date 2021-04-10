@@ -18,8 +18,11 @@ $(window).on('load resize', function() {
 $('#toggle-button').change(function(event){
 	if($('#toggle-button').is(':checked')){
 		darkMode = true;
+		//append to element container
+		$(".docs-page").addClass("darkModeContainer");
 	}else{
 		darkMode = false;
+		$(".docs-page").removeClass("darkModeContainer");
 	}
 	window.localStorage.setItem("darkMode", darkMode);
 })
@@ -34,6 +37,9 @@ $(document).ready(function() {
 		if(darkMode == "true"){
 			console.log("inside");
 			$('#toggle-button').attr('checked','checked');
+			$(".docs-page").addClass("darkModeContainer");
+		}else{
+			$(".docs-page").removeClass("darkModeContainer");
 		}
 	}
 	
