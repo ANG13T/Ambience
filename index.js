@@ -7,7 +7,6 @@ import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName} from './scr
 import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
-
 const commandsData = commandsInput.commands;
 let commands = commandsData.map(c => c.command);
 let descriptions = commandsData.map(c => c.description);

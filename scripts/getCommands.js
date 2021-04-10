@@ -5,15 +5,26 @@ import commandsData from "../data/commands.js";
 const categories = songsData.categories;;
 var songs = getSongsFromData(categories);
 var commands = commandsData.commands;
+import config from '../data/config.js';
+let prefix = config.prefix;
 
 
 export function getKeyWord(keyword, command) {
+    let prefixKeyword = prefix + keyword;
     let split = command.split(" ");
-    if (split[0] == keyword && split.length > 1) {
+    if (split[0] == prefixKeyword && split.length > 1) {
         return true;
     }
 
     return false;
+}
+
+export function getPrefix(){
+    return prefix;
+}
+
+export function changePrefix(newPrefix){
+    prefix = newPrefix;
 }
 
 export function getQueueEmbed(songs){
