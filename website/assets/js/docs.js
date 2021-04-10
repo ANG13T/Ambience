@@ -20,9 +20,13 @@ $('#toggle-button').change(function(event){
 		darkMode = true;
 		//append to element container
 		$(".docs-page").addClass("darkModeContainer");
+		$('body').addClass("darkModeContainer");
+		$('#theme-content').text("🌘 Dark Mode");
 	}else{
 		darkMode = false;
 		$(".docs-page").removeClass("darkModeContainer");
+		$('body').removeClass("darkModeContainer");
+		$('#theme-content').text("🌖 Light Mode");
 	}
 	window.localStorage.setItem("darkMode", darkMode);
 })
@@ -37,9 +41,13 @@ $(document).ready(function() {
 		if(darkMode == "true"){
 			console.log("inside");
 			$('#toggle-button').attr('checked','checked');
+			$('body').addClass("darkModeContainer");
 			$(".docs-page").addClass("darkModeContainer");
+			$('#theme-content').text("🌘 Dark Mode");
 		}else{
+			$('body').removeClass("darkModeContainer");
 			$(".docs-page").removeClass("darkModeContainer");
+			$('#theme-content').text("🌖 Light Mode");
 		}
 	}
 	

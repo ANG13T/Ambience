@@ -9,34 +9,42 @@
 }
 
 .darkModeContainer .header{
-    background: #0d2f67;
+    background: #0d2f67 !important;
 }
 
 .darkModeContainer .docs-sidebar-toggler span{
-    background-color: #ffffff;
+    background-color: #ffffff !important;
 }
 
 .darkModeContainer .site-logo .logo-text{
-    color: #aebed0;
+    color: #aebed0 !important;
 }
 .darkModeContainer h1, h2, h3, h4, h5, h6{
     color: #bfc4ce;
 }
 
 .darkModeContainer .docs-article .docs-time{
-    color: #747f94;
+    color: #747f94 !important;
 }
 
 .darkModeContainer .docs-article{
     color: #c0c7d4;
 }
 
+.darkModeContainer .theme-switch-wrapper span{
+    color: #c8d2de;
+}
+
 .darkModeContainer .docs-article .section-heading{
     color: #c3d0e6;
 }
 
+.darkModeContainer a.theme-link{
+    color: #adb6c5;
+}
+
 .darkModeContainer .docs-article strong{
-    color: #c2c7d0;
+    color: #c2c7d0 !important;
 }
 
 .theme-switch-wrapper {
@@ -57,6 +65,10 @@
   
   .theme-switch input {
     display:none;
+  }
+
+  .darkModeContainer{
+      background-color: #0f2c52 !important;
   }
 
   .slider {
