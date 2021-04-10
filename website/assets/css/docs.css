@@ -27,6 +27,19 @@
     color: #747f94 !important;
 }
 
+.darkModeContainer .docs-sidebar{
+    background-color: #4a80c5;
+}
+
+.darkModeContainer .form-control{
+    background-color: #c4ddff;
+    border-color: #325765;
+}
+
+.darkModeContainer .docs-nav .nav-link{
+    color: #e4eeff !important;
+}
+
 .darkModeContainer .docs-article{
     color: #c0c7d4;
 }
