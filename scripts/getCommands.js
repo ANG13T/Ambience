@@ -58,7 +58,6 @@ export function getCommandsForCategory(category){
 
 export function getCommandByName(commandName){
     for(let command of commands){
-        console.log("chech", commandName)
         if(command.command == commandName) return command;
     }
     return null;
