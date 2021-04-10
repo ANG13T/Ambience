@@ -91,13 +91,13 @@ export function listHelpSettings(){
 export function listSettings(){
     const settingsEmbed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
-	.setTitle('Ambience Settings')
+	.setTitle('⚙️ Ambience Settings')
 	.setURL('https://discord.js.org/')
 	.addFields(
-        { name: 'View Commands \u200B', value: 'Some value here', inline: true },
-        { name: 'Get Help', value: 'Some value here', inline: true },
-        { name: 'Set Volume \u200B', value: 'Some value here', inline: true },
-        { name: 'FAQ and Support', value: 'Some value here', inline: true },
+        { name: '📄 View Commands \u200B', value: ` \`\`\` $commands \`\`\` `, inline: true },
+        { name: '❓ Get Help', value: ` \`\`\` $help \`\`\` `, inline: true },
+        { name: '🔈 Set Volume \u200B', value: ` \`\`\` $setVolume \`\`\` `, inline: true },
+        { name: '\n 🔍 FAQ and Support', value: 'Please join the [Ambience server](https://discord.gg/w3Tp9x88Nw) for support'},
 	)
     return settingsEmbed;
 }
