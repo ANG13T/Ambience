@@ -84,7 +84,7 @@ bot.on('message', async (message) => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
-  if (getKeyWord('!help', message.content) || getKeyWord('!command', message.content)) {
+  if (getKeyWord('help', message.content) || getKeyWord('command', message.content)) {
     let content = message.content.split(" ")[1];
     if (commands.includes(content)) {
       message.channel.send(getCommandInfo(getCommandByName(content)));
@@ -96,7 +96,7 @@ bot.on('message', async (message) => {
     return;
   }
 
-  if (getKeyWord('!categories', message.content)) {
+  if (getKeyWord('categories', message.content)) {
    let content = refineContent(message.content);
     // check categories - compile early
     if (matchCategoryByName(content)) {
@@ -107,10 +107,8 @@ bot.on('message', async (message) => {
     return;
   }
 
-  if (getKeyWord('!play', message.content)) {
-    console.log("the play command")
+  if (getKeyWord('play', message.content)) {
     let content = refineContent(message.content);
-    console.log("dee content", content)
     // check all songs - compile early
     if (matchSongByName(content)) {
       playAmbienceSong(message, args, matchSongByName(content));
@@ -130,12 +128,11 @@ bot.on('message', async (message) => {
     return;
   }
 
-  if (getKeyWord(('!setVolume'), message.content)) {
+  if (getKeyWord(('setVolume'), message.content)) {
     let content = message.content.split(" ")[1];
     let contentArray = message.content.split(" ");
     let refinedContent = contentArray.slice(1, contentArray.length);
     content = refinedContent.join(" ");
-    console.log("your vol input is", content);
     let isDone = bot.player.setVolume(message, parseInt(content));
         if(isDone)
             message.channel.send(`Volume set to ${args[0]}!`);
@@ -143,12 +140,21 @@ bot.on('message', async (message) => {
     return;
   }
 
-  if (getKeyWord(('!search'), message.content)) {
+  if (getKeyWord(('search'), message.content)) {
     message.channel.send(listSearchResults(soundSearch(message.content)));
     return;
   }
 
-  if (getKeyWord(('!settings'), message.content)) {
+  if(getKeyWord(('prefix'), message.content)){
+    let validPrefixes = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '\\', '/', '.', '~'];
+    if(!validPrefixes.includes(message.content)){
+      message.channel.send(listValidPrefixes());
+      return;
+    }
+    message.channel.send(`Prefix set to ${message.content}!`);
+  }
+
+  if (getKeyWord(('settings'), message.content)) {
     let content = refineContent(message.content);
     console.log("settings prefix is ", content);
     return;

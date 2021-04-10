@@ -103,6 +103,15 @@ export function listSettings(){
     return settingsEmbed;
 }
 
+export function listValidPrefixes(){
+    let text = "Invalid Prefix. Please use one of the following prefixes:";
+    let validPrefixes = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '\\', '/', '.', '~'];
+    for(let prf of validPrefixes){
+        text.concat(`\n - ${prf}`)
+    }
+    return text;
+}
+
 export function getCommandInfo(command){
     const commandInfoEmbed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
