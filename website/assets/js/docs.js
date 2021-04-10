@@ -1,4 +1,6 @@
 
+let darkMode = false;
+
 $(window).on('load resize', function() {
    
     //Add/remove class based on browser size when load/resize
@@ -13,12 +15,27 @@ $(window).on('load resize', function() {
 	}
 });
 
-$('#toggle-button').click(function(){
-	alert("hoi")
+$('#toggle-button').change(function(event){
+	if($('#toggle-button').is(':checked')){
+		darkMode = true;
+	}else{
+		darkMode = false;
+	}
+	window.localStorage.setItem("darkMode", darkMode);
 })
 
 
 $(document).ready(function() {
+
+	if(window.localStorage.getItem("darkMode")){
+		console.log(window.localStorage.getItem("darkMode"));
+		darkMode = window.localStorage.getItem("darkMode"); 
+
+		if(darkMode == "true"){
+			console.log("inside");
+			$('#toggle-button').attr('checked','checked');
+		}
+	}
 	
 	/* ====== Toggle Sidebar ======= */
 	
