@@ -13,6 +13,10 @@ $(window).on('load resize', function() {
 	}
 });
 
+$('#toggle-button').click(function(){
+	alert("hoi")
+})
+
 
 $(document).ready(function() {
 	
