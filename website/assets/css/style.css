@@ -326,3 +326,43 @@ transition:0.25s;
   */
 
    
+  @media only screen 
+  and (max-device-width: 550px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    #links-section{
+      display: none;
+    }
+
+    #bottom-grid{
+      display: none;
+    }
+
+    .col-xs-12 col-md-4{
+      margin-bottom: 3rem;
+    }
+
+    .carousel-item{
+      background-color: rgb(128 128 181) !important;
+    }
+
+    .rowCard{
+      margin-bottom: 2rem;
+    }
+
+    .carasouel-item .content-image{
+      display: none;
+    }
+
+    .cards-list{
+      display: none;
+    }
+
+    .content-image{
+      display: none;
+    }
+
+    .carasouel-container{
+      margin-bottom: 6rem;
+    }
+}
