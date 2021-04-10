@@ -91,11 +91,13 @@ export function listHelpSettings(){
 export function listSettings(){
     const settingsEmbed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
-	.setTitle('Some title')
+	.setTitle('Ambience Settings')
 	.setURL('https://discord.js.org/')
-	.setDescription('Some description here')
 	.addFields(
-		{ name: 'Regular field title', value: 'Some value here' },
+        { name: 'View Commands \u200B', value: 'Some value here', inline: true },
+        { name: 'Get Help', value: 'Some value here', inline: true },
+        { name: 'Set Volume \u200B', value: 'Some value here', inline: true },
+        { name: 'FAQ and Support', value: 'Some value here', inline: true },
 	)
     return settingsEmbed;
 }

@@ -88,7 +88,7 @@ bot.on('message', async (message) => {
   if (getKeyWord('!help', message.content) || getKeyWord('!command', message.content)) {
     let content = message.content.split(" ")[1];
     if (commands.includes(content)) {
-      message.channel.send(getCommandInfo(getCommandByName(command)));
+      message.channel.send(getCommandInfo(getCommandByName(content)));
      
     } else {
       message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
