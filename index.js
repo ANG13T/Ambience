@@ -3,8 +3,8 @@ import pkg from 'discord-music-player';
 const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
-import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName} from './scripts/getCommands.js';
-import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo} from './scripts/listCommands.js';
+import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix} from './scripts/getCommands.js';
+import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
 const commandsData = commandsInput.commands;
@@ -81,7 +81,7 @@ bot.player.on('songAdd', (message, queue, song) => {
     
 
 bot.on('message', async (message) => {
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(getPrefix().length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
   if (getKeyWord('help', message.content) || getKeyWord('command', message.content)) {
@@ -146,12 +146,14 @@ bot.on('message', async (message) => {
   }
 
   if(getKeyWord(('prefix'), message.content)){
+    console.log("prefs", message.content)
+    let content = refineContent(message.content);
     let validPrefixes = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '\\', '/', '.', '~'];
-    if(!validPrefixes.includes(message.content)){
+    if(!validPrefixes.includes(content)){
       message.channel.send(listValidPrefixes());
       return;
     }
-    message.channel.send(`Prefix set to ${message.content}!`);
+    message.channel.send(`Prefix set to ${content}!`);
   }
 
   if (getKeyWord(('settings'), message.content)) {
@@ -314,7 +316,7 @@ async function playAmbienceSong(message, args, musicLink) {
   
 }
 
-function refineContent(input){
+export function refineContent(input){
     let content = input.split(" ")[1];
     let contentArray = input.split(" ");
     let refinedContent = contentArray.slice(1, contentArray.length);

@@ -1,6 +1,7 @@
 import { matchCategoryByName } from "./matchCommands.js";
 import Discord from 'discord.js';
 import { getPurifiedInput, getSongsFromData, getCommandsForCategory } from "./getCommands.js";
+import { refineContent } from '../index.js';
 import commandsInput from '../data/commands.js';
 const commandsData = commandsInput.commands;
 let commands = commandsData.map(c => c.command);
@@ -106,8 +107,8 @@ export function listSettings(){
 export function listValidPrefixes(){
     let text = "Invalid Prefix. Please use one of the following prefixes:";
     let validPrefixes = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '\\', '/', '.', '~'];
-    for(let prf of validPrefixes){
-        text.concat(`\n - ${prf}`)
+    for(let i = 0; i < validPrefixes.length; i++){
+        text = text.concat(`\n ${i + 1})  ${validPrefixes[i]}`)
     }
     return text;
 }
@@ -124,15 +125,15 @@ export function getCommandInfo(command){
 }
 
 export function soundSearch(input) {
-    let soundContent = input.split(" ")[1];
-    let contentArray = input.split(" ");
-    let refinedContent = contentArray.slice(1, contentArray.length);
-    soundContent = refinedContent.join(" ");
+    let soundContent = refineContent(input);
     let purifiedSoundContent = getPurifiedInput(soundContent);
+    
     const filteredSounds = songs.filter(song => {
+        let purifiedSongName = getPurifiedInput(song.name);
       return (
-        song.name.toLowerCase().includes(purifiedSoundContent) ||
-        purifiedSoundContent.includes(song.name.toLowerCase())
+        purifiedSongName.includes(purifiedSoundContent) ||
+        purifiedSoundContent.includes(purifiedSongName) ||
+        purifiedSongName == purifiedSoundContent
       );
     });
     return [filteredSounds, soundContent]
