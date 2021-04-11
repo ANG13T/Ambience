@@ -16,6 +16,8 @@
     <br />
     <a href="https://angelina-tsuboi.github.io/Ambience/">View Website</a>
     ·
+    <a href="https://discord.com/invite/w3Tp9x88Nw">Join the Community</a>
+    ·
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
     ·
     <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
@@ -42,11 +44,9 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -71,9 +71,9 @@ A list of commonly used resources that I find helpful are listed in the acknowle
 ### Built With
 
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
+* Node.js
+* discord-music-player
+* discord.js
 
 
 
@@ -133,9 +133,10 @@ Contributions are what make the open source community such an amazing place to b
 Distributed under the MIT License. See `LICENSE` for more information.
 
 
-
 <!-- CONTACT -->
 ## Contact
+
+Join the Ambience Community - [Invite Link](https://discord.com/invite/w3Tp9x88Nw)
 
 Ambience Email - [ambiencebot0@gmail.com](https://mail.google.com/mail/?view=cm&fs=1&to=ambiencebot0@gmail.com) 
 
