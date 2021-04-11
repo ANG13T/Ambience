@@ -10,6 +10,7 @@
   <p align="center">
     A Discord Bot that provides quality music for work, productivity, and flow. Invite it on Discord to improve your focus!
     <br />
+    <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Invite the Bot »</strong></a>
     <br />
     <br />
@@ -92,36 +93,25 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/angelina-tsuboi/Ambience.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+3. Run the Server
    ```JS
-   const API_KEY = 'ENTER YOUR API';
+   node index.js
    ```
-
-
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
-
+_For more examples, please refer to the [Documentation](https://angelina-tsuboi.github.io/Ambience/website/docs.html)_
 
 
 <!-- CONTRIBUTING -->
