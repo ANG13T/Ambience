@@ -21,7 +21,7 @@ export function listSearchResults(searchResultOutput) {
     .setColor('#0099ff')
     .setTitle(`🔍 Search Results for "${searchResultOutput[1]}": \n`)
     .setDescription(text)
-    .addField(`To play a specific sound type: `,` \`\`\` ${"$play [sound_name]"} \`\`\` or \`\`\` ${"$play [category_name] [sound_index]"} \`\`\``)
+    .addField(`To play a specific sound type: `,` \`\`\` ${getCommandWithPrefix("play [sound_name]")} \`\`\` or \`\`\` ${getCommandWithPrefix("play [category_name] [sound_index]")} \`\`\``)
     return searchEmbed;
 }
 
@@ -35,7 +35,7 @@ export function listCategorySongs(content) {
     .setColor('#0099ff')
     .setTitle(`${matchedCategory.emoji}  Sounds for ${matchedCategory.name} category: `)
     .setDescription(text)
-    .addField(`To play a specific sound type: `,` \`\`\` ${"$play [sound_name]"} \`\`\` or \`\`\` ${"$play [category_name] [sound_index]"} \`\`\``)
+    .addField(`To play a specific sound type: `,` \`\`\` ${getCommandWithPrefix("play [sound_name]")} \`\`\` or \`\`\` ${getCommandWithPrefix("play [category_name] [sound_index]")} \`\`\``)
     return categorySongsEmbed;
 }
 
@@ -47,7 +47,7 @@ export function listCategories() {
     .setColor('#0099ff')
     .setTitle('Sound Categories')
     .setDescription(text)
-    .addField(`To see sounds within a category type: `,` \`\`\` ${"$categories [category_name]"} \`\`\` `)
+    .addField(`To see sounds within a category type: `,` \`\`\` ${getCommandWithPrefix("categories [category_name]")} \`\`\` `)
     return categoryEmbed;
 }
 
@@ -58,7 +58,7 @@ export function listCommands() {
     .setColor('#0099ff')
     .setTitle('Ambience Commands')
     .setDescription(text)
-    .addField(`To get more information about a specific command type: `,` \`\`\` ${"$command [command name]"} \`\`\` `)
+    .addField(`To get more information about a specific command type: `,` \`\`\` ${getCommandWithPrefix("command [command_name]")} \`\`\` `)
     return commandsEmbed;
 }
 
@@ -67,7 +67,7 @@ export function listInvalidCommand(command){
     .setColor('#0099ff')
     .setTitle('Invalid Command!')
     .setDescription(`${config.prefix}${command} is an invalid command`)
-    .addField(`To see all commands, please type: `,` \`\`\` $commands \`\`\` `)
+    .addField(`To see all commands, please type: `,` \`\`\` ${getCommandWithPrefix("commands")} \`\`\` `)
     return invalidEmbed;
 }
 
@@ -112,7 +112,7 @@ export function listAllSounds(sounds){
 	.setColor('#0099ff')
 	.setTitle('🎶 Ambience Sounds: ')
     .setDescription(text)
-    .addFields({name: 'To play a sound type: ', value: ` \`\`\` $sound [sound_name] \`\`\` ` });
+    .addFields({name: 'To play a sound type: ', value: ` \`\`\`${getCommandWithPrefix("sound [sound_name]")} \`\`\` ` });
     return soundsEmbed;
 }
 
@@ -120,11 +120,11 @@ export function listInvite(){
     const inviteEmbed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
     .setTitle('Thanks for Inviting Ambience!')
-    .setDescription("Use the command ``$commands`` to see all commands. \n For more information please visit the [Ambience Website](https://angelina-tsuboi.github.io/Ambience/). Please consider joining our [Discord server](https://discord.com/invite/w3Tp9x88Nw) to meet people within our community. \n")
+    .setDescription("Use the command " + ```${getCommandWithPrefix("commands")}``` + " to see all commands. \n For more information please visit the [Ambience Website](https://angelina-tsuboi.github.io/Ambience/). Please consider joining our [Discord server](https://discord.com/invite/w3Tp9x88Nw) to meet people within our community. \n")
 	.addFields(
-        { name: '\n \n 🎶 View Sounds', value: ` \`\`\` $sounds \`\`\` `,  inline: true},
-        { name: '🎙 View Sound Categories', value: ` \`\`\` $categories \`\`\` `,  inline: true},
-        { name: '❓ Get Help', value: ` \`\`\` $command help \`\`\` `, inline: true },
+        { name: '\n \n 🎶 View Sounds', value: ` \`\`\` ${getCommandWithPrefix("sounds")} \`\`\` `,  inline: true},
+        { name: '🎙 View Sound Categories', value: ` \`\`\` ${getCommandWithPrefix("categories")} \`\`\` `,  inline: true},
+        { name: '❓ Get Help', value: ` \`\`\` ${getCommandWithPrefix("command help")} \`\`\` `, inline: true },
         { name: '\n 🔍 FAQ and Support', value: 'Please join the [Ambience server](https://discord.gg/w3Tp9x88Nw) for support'},
 	)
     return inviteEmbed; 

@@ -3,7 +3,7 @@ import pkg from 'discord-music-player';
 const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
-import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds, getIfValidCommand} from './scripts/getCommands.js';
+import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds, getIfValidCommand, getCommandWithPrefix} from './scripts/getCommands.js';
 import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation, listInvalidCommand} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
@@ -76,7 +76,7 @@ bot.on('message', async (message) => {
       message.channel.send(listCategorySongs(content));
       return;
     }
-    message.channel.send("Category not found for " + content + ". \n Type `$categories` to see all available categories");
+    message.channel.send("Category not found for " + content + ". \n Type `" + getCommandWithPrefix('commands') + "` to see all available categories");
     return;
   }
 
@@ -101,7 +101,7 @@ bot.on('message', async (message) => {
       message.channel.send(listCategorySongs(content));
       return;
     }
-    message.channel.send("Sound not found for " + content + ". \n Type `$sounds` to see all available sounds");
+    message.channel.send("Sound not found for " + content + ". \n Type `" + getCommandWithPrefix('commands') + "` to see all available sounds");
     return;
   }
 
