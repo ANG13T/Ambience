@@ -3,7 +3,7 @@ import pkg from 'discord-music-player';
 const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
-import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic} from './scripts/getCommands.js';
+import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds} from './scripts/getCommands.js';
 import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
@@ -189,7 +189,7 @@ bot.on('message', async (message) => {
       break;
 
     case 'sounds':
-      message.channel.send(listAllSounds());
+      message.channel.send(listAllSounds(getAllSounds()));
       break;
       
     case 'resume':

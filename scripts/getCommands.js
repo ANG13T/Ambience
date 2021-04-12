@@ -97,7 +97,7 @@ export function getSongsForCategory(categoryInput) {
 export function getAllSounds(){
     let allSounds = [];
     for(let category of categories){
-        let categorySounds = getSongsForCategory(category);
+        let categorySounds = getSongsForCategory(category.name);
         allSounds = allSounds.concat(categorySounds);
     }
     return allSounds;

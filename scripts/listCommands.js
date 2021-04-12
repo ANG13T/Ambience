@@ -93,13 +93,16 @@ export function listAllSounds(sounds){
     let text = ""
 
     for(let i = 0; i < sounds.length; i++){
-        text = text.concat(`\`${i + 1})\` ${sounds[i]} \n`);
+        if(sounds[i]){
+            text = text.concat(`\`${i + 1})\` ${sounds[i].name} \n`);
+        }  
     }
 
     const soundsEmbed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
-	.setTitle('Ambience Sounds: ')
+	.setTitle('🎶 Ambience Sounds: ')
     .setDescription(text)
+    .addFields({name: 'To play a sound type: ', value: ` \`\`\` $sound [sound_name] \`\`\` ` });
     return soundsEmbed;
 }
 
