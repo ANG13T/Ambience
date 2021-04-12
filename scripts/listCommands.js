@@ -137,9 +137,9 @@ export function listSettings(){
     .setDescription("Use the command ``$command [option_name]`` to see more information about the option. \n")
 	.setURL('https://discord.js.org/')
 	.addFields(
-        { name: '\n 📄 View Commands \u200B', value: ` \`\`\` $command commands \`\`\` `, inline: true },
-        { name: '❓ Get Help', value: ` \`\`\` $command help \`\`\` `, inline: true },
-        { name: '🔈 Set Volume \u200B', value: ` \`\`\` $command setVolume \`\`\` `, inline: true },
+        { name: '\n 📄 View Commands \u200B', value: ` \`\`\` ${getCommandWithPrefix("commands")}  \`\`\` `, inline: true },
+        { name: '❓ Get Help', value: ` \`\`\` ${getCommandWithPrefix("command help")} \`\`\` `, inline: true },
+        { name: '🔈 Set Volume \u200B', value: ` \`\`\` ${getCommandWithPrefix("command setVolume")} \`\`\` `, inline: true },
         { name: '\n 🔍 FAQ and Support', value: 'Please join the [Ambience server](https://discord.gg/w3Tp9x88Nw) for support'},
 	)
     return settingsEmbed;
@@ -167,9 +167,9 @@ export function listSongInformation(song){
     .setDescription("Use the command ``$command [option_name]`` to see more information about the option. \n")
 	.setURL('https://discord.js.org/')
 	.addFields(
-        { name: '\n 📄 View Commands \u200B', value: ` \`\`\` $command commands \`\`\` `, inline: true },
-        { name: '❓ Get Help', value: ` \`\`\` $command help \`\`\` `, inline: true },
-        { name: '🔈 Set Volume \u200B', value: ` \`\`\` $command setVolume \`\`\` `, inline: true },
+        { name: '\n 📄 View Commands \u200B', value: ` \`\`\` ${getCommandWithPrefix("commands")} \`\`\` `, inline: true },
+        { name: '❓ Get Help', value: ` \`\`\` ${getCommandWithPrefix("command help")} \`\`\` `, inline: true },
+        { name: '🔈 Set Volume \u200B', value: ` \`\`\` ${getCommandWithPrefix("command setVolume")} \`\`\` `, inline: true },
         { name: '\n 🔍 FAQ and Support', value: 'Please join the [Ambience server](https://discord.gg/w3Tp9x88Nw) for support'},
 	)
     return songInfoEmbed;
@@ -190,7 +190,7 @@ export function getCommandInfo(command){
 	.setTitle(`The **${command.command}** command: `)
 	.setDescription(command.description)
 	.addFields(
-		{ name: 'To use the command, type: ', value: getCommandWithPrefix(command.code) },
+		{ name: 'To use the command, type: ', value: `\`\`${getCommandWithPrefix(command.code)}\`\`` },
 	)
     return commandInfoEmbed;
 }

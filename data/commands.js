@@ -131,6 +131,12 @@ export default {
             "description": "Set specific settings on the bot",
             "category": "settings",
             "code": "settings"
+        },
+        {
+            "command": "prefix",
+            "description": "Set a specific prefix for the bot",
+            "category": "settings",
+            "code": "prefix [prefix]"
         }
     ]
 }

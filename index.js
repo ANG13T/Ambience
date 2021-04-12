@@ -130,6 +130,7 @@ bot.on('message', async (message) => {
       message.channel.send(listValidPrefixes());
       return;
     }
+    config.prefix = content;
     message.channel.send(`✅ Prefix set to ${content}`);
   }
 

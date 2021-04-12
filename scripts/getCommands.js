@@ -21,7 +21,8 @@ export function getKeyWord(keyword, command) {
 }
 
 export function getCommandWithPrefix(command){
-    return prefix + command;
+    let currentPrefix = config.prefix;
+    return currentPrefix + command;
 }
 
 export function getPrefix(){
