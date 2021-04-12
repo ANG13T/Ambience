@@ -51,7 +51,7 @@ bot.on('message', async (message) => {
   const command = args.shift().toLowerCase();
 
 
-  if(command && !getIfValidCommand(command)){
+  if(command && !getIfValidCommand(command) && command[0] != "*"){
     message.channel.send(listInvalidCommand(command));
     return;
   }
