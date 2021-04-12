@@ -1,6 +1,6 @@
 import { matchCategoryByName } from "./matchCommands.js";
 import Discord from 'discord.js';
-import { getPurifiedInput, getSongsFromData, getCommandsForCategory } from "./getCommands.js";
+import { getPurifiedInput, getSongsFromData, getCommandsForCategory, getCommandWithPrefix } from "./getCommands.js";
 import { refineContent } from '../index.js';
 import config from '../data/config.js';
 import commandsInput from '../data/commands.js';
@@ -190,7 +190,7 @@ export function getCommandInfo(command){
 	.setTitle(`The **${command.command}** command: `)
 	.setDescription(command.description)
 	.addFields(
-		{ name: 'To use the command, type: ', value: `${command.code}` },
+		{ name: 'To use the command, type: ', value: getCommandWithPrefix(command.code) },
 	)
     return commandInfoEmbed;
 }

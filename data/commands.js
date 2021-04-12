@@ -1,138 +1,136 @@
-import {getCommandWithPrefix} from "../scripts/getCommands";
-
 export default {
     "commands": [
         {
             "command": "play",
             "description": "Play a sound or add one to the queue",
             "category": "music",
-            "code": getCommandWithPrefix("play [sound_name]")
+            "code": "play [sound_name]"
         },
         {
             "command": "skip",
             "description": "Skip to the next song on queue",
             "category": "music",
-            "code": getCommandWithPrefix("skip")
+            "code": "skip"
         },
         {
             "command": "pause",
             "description": "Pause the current song",
             "category": "music",
-            "code": getCommandWithPrefix("pause")
+            "code": "pause"
         },
         {
             "command": "resume",
             "description": "Resume the current song",
             "category": "music",
-            "code": getCommandWithPrefix("resume")
+            "code": "resume"
         },
         {
             "command": "sound",
             "description": "Please a specific soung",
             "category": "music",
-            "code": getCommandWithPrefix("sound [sound_name]")
+            "code": "sound [sound_name]"
         },
         {
             "command": "sounds",
             "description": "List all available sounds",
             "category": "music",
-            "code": getCommandWithPrefix("sounds")
+            "code": "sounds"
         },
         {
             "command": "custom",
             "description": "Play a custom sound",
             "category": "music",
-            "code": getCommandWithPrefix("custom [sound_link or sound_name]")
+            "code": "custom [sound_link or sound_name]"
         },
         {
             "command": "stop",
             "description": "Stop playing music and delete the server queue",
             "category": "music",
-            "code": getCommandWithPrefix("stop")
+            "code": "stop"
         },
         {
             "command": "remove",
             "description": "Remove a song from the queue by position",
             "category": "music",
-            "code":  getCommandWithPrefix("remove [sound_index]")
+            "code":  "remove [sound_index]"
         },
         {
             "command": "loop",
             "description": "Loop a song",
             "category": "music",
-            "code": getCommandWithPrefix("loop")
+            "code": "loop"
         },
         {
             "command": "queue",
             "description": "Display songs in the queue",
             "category": "queue",
-            "code": getCommandWithPrefix("queue")
+            "code": "queue"
         },
         {
             "command": "repeatQueue",
             "description": "Repeat server sound queue",
             "category": "queue",
-            "code": getCommandWithPrefix("repeatQueue")
+            "code": "repeatQueue"
         },
         {
             "command": "disableRepeatQueue",
             "description": "Repeat server sound queue",
             "category": "queue",
-            "code": getCommandWithPrefix("disableRepeatQueue")
+            "code": "disableRepeatQueue"
         },
         {
             "command": "progress",
             "description": "View progess bar of current song",
             "category": "music",
-            "code": getCommandWithPrefix("progress")
+            "code": "progress"
         },
         {
             "command": "categories",
             "description": "View music categories",
             "category": "sound",
-            "code": getCommandWithPrefix("categories")
+            "code": "categories"
         },
         {
             "command": "search",
             "description": "Search for songs",
             "category": "sound",
-            "code": getCommandWithPrefix("search")
+            "code": "search"
         },
         {
             "command": "shuffle",
             "description": "Shuffle Songs in Server Queue",
             "category": "queue",
-            "code":  getCommandWithPrefix("shuffle")
+            "code":  "shuffle"
         },
         {
             "command": "setVolume",
             "description": "Set Sound Volume",
             "category": "settings",
-            "code": getCommandWithPrefix("setVolume [percentage]")
+            "code": "setVolume [percentage]"
         },
         {
             "command": "help",
             "description": "List commands or give information about a command",
             "category": "settings",
-            "code": getCommandWithPrefix("help")
+            "code": "help"
         },
         {
             "command": "commands",
             "description": "List commands of the bot",
             "category": "settings",
-            "code": getCommandWithPrefix("commands")
+            "code": "commands"
         },
         {
             "command": "command",
             "description": "View information about a specific command",
             "category": "settings",
-            "code": getCommandWithPrefix("command [command_name]")
+            "code": "command [command_name]"
         },
         {
             "command": "settings",
             "description": "Set specific settings on the bot",
             "category": "settings",
-            "code": getCommandWithPrefix("settings")
+            "code": "settings"
         }
     ]
 }
