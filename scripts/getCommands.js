@@ -81,9 +81,9 @@ export function getCommandByName(commandName){
     return null;
 }
 
-export function getIfValidCommand(command){
+export function getIfValidCommand(input){
     for(let command of commands){
-        if(command.command == command) return true;
+        if(command.command == input) return true;
     }
     return false;
 }
