@@ -107,6 +107,10 @@ bot.on('message', async (message) => {
     return;
   }
 
+  if(getKeyWord('custom', message.content)){
+    playCustomSong(message, refineContent(message.content));
+  }
+
   if (getKeyWord('play', message.content)) {
     let content = refineContent(message.content);
     // check all songs - compile early
@@ -318,6 +322,26 @@ async function playAmbienceSong(message, args, musicLink) {
     message.channel.send("❌ You must be in a voice channel to use this command.");
   }
   
+}
+
+async function playCustomSong(message, songValue){
+  message.content = `!play ${songValue}`;
+  let args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    if(bot.player.isPlaying(message)) {
+      let song = await bot.player.addToQueue(message, args.join(' '));
+
+      // If there were no errors the Player#songAdd event will fire and the song will not be null.
+      if(song)
+          console.log(`Added ${song.name} to the queue`);
+      return;
+  } else {
+      let song = await bot.player.play(message, args.join(' '));
+
+      // If there were no errors the Player#songAdd event will fire and the song will not be null.
+      if(song)
+          console.log(`Started playing ${song.name}`);
+      return;
+  }
 }
 
 export function refineContent(input){

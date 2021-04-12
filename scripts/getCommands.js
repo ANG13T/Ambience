@@ -30,7 +30,7 @@ export function changePrefix(newPrefix){
 
 export function modifyMessageForMusic(message){
     let refinedText = message.slice(1, message.length);
-    refinedText = "will " + refinedText;
+    refinedText = "!play " + refinedText;
     return refinedText;
 }
 

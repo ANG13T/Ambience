@@ -37,6 +37,12 @@ export default {
             "code": "$sounds"
         },
         {
+            "command": "custom",
+            "description": "Play a custom sound",
+            "category": "music",
+            "code": "$custom [sound_link or sound_name]"
+        },
+        {
             "command": "stop",
             "description": "Stop playing music and delete the server queue",
             "category": "music",
