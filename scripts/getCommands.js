@@ -20,6 +20,10 @@ export function getKeyWord(keyword, command) {
     return false;
 }
 
+export function getCommandWithPrefix(command){
+    return prefix + command;
+}
+
 export function getPrefix(){
     return prefix;
 }
