@@ -93,3 +93,12 @@ export function getSongsForCategory(categoryInput) {
     let matchedCategory = matchCategoryByName(categoryInput);
     return matchedCategory.songs;
 }
+
+export function getAllSounds(){
+    let allSounds = [];
+    for(let category of categories){
+        let categorySounds = getSongsForCategory(category);
+        allSounds = allSounds.concat(categorySounds);
+    }
+    return allSounds;
+}

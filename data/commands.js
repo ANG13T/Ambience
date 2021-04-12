@@ -25,6 +25,18 @@ export default {
             "code": "$resume"
         },
         {
+            "command": "sound",
+            "description": "Please a specific soung",
+            "category": "music",
+            "code": "$sound [sound_name]"
+        },
+        {
+            "command": "sounds",
+            "description": "List all available sounds",
+            "category": "music",
+            "code": "$sounds"
+        },
+        {
             "command": "stop",
             "description": "Stop playing music and delete the server queue",
             "category": "music",

@@ -89,6 +89,20 @@ export function listHelpSettings(){
     return helpEmbed;
 }
 
+export function listAllSounds(sounds){
+    let text = ""
+
+    for(let i = 0; i < sounds.length; i++){
+        text = text.concat(`\`${i + 1})\` ${sounds[i]} \n`);
+    }
+
+    const soundsEmbed = new Discord.MessageEmbed()
+	.setColor('#0099ff')
+	.setTitle('Ambience Sounds: ')
+    .setDescription(text)
+    return soundsEmbed;
+}
+
 export function listInvite(){
     const inviteEmbed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
