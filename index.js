@@ -73,7 +73,6 @@ bot.on("ready", () => {
 bot.player.on('songAdd', (message, queue, song) => {
   let selectedSong = getSongFromURL(song.requestedBy);
   if(selectedSong){
-    console.log("not custom song");
     message.channel.send(`**${selectedSong.name}** has been added to the queue!`);
     return;
   } 
@@ -98,7 +97,6 @@ bot.on('message', async (message) => {
 
   if(command && !getIfValidCommand(command)){
     message.channel.send(listInvalidCommand(command));
-    console.log("done");
     return;
   }
 
@@ -158,7 +156,7 @@ bot.on('message', async (message) => {
     content = refinedContent.join(" ");
     let isDone = bot.player.setVolume(message, parseInt(content));
         if(isDone)
-            message.channel.send(`Volume set to ${args[0]}!`);
+            message.channel.send(`🔊 Volume set to ${args[0]}!`);
 
     return;
   }
@@ -176,16 +174,14 @@ bot.on('message', async (message) => {
       message.channel.send(listValidPrefixes());
       return;
     }
-    message.channel.send(`Prefix set to ${content}`);
+    message.channel.send(`✅ Prefix set to ${content}`);
   }
 
   if (getKeyWord(('settings'), message.content)) {
     let content = refineContent(message.content);
-    console.log("settings prefix is ", content);
     return;
   }
 
-  let song;
   switch (command) {
 
     case 'help':
@@ -207,7 +203,7 @@ bot.on('message', async (message) => {
     case 'pause':
       song = bot.player.pause(message);
       if (song) {
-        message.channel.send(`${song.name} was paused!`);
+        message.channel.send(`⏸ ${song.name} was paused!`);
       }
       break;
 
@@ -218,29 +214,29 @@ bot.on('message', async (message) => {
     case 'resume':
       song = bot.player.resume(message);
       if (song) {
-        message.channel.send(`${song.name} was resumed!`);
+        message.channel.send(`⏯ ${song.name} was resumed!`);
       }
       break;
 
     case 'skip':
       song = bot.player.skip(message);
       if (song) {
-        message.channel.send(`${song.name} was skipped!`);
+        message.channel.send(`👉 ${song.name} was skipped!`);
       }
       break;
 
     case 'stop':
       let isComplete = bot.player.stop(message);
       if(isComplete){
-        message.channel.send('Sounds stopped, the Queue has been cleared');
+        message.channel.send('🛑 Sounds stopped, the Queue has been cleared');
       }
       break;
 
     case 'loop':
       let toggle = bot.player.toggleLoop(message);
       if(toggle === null) return;
-      else if(toggle) message.channel.send("The current sound is now on loop")
-      else message.channel.send("The current sound will no longer be on loop")
+      else if(toggle) message.channel.send("🔁 The current sound is now on loop")
+      else message.channel.send("✋ The current sound will no longer be on loop")
       break;
 
     case 'progress':
@@ -257,7 +253,7 @@ bot.on('message', async (message) => {
       let status = bot.player.setQueueRepeatMode(message, true);
         if(status === null)
           break;
-        message.channel.send(`Queue will be repeated indefinitely!`);
+        message.channel.send(`🔁 Queue will be repeated!`);
       break;
 
     
@@ -265,7 +261,7 @@ bot.on('message', async (message) => {
       let result = bot.player.setQueueRepeatMode(message, false);
       if(result === null)
           break;
-      message.channel.send(`Queue will not be longer repeated indefinitely!`);
+      message.channel.send(`✋ Queue will not be longer repeated!`);
       break;
 
     case 'remove':
@@ -273,13 +269,13 @@ bot.on('message', async (message) => {
         
         let song = bot.player.remove(message, songID);
         if(song)
-            message.channel.send(`Removed song ${song.name} (${args[0]}) from the Queue!`);
+            message.channel.send(`🗑 Removed song ${song.name} (${args[0]}) from the Queue!`);
       break;
 
     case 'shuffle':
       let songs = bot.player.shuffle(message);
         if(songs)
-            message.channel.send('Server Queue was shuffled.');
+            message.channel.send('🔀 Server Queue was shuffled.');
       break;
     
     
@@ -292,7 +288,7 @@ bot.on('message', async (message) => {
     case 'resume':
       song = client.player.resume(message);
       if (song) {
-        message.channel.send(`${song.name} was resumed!`);
+        message.channel.send(`⏯ ${song.name} was resumed!`);
       }
       break;
 
