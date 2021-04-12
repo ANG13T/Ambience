@@ -89,6 +89,20 @@ export function listHelpSettings(){
     return helpEmbed;
 }
 
+export function listInvite(){
+    const inviteEmbed = new Discord.MessageEmbed()
+	.setColor('#0099ff')
+    .setTitle('Thanks for Inviting Ambience!')
+    .setDescription("Use the command ``$commands`` to see all commands. \n For more information please visit the [Ambience Website](https://angelina-tsuboi.github.io/Ambience/). Please consider joining our [Discord server](https://discord.com/invite/w3Tp9x88Nw) to meet people within our community. \n")
+	.addFields(
+        { name: '\n \n 🎶 View Sounds', value: ` \`\`\` $sounds \`\`\` `,  inline: true},
+        { name: '🎙 View Sound Categories', value: ` \`\`\` $categories \`\`\` `,  inline: true},
+        { name: '❓ Get Help', value: ` \`\`\` $command help \`\`\` `, inline: true },
+        { name: '\n 🔍 FAQ and Support', value: 'Please join the [Ambience server](https://discord.gg/w3Tp9x88Nw) for support'},
+	)
+    return inviteEmbed; 
+}
+
 export function listSettings(){
     const settingsEmbed = new Discord.MessageEmbed()
 	.setColor('#0099ff')

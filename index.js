@@ -4,7 +4,7 @@ const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
 import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic} from './scripts/getCommands.js';
-import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes} from './scripts/listCommands.js';
+import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
 const commandsData = commandsInput.commands;
@@ -18,7 +18,7 @@ bot.player = player;
 
 bot.on('guildCreate', guild => {
   const channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
-  channel.send("Thanks for inviting me")
+  channel.send(listInvite());
 })
 
 bot.on('error', (message, error) => {
@@ -187,6 +187,7 @@ bot.on('message', async (message) => {
         message.channel.send(`${song.name} was paused!`);
       }
       break;
+    
 
     case 'resume':
       song = bot.player.resume(message);
