@@ -135,6 +135,37 @@ export function listSettings(){
     return settingsEmbed;
 }
 
+export function listCustomSongInformation(name, url, thumbnail, volume, author, duration, username){
+    console.log("essential", name, url, thumbnail, volume, author, duration, username);
+    const customSongEmbed = new Discord.MessageEmbed()
+	.setColor('#0099ff')
+    .setTitle('NOW PLAYING')
+    .setDescription(`[${name}](${url})`)
+    .setThumbnail(thumbnail)
+	.addFields(
+        { name: 'Uploader', value: author, inline: true},
+        { name: 'Volume', value: `${volume}%`, inline: true },
+        { name: 'Requester', value: username, inline: true },
+        { name: 'Duration', value: duration, inline: true},
+	)
+    return customSongEmbed;
+}
+
+export function listSongInformation(song){
+    const songInfoEmbed = new Discord.MessageEmbed()
+	.setColor('#0099ff')
+    .setTitle('⚙️ Ambience Settings')
+    .setDescription("Use the command ``$command [option_name]`` to see more information about the option. \n")
+	.setURL('https://discord.js.org/')
+	.addFields(
+        { name: '\n 📄 View Commands \u200B', value: ` \`\`\` $command commands \`\`\` `, inline: true },
+        { name: '❓ Get Help', value: ` \`\`\` $command help \`\`\` `, inline: true },
+        { name: '🔈 Set Volume \u200B', value: ` \`\`\` $command setVolume \`\`\` `, inline: true },
+        { name: '\n 🔍 FAQ and Support', value: 'Please join the [Ambience server](https://discord.gg/w3Tp9x88Nw) for support'},
+	)
+    return songInfoEmbed;
+}
+
 export function listValidPrefixes(){
     let text = "Invalid Prefix. Please use one of the following prefixes:";
     let validPrefixes = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '\\', '/', '.', '~'];

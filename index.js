@@ -4,7 +4,7 @@ const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
 import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds} from './scripts/getCommands.js';
-import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds} from './scripts/listCommands.js';
+import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
 const commandsData = commandsInput.commands;
@@ -85,7 +85,9 @@ bot.player.on('songAdd', (message, queue, song) => {
       message.channel.send(`**${selectedSong.name}** is now playing!`);
       return;
     } 
-    message.channel.send(`**${song.name}** is now playing!`);
+
+    let username = song.queue.initMessage.author.username  + "#" + song.queue.initMessage.author.discriminator;
+    message.channel.send(listCustomSongInformation(song.name, song.url, song.thumbnail, song.queue.volume, song.author, song.duration, username));
   })
     
 
@@ -344,6 +346,8 @@ async function playCustomSong(message, songValue){
           console.log(`Added ${song.name} to the queue`);
       return;
   } else {
+
+      console.log("befofe", message.content);
       let song = await bot.player.play(message, args.join(' '));
 
       // If there were no errors the Player#songAdd event will fire and the song will not be null.
