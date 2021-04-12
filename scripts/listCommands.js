@@ -2,6 +2,7 @@ import { matchCategoryByName } from "./matchCommands.js";
 import Discord from 'discord.js';
 import { getPurifiedInput, getSongsFromData, getCommandsForCategory } from "./getCommands.js";
 import { refineContent } from '../index.js';
+import config from '../data/config.js';
 import commandsInput from '../data/commands.js';
 const commandsData = commandsInput.commands;
 let commands = commandsData.map(c => c.command);
@@ -59,6 +60,15 @@ export function listCommands() {
     .setDescription(text)
     .addField(`To get more information about a specific command type: `,` \`\`\` ${"$command [command name]"} \`\`\` `)
     return commandsEmbed;
+}
+
+export function listInvalidCommand(command){
+    const invalidEmbed = new Discord.MessageEmbed()
+    .setColor('#0099ff')
+    .setTitle('Invalid Command!')
+    .setDescription(`${config.prefix}${command} is an invalid command`)
+    .addField(`To see all commands, please type: `,` \`\`\` $commands \`\`\` `)
+    return invalidEmbed;
 }
 
 export function listHelpSettings(){

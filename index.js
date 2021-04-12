@@ -3,8 +3,8 @@ import pkg from 'discord-music-player';
 const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
-import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds} from './scripts/getCommands.js';
-import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation} from './scripts/listCommands.js';
+import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds, getIfValidCommand} from './scripts/getCommands.js';
+import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation, listInvalidCommand} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
 const commandsData = commandsInput.commands;
@@ -94,6 +94,14 @@ bot.player.on('songAdd', (message, queue, song) => {
 bot.on('message', async (message) => {
   const args = message.content.slice(getPrefix().length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
+
+
+  if(command && !getIfValidCommand(command)){
+    message.channel.send(listInvalidCommand(command));
+    console.log("done");
+    return;
+  }
+
 
   if (getKeyWord('help', message.content) || getKeyWord('command', message.content)) {
     let content = message.content.split(" ")[1];
