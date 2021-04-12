@@ -80,14 +80,14 @@ bot.player.on('songAdd', (message, queue, song) => {
     message.channel.send(`**${song.name}** has been added to the queue!`)
   })
   .on('songFirst', (message, song) => {
+    let username = song.queue.initMessage.author.username  + "#" + song.queue.initMessage.author.discriminator;
+    let songName = song.name;
     let selectedSong = getSongFromURL(song.requestedBy);   
     if(selectedSong){
-      message.channel.send(`**${selectedSong.name}** is now playing!`);
-      return;
+      songName = selectedSong.name;
     } 
-
-    let username = song.queue.initMessage.author.username  + "#" + song.queue.initMessage.author.discriminator;
-    message.channel.send(listCustomSongInformation(song.name, song.url, song.thumbnail, song.queue.volume, song.author, song.duration, username));
+    
+    message.channel.send(listCustomSongInformation(songName, song.url, song.thumbnail, song.queue.volume, song.author, song.duration, username));
   })
     
 

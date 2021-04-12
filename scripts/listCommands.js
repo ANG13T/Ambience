@@ -136,15 +136,14 @@ export function listSettings(){
 }
 
 export function listCustomSongInformation(name, url, thumbnail, volume, author, duration, username){
-    console.log("essential", name, url, thumbnail, volume, author, duration, username);
     const customSongEmbed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
     .setTitle('NOW PLAYING')
     .setDescription(`[${name}](${url})`)
     .setThumbnail(thumbnail)
 	.addFields(
-        { name: 'Uploader', value: author, inline: true},
-        { name: 'Volume', value: `${volume}%`, inline: true },
+        { name: 'Uploader', value: author + "\u0020", inline: true},
+        { name: 'Volume \u0020 \u0020', value: `${volume}%`, inline: true },
         { name: 'Requester', value: username, inline: true },
         { name: 'Duration', value: duration, inline: true},
 	)
