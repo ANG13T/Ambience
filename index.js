@@ -72,11 +72,20 @@ bot.on("ready", () => {
 
 bot.player.on('songAdd', (message, queue, song) => {
   let selectedSong = getSongFromURL(song.requestedBy);
-  message.channel.send(`**${selectedSong.name}** has been added to the queue!`);
+  if(selectedSong){
+    console.log("not custom song");
+    message.channel.send(`**${selectedSong.name}** has been added to the queue!`);
+    return;
+  } 
+    message.channel.send(`**${song.name}** has been added to the queue!`)
   })
   .on('songFirst', (message, song) => {
-    let selectedSong = getSongFromURL(song.requestedBy);    
-    message.channel.send(`**${selectedSong.name}** is now playing!`);
+    let selectedSong = getSongFromURL(song.requestedBy);   
+    if(selectedSong){
+      message.channel.send(`**${selectedSong.name}** is now playing!`);
+      return;
+    } 
+    message.channel.send(`**${song.name}** is now playing!`);
   })
     
 
@@ -226,9 +235,9 @@ bot.on('message', async (message) => {
 
     case 'progress':
       let progressBar = bot.player.createProgressBar(message, {
-        size: 30,
-        block: '=',
-        arrow: '>'
+        size: 40,
+        block: '\u2588',
+        arrow: '\u2591'
     });
     if(progressBar)
         message.channel.send(progressBar);
@@ -325,7 +334,7 @@ async function playAmbienceSong(message, args, musicLink) {
 }
 
 async function playCustomSong(message, songValue){
-  message.content = `!play ${songValue}`;
+  message.content = `play ${songValue}`;
   let args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     if(bot.player.isPlaying(message)) {
       let song = await bot.player.addToQueue(message, args.join(' '));
