@@ -54,8 +54,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Ambience Screen Shot][ambience-screenshot]](https://github.com/angelina-tsuboi/Ambience/blob/master/website/assets/images/screenshot1.png)
+<img src="website/assets/images/screenshot1.png" alt="Ambience Screenshot">
 
 Ambience is a Discord bot designated to help you focus and work with the use of calming and soothing background noise. Choose over 15 categories of sounds designed to help you concentrate and get work done.
 
