@@ -94,7 +94,6 @@ bot.on('message', async (message) => {
   const args = message.content.slice(getPrefix().length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
-
   if(command && !getIfValidCommand(command) && command[0] != "*" && message.content[0] == config.prefix){
     message.channel.send(listInvalidCommand(command));
     return;
@@ -183,9 +182,7 @@ bot.on('message', async (message) => {
     return;
   }
 
-  let song;
   switch (command) {
-
     case 'help':
       message.channel.send(listHelpSettings());
       break;
@@ -203,9 +200,9 @@ bot.on('message', async (message) => {
       break;
 
     case 'pause':
-      song = bot.player.pause(message);
-      if (song) {
-        message.channel.send(`⏸ ${song.name} was paused!`);
+      let chosenSong = bot.player.pause(message);
+      if (chosenSong) {
+        message.channel.send(`⏸ ${chosenSong.name} was paused!`);
       }
       break;
 
@@ -214,16 +211,16 @@ bot.on('message', async (message) => {
       break;
       
     case 'resume':
-      song = bot.player.resume(message);
-      if (song) {
-        message.channel.send(`⏯ ${song.name} was resumed!`);
+      let chosenSong2 = bot.player.resume(message);
+      if (chosenSong2) {
+        message.channel.send(`⏯ ${chosenSong2.name} was resumed!`);
       }
       break;
 
     case 'skip':
-      song = bot.player.skip(message);
-      if (song) {
-        message.channel.send(`👉 ${song.name} was skipped!`);
+      let chosenSong3 = bot.player.skip(message);
+      if (chosenSong3) {
+        message.channel.send(`👉 ${chosenSong3.name} was skipped!`);
       }
       break;
 
@@ -269,9 +266,9 @@ bot.on('message', async (message) => {
     case 'remove':
       let songID = parseInt(args[0])-1; 
         
-        let song = bot.player.remove(message, songID);
-        if(song)
-            message.channel.send(`🗑 Removed song ${song.name} (${args[0]}) from the Queue!`);
+        let chosenSong4 = bot.player.remove(message, songID);
+        if(chosenSong4)
+            message.channel.send(`🗑 Removed song ${chosenSong4.name} (${args[0]}) from the Queue!`);
       break;
 
     case 'shuffle':
@@ -288,9 +285,9 @@ bot.on('message', async (message) => {
       break;
 
     case 'resume':
-      song = client.player.resume(message);
-      if (song) {
-        message.channel.send(`⏯ ${song.name} was resumed!`);
+      let chosenSong5 = client.player.resume(message);
+      if (chosenSong5) {
+        message.channel.send(`⏯ ${chosenSong5.name} was resumed!`);
       }
       break;
 
