@@ -183,6 +183,7 @@ bot.on('message', async (message) => {
     return;
   }
 
+  let song;
   switch (command) {
 
     case 'help':

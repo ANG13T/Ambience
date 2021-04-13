@@ -8,6 +8,13 @@
     margin-left: 7px;
 }
 
+.commandImage{
+  width: 50%;
+  max-height: 30rem;
+  border-radius: 3px;
+  margin-top: 1rem;
+}
+
 .darkModeContainer .header{
     background: #0d2f67 !important;
 }
