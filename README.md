@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="website/assets/icon2.png" alt="Logo" width="80" height="110">
+    <img src="website/assets/icon2.png" alt="Logo" width="100" height="138">
   </a>
 
   <h3 align="center">Ambience</h3>
@@ -55,7 +55,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Ambience Screen Shot][ambience-screenshot]](https://github.com/angelina-tsuboi/Ambience/blob/master/website/assets/images/screenshot1.png)
 
 Ambience is a Discord bot designated to help you focus and work with the use of calming and soothing background noise. Choose over 15 categories of sounds designed to help you concentrate and get work done.
 
