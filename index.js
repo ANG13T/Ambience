@@ -68,7 +68,7 @@ bot.player.on('error', (error, message) => {
     default:
         message.channel.send(`**Unknown Error Ocurred:** ${error}`);
         break;
-})
+}});
 
 bot.player.on('songAdd', (message, queue, song) => {
   let selectedSong = getSongFromURL(song.requestedBy);
@@ -95,7 +95,7 @@ bot.on('message', async (message) => {
   const command = args.shift().toLowerCase();
 
 
-  if(command && !getIfValidCommand(command) && command[0] != "*"){
+  if(command && !getIfValidCommand(command) && command[0] != "*" && message.content[0] == config.prefix){
     message.channel.send(listInvalidCommand(command));
     return;
   }
