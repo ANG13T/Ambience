@@ -130,6 +130,15 @@
     }
 }
 
+@media only screen 
+  and (max-device-width: 800px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    .commandImage{
+      width: 100%;
+    }
+}
+
   
   .slider:before {
     background-color: #fff;
