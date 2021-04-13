@@ -342,7 +342,7 @@ async function playAmbienceSong(message, args, musicLink) {
 }
 
 async function playCustomSong(message, songValue){
-  message.content = `play ${songValue}`;
+  message.content = `!play ${songValue}`;
   let args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     if(bot.player.isPlaying(message)) {
       let song = await bot.player.addToQueue(message, args.join(' '));
