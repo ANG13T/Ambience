@@ -67,6 +67,17 @@
     color: #adb6c5;
 }
 
+.darkModeContainer .docs-nav .nav-link.active:before{
+  background-color:#174888;
+}
+
+.darkModeContainer .docs-article h5 {
+  color: #6e92ce;
+}
+.darkModeContainer .docs-article h3 {
+  color: #6e92ce;
+}
+
 .darkModeContainer .docs-article strong{
     color: #c2c7d0 !important;
 }
