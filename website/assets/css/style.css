@@ -91,7 +91,6 @@ transition:0.25s;
   display: flex;
   width: 80%;
   margin: auto;
-  text-align: center;
   justify-content: center;
   margin-bottom: 3rem;
 }
@@ -100,7 +99,6 @@ transition:0.25s;
   margin-right: 2rem;
   margin-top: 10%;
   color: rgb(216, 204, 204);
-  text-align: center;
 }
 
 .content-information .content h3{
@@ -113,7 +111,6 @@ transition:0.25s;
   display: flex;
   text-align: center;
   margin-top: 4rem;
-  justify-content: center;
   color: white;
   text-align: center;
   width: 100%;
