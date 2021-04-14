@@ -1,5 +1,10 @@
 import Discord from 'discord.js';
 import pkg from 'discord-music-player';
+import spin from 'cli-spinner';
+
+var {Spinner} = spin;
+var spinner = new Spinner('processing.. %s');
+spinner.setSpinnerString('|/-\\');
 const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
@@ -305,15 +310,17 @@ bot.login(config.token);
 
 async function playCommand(message, args) {
   if (bot.player.isPlaying(message)) {
+    spinner.start();
     let song = await bot.player.addToQueue(modifyMessageForMusic(message), args.join(' '));
-
+    spinner.stop();
     // If there were no errors the Player#songAdd event will fire and the song will not be null.
     if (song)
       console.log(`Added ${song.name} to the queue`);
     return;
   } else {
+    spinner.start();
     let song = await bot.player.play(modifyMessageForMusic(message), args.join(' '));
-
+    spinner.stop();
     // If there were no errors the Player#songAdd event will fire and the song will not be null.
     if (song)
       console.log(`Started playing ${song.name}`);
@@ -324,12 +331,16 @@ async function playCommand(message, args) {
 async function playAmbienceSong(message, args, musicLink) {
   try{
     if (bot.player.isPlaying(message)) {
+      spinner.start();
       await bot.player.addToQueue(message, { search: musicLink, requestedBy: musicLink });
+      spinner.stop();
     } else {
+      spinner.start();
       await bot.player.play(message, {
         search: musicLink,
         requestedBy: musicLink
       });
+      spinner.stop();
     }
   }catch(err){
     console.log("caught tne erroe");
@@ -339,10 +350,12 @@ async function playAmbienceSong(message, args, musicLink) {
 }
 
 async function playCustomSong(message, songValue){
+  spinner.start();
   message.content = `!play ${songValue}`;
   let args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     if(bot.player.isPlaying(message)) {
       let song = await bot.player.addToQueue(message, args.join(' '));
+      spinner.stop();
 
       // If there were no errors the Player#songAdd event will fire and the song will not be null.
       if(song)
