@@ -243,8 +243,28 @@ export default {
             "emoji":"🦄",
             "songs":[
                 {
+                    "name":"Harry Potter",
+                    "link":"https://www.youtube.com/watch?v=BQrxsyGTztM"
+                },
+                {
+                    "name":"Futuristic",
+                    "link":"https://www.youtube.com/watch?v=4F7sdy2rZws"
+                },
+                {
+                    "name":"Fantasy Music",
+                    "link":"https://www.youtube.com/watch?v=XbS3tPO9sUs"
+                },
+                {
+                    "name":"Space Station",
+                    "link":"https://www.youtube.com/watch?v=YF1eYbfbH5k"
+                },
+                {
+                    "name":"Requiem For a Dream",
+                    "link":"https://www.youtube.com/watch?v=yVIRcnlRKF8"
+                },
+                {
                     "name":"Girl with a Dragon Tattoo",
-                    "link":"https://www.youtube.com/watch?v=XJewOOOLOfA"
+                    "link":"https://www.youtube.com/watch?v=m3QEaHmkSN0"
                 }
             ]
         },
