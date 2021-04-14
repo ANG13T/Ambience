@@ -71,12 +71,7 @@ bot.on("ready", () => {
 // }});
 
 bot.player.on('songAdd', (message, queue, song) => {
-  let selectedSong = getSongFromURL(song.requestedBy);
-  if(selectedSong){
-    message.channel.send(`**${selectedSong.name}** has been added to the queue!`);
-    return;
-  } 
-    message.channel.send(`**${song.name}** has been added to the queue!`)
+    message.channel.send(`**${getProperSoundContent(song)}** has been added to the queue!`);
   })
   .on('songFirst', (message, song) => {
     let username = song.queue.initMessage.author.username  + "#" + song.queue.initMessage.author.discriminator;
@@ -378,4 +373,12 @@ export function refineContent(input){
     let refinedContent = contentArray.slice(1, contentArray.length);
     content = refinedContent.join(" ");
     return content;
+}
+
+export function getProperSoundContent(song){
+  let selectedSong = getSongFromURL(song.requestedBy);
+  if(selectedSong){
+    return selectedSong.name;
+  } 
+  return song.name;
 }
