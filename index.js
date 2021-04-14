@@ -4,7 +4,7 @@ const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
 import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds, getIfValidCommand, getCommandWithPrefix} from './scripts/getCommands.js';
-import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation, listInvalidCommand} from './scripts/listCommands.js';
+import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation, listInvalidCommand, listEasterEggContent} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
 const commandsData = commandsInput.commands;
@@ -125,6 +125,15 @@ bot.on('message', async (message) => {
 
   if(getKeyWord('custom', message.content)){
     playCustomSong(message, refineContent(message.content));
+  }
+
+  if(getKeyWord('easter', message.content)){
+    let easterEggs = ['alexis', 'angie', 'rick', 'sanic'];
+    let content = refineContent(message.content);
+    if(easterEggs.includes(content.toLowerCase())){
+      playCustomSong(message, listEasterEggContent(message.content));
+      return;
+    }
   }
 
   if (getKeyWord('play', message.content)) {

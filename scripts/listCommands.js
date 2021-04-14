@@ -145,6 +145,21 @@ export function listSettings(){
     return settingsEmbed;
 }
 
+export function listEasterEggContent(message){
+   if(message == "alexis"){
+       return "!play ";
+   }
+
+   if(message == "angie"){
+    return "";
+   }
+
+    if(message == "sanic"){
+        return "";
+    }
+    return "";
+}
+
 export function listCustomSongInformation(name, url, thumbnail, volume, author, duration, username){
     const customSongEmbed = new Discord.MessageEmbed()
 	.setColor('#0099ff')
