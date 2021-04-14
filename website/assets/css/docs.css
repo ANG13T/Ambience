@@ -82,6 +82,10 @@
     color: #c2c7d0 !important;
 }
 
+.darkModeContainer code{
+  background-color: #a6c2e8;
+}
+
 .theme-switch-wrapper {
     display: flex;
     align-items: center;
