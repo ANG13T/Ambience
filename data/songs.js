@@ -182,21 +182,70 @@ export default {
             "name": "Waves",
             "emoji":"🔉",
             "songs":[
-
+                {
+                    "name":"Alpha Waves",
+                    "link":"https://www.youtube.com/watch?v=cL_eqq_vKCY"
+                },
+                {
+                    "name":"Binaural Beats",
+                    "link":"https://www.youtube.com/watch?v=KxgL9OwdNiA"
+                },
+                {
+                    "name":"Delta Waves",
+                    "link":"https://www.youtube.com/results?search_query=delta+wave+10min"
+                },
+                {
+                    "name":"Deep Theta Waves",
+                    "link":"https://www.youtube.com/watch?v=XJewOOOLOfA"
+                }
             ]
         },
         {
             "name": "Cinema",
             "emoji":"🎬",
             "songs":[
-
+                {
+                    "name":"Lion King",
+                    "link":"https://www.youtube.com/watch?v=q9MZbfZ4mJk"
+                },
+                {
+                    "name":"28 Weeks Later",
+                    "link":"https://www.youtube.com/watch?v=ST2H8FWDvEA"
+                },
+                {
+                    "name":"Star Wars",
+                    "link":"https://www.youtube.com/watch?v=l_sst6n72H4"
+                },
+                {
+                    "name":"The Godfather",
+                    "link":"https://www.youtube.com/watch?v=KlLRmK9RiNo&t=9s"
+                },
+                {
+                    "name":"Matrix",
+                    "link":"https://www.youtube.com/watch?v=Brl7WmHDG-E"
+                },
+                {
+                    "name":"Interstellar",
+                    "link":"https://www.youtube.com/watch?v=YF1eYbfbH5k"
+                },
+                {
+                    "name":"Requiem For a Dream",
+                    "link":"https://www.youtube.com/watch?v=yVIRcnlRKF8"
+                },
+                {
+                    "name":"Girl with a Dragon Tattoo",
+                    "link":"https://www.youtube.com/watch?v=m3QEaHmkSN0"
+                }
             ]
         },
         {
             "name":"Fiction",
             "emoji":"🦄",
             "songs":[
-
+                {
+                    "name":"Girl with a Dragon Tattoo",
+                    "link":"https://www.youtube.com/watch?v=XJewOOOLOfA"
+                }
             ]
         },
         {
