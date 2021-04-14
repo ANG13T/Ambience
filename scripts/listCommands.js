@@ -145,6 +145,13 @@ export function listSettings(){
     return settingsEmbed;
 }
 
+export function listLoadingMessage(){
+    const loadingEmbed = new Discord.MessageEmbed()
+	.setColor('#fc4f05')
+    .setTitle('⏳ Loading')
+    return loadingEmbed;
+}
+
 export function listEasterEggContent(message){
    if(message == "alexis"){
        return "https://www.youtube.com/watch?v=NkMTKGM-efw";

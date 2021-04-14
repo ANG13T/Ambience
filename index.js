@@ -4,7 +4,7 @@ const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
 import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds, getIfValidCommand, getCommandWithPrefix} from './scripts/getCommands.js';
-import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation, listInvalidCommand, listEasterEggContent} from './scripts/listCommands.js';
+import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation, listInvalidCommand, listEasterEggContent, listLoadingMessage} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
 const commandsData = commandsInput.commands;
@@ -94,7 +94,7 @@ bot.on('message', async (message) => {
   const args = message.content.slice(getPrefix().length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
-  if(command && !getIfValidCommand(command) && command[0] != "*" && message.content[0] == config.prefix){
+  if(command && !getIfValidCommand(command) && command[0] != "*" && message.content[0] == config.prefix && command != "easter"){
     message.channel.send(listInvalidCommand(command));
     return;
   }
@@ -317,6 +317,7 @@ async function playCommand(message, args) {
       console.log(`Added ${song.name} to the queue`);
     return;
   } else {
+    message.channel.send(listLoadingMessage());
     let song = await bot.player.play(modifyMessageForMusic(message), args.join(' '));
     // If there were no errors the Player#songAdd event will fire and the song will not be null.
     if (song)
@@ -330,6 +331,7 @@ async function playAmbienceSong(message, args, musicLink) {
     if (bot.player.isPlaying(message)) {
       await bot.player.addToQueue(message, { search: musicLink, requestedBy: musicLink });
     } else {
+      message.channel.send(listLoadingMessage());
       await bot.player.play(message, {
         search: musicLink,
         requestedBy: musicLink
@@ -354,8 +356,7 @@ async function playCustomSong(message, songValue){
             console.log(`Added ${song.name} to the queue`);
         return;
     } else {
-  
-        console.log("befofe", message.content);
+        message.channel.send(listLoadingMessage());
         let song = await bot.player.play(message, args.join(' '));
   
         // If there were no errors the Player#songAdd event will fire and the song will not be null.
