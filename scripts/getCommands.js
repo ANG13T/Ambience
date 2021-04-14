@@ -43,7 +43,12 @@ export function getQueueEmbed(songs){
     let text = `**Now Playing:** ${songs[0].name} \n`;
     if(songs.length > 1){
         for(let i = 1; i < songs.length; i++){
-            text = text.concat(`\n **#${i}** - ${getSongFromURL(songs[i].requestedBy).name}`)
+            if(getSongFromURL(songs[i].requestedBy).name){
+                text = text.concat(`\n **#${i}** - ${getSongFromURL(songs[i].requestedBy).name}`)
+            }else{
+                text = text.concat(`\n **#${i}** - ${songs[i].url}`)
+            }
+           
         }
     }
     

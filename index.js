@@ -154,11 +154,12 @@ bot.on('message', async (message) => {
     return;
   }
 
-  if (getKeyWord(('setVolume'), message.content)) {
+  if (getKeyWord(('setvolume'), message.content)) {
     let content = message.content.split(" ")[1];
     let contentArray = message.content.split(" ");
     let refinedContent = contentArray.slice(1, contentArray.length);
     content = refinedContent.join(" ");
+    console.log("gmm", parseInt(content));
     let isDone = bot.player.setVolume(message, parseInt(content));
         if(isDone)
             message.channel.send(`🔊 Volume set to ${args[0]}!`);

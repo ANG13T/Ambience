@@ -97,10 +97,10 @@ export default {
             "code":  "shuffle"
         },
         {
-            "command": "setVolume",
+            "command": "setvolume",
             "description": "Set Sound Volume",
             "category": "settings",
-            "code": "setVolume [percentage]"
+            "code": "setvolume [percentage]"
         },
         {
             "command": "help",
