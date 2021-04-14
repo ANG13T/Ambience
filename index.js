@@ -204,7 +204,7 @@ bot.on('message', async (message) => {
     case 'pause':
       let chosenSong = bot.player.pause(message);
       if (chosenSong) {
-        message.channel.send(`⏸ ${chosenSong.name} was paused!`);
+        message.channel.send(`⏸ **${getProperSoundContent(chosenSong)}** was paused!`);
       }
       break;
 
@@ -215,14 +215,14 @@ bot.on('message', async (message) => {
     case 'resume':
       let chosenSong2 = bot.player.resume(message);
       if (chosenSong2) {
-        message.channel.send(`⏯ ${chosenSong2.name} was resumed!`);
+        message.channel.send(`⏯ **${getProperSoundContent(chosenSong2)}** was resumed!`);
       }
       break;
 
     case 'skip':
       let chosenSong3 = bot.player.skip(message);
       if (chosenSong3) {
-        message.channel.send(`👉 ${chosenSong3.name} was skipped!`);
+        message.channel.send(`👉 **${getProperSoundContent(chosenSong3)}** was skipped!`);
       }
       break;
 
@@ -236,8 +236,8 @@ bot.on('message', async (message) => {
     case 'loop':
       let toggle = bot.player.toggleLoop(message);
       if(toggle === null) return;
-      else if(toggle) message.channel.send("🔁 The current sound is now on loop")
-      else message.channel.send("✋ The current sound will no longer be on loop")
+      else if(toggle) message.channel.send(`🔁 ${getProperSoundContent(song)} is now on loop`)
+      else message.channel.send(`✋ **${getProperSoundContent(song)}** will no longer be on loop`)
       break;
 
     case 'progress':
@@ -270,7 +270,7 @@ bot.on('message', async (message) => {
         
         let chosenSong4 = bot.player.remove(message, songID);
         if(chosenSong4)
-            message.channel.send(`🗑 Removed song ${chosenSong4.name} (${args[0]}) from the Queue!`);
+            message.channel.send(`🗑 Removed song **${getProperSoundContent(chosenSong4)}** (${args[0]}) from the Queue!`);
       break;
 
     case 'shuffle':
@@ -289,7 +289,7 @@ bot.on('message', async (message) => {
     case 'resume':
       let chosenSong5 = client.player.resume(message);
       if (chosenSong5) {
-        message.channel.send(`⏯ ${chosenSong5.name} was resumed!`);
+        message.channel.send(`⏯ **${getProperSoundContent(chosenSong5.name)}** was resumed!`);
       }
       break;
 
