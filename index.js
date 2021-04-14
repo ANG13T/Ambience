@@ -1,10 +1,5 @@
 import Discord from 'discord.js';
 import pkg from 'discord-music-player';
-import spin from 'cli-spinner';
-
-var {Spinner} = spin;
-var spinner = new Spinner('processing.. %s');
-spinner.setSpinnerString('|/-\\');
 const { Player } = pkg;
 import config from './data/config.js';
 import commandsInput from './data/commands.js';
@@ -31,49 +26,49 @@ bot.on("ready", () => {
   console.log("I am ready to Play with DMP 🎶");
 });
 
-bot.player.on('error', (error, message) => {
-  switch (error) {
-    // Thrown when the YouTube search could not find any song with that query.
-    case 'SearchIsNull':
-        message.channel.send(`No song with that query was found.`);
-        break;
-    // Thrown when the provided YouTube Playlist could not be found.
-    case 'InvalidPlaylist':
-        message.channel.send(`No Playlist was found with that link.`);
-        break;
-    // Thrown when the provided Spotify Song could not be found.
-    case 'InvalidSpotify':
-        message.channel.send(`No Spotify Song was found with that link.`);
-        break;
-    // Thrown when the Guild Queue does not exist (no music is playing).
-    case 'QueueIsNull':
-        message.channel.send(`There is no music playing right now.`);
-        break;
-    // Thrown when the Members is not in a VoiceChannel.
-    case 'VoiceChannelTypeInvalid':
-        message.channel.send(`You need to be in a Voice Channel to play music.`);
-        break;
-    // Thrown when the current playing song was an live transmission (that is unsupported).
-    case 'LiveUnsupported':
-        message.channel.send(`We do not support YouTube Livestreams.`);
-        break;
-    // Thrown when the current playing song was unavailable.
-    case 'VideoUnavailable':
-        message.channel.send(`Something went wrong while playing the current song, skipping...`);
-        break;
-    // Thrown when provided argument was Not A Number.
-    case 'NotANumber':
-        message.channel.send(`The provided argument was Not A Number.`);
-        break;
-    // Thrown when the first method argument was not a Discord Message object.
-    case 'MessageTypeInvalid':
-        message.channel.send(`The Message object was not provided.`);
-        break;
-    // Thrown when the Guild Queue does not exist (no music is playing).
-    default:
-        message.channel.send(`**Unknown Error Ocurred:** ${error}`);
-        break;
-}});
+// bot.player.on('error', (error, message) => {
+//   switch (error) {
+//     // Thrown when the YouTube search could not find any song with that query.
+//     case 'SearchIsNull':
+//         message.channel.send(`No song with that query was found.`);
+//         break;
+//     // Thrown when the provided YouTube Playlist could not be found.
+//     case 'InvalidPlaylist':
+//         message.channel.send(`No Playlist was found with that link.`);
+//         break;
+//     // Thrown when the provided Spotify Song could not be found.
+//     case 'InvalidSpotify':
+//         message.channel.send(`No Spotify Song was found with that link.`);
+//         break;
+//     // Thrown when the Guild Queue does not exist (no music is playing).
+//     case 'QueueIsNull':
+//         message.channel.send(`There is no music playing right now.`);
+//         break;
+//     // Thrown when the Members is not in a VoiceChannel.
+//     case 'VoiceChannelTypeInvalid':
+//         message.channel.send(`You need to be in a Voice Channel to play music.`);
+//         break;
+//     // Thrown when the current playing song was an live transmission (that is unsupported).
+//     case 'LiveUnsupported':
+//         message.channel.send(`We do not support YouTube Livestreams.`);
+//         break;
+//     // Thrown when the current playing song was unavailable.
+//     case 'VideoUnavailable':
+//         message.channel.send(`Something went wrong while playing the current song, skipping...`);
+//         break;
+//     // Thrown when provided argument was Not A Number.
+//     case 'NotANumber':
+//         message.channel.send(`The provided argument was Not A Number.`);
+//         break;
+//     // Thrown when the first method argument was not a Discord Message object.
+//     case 'MessageTypeInvalid':
+//         message.channel.send(`The Message object was not provided.`);
+//         break;
+//     // Thrown when the Guild Queue does not exist (no music is playing).
+//     default:
+//         message.channel.send(`**Unknown Error Ocurred:** ${error}`);
+//         break;
+// }});
 
 bot.player.on('songAdd', (message, queue, song) => {
   let selectedSong = getSongFromURL(song.requestedBy);
@@ -310,17 +305,13 @@ bot.login(config.token);
 
 async function playCommand(message, args) {
   if (bot.player.isPlaying(message)) {
-    spinner.start();
     let song = await bot.player.addToQueue(modifyMessageForMusic(message), args.join(' '));
-    spinner.stop();
     // If there were no errors the Player#songAdd event will fire and the song will not be null.
     if (song)
       console.log(`Added ${song.name} to the queue`);
     return;
   } else {
-    spinner.start();
     let song = await bot.player.play(modifyMessageForMusic(message), args.join(' '));
-    spinner.stop();
     // If there were no errors the Player#songAdd event will fire and the song will not be null.
     if (song)
       console.log(`Started playing ${song.name}`);
@@ -331,16 +322,12 @@ async function playCommand(message, args) {
 async function playAmbienceSong(message, args, musicLink) {
   try{
     if (bot.player.isPlaying(message)) {
-      spinner.start();
       await bot.player.addToQueue(message, { search: musicLink, requestedBy: musicLink });
-      spinner.stop();
     } else {
-      spinner.start();
       await bot.player.play(message, {
         search: musicLink,
         requestedBy: musicLink
       });
-      spinner.stop();
     }
   }catch(err){
     console.log("caught tne erroe");
@@ -350,27 +337,31 @@ async function playAmbienceSong(message, args, musicLink) {
 }
 
 async function playCustomSong(message, songValue){
-  spinner.start();
-  message.content = `!play ${songValue}`;
-  let args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-    if(bot.player.isPlaying(message)) {
-      let song = await bot.player.addToQueue(message, args.join(' '));
-      spinner.stop();
-
-      // If there were no errors the Player#songAdd event will fire and the song will not be null.
-      if(song)
-          console.log(`Added ${song.name} to the queue`);
-      return;
-  } else {
-
-      console.log("befofe", message.content);
-      let song = await bot.player.play(message, args.join(' '));
-
-      // If there were no errors the Player#songAdd event will fire and the song will not be null.
-      if(song)
-          console.log(`Started playing ${song.name}`);
-      return;
+  try{
+    message.content = `!play ${songValue}`;
+    let args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+      if(bot.player.isPlaying(message)) {
+        let song = await bot.player.addToQueue(message, args.join(' '));
+  
+        // If there were no errors the Player#songAdd event will fire and the song will not be null.
+        if(song)
+            console.log(`Added ${song.name} to the queue`);
+        return;
+    } else {
+  
+        console.log("befofe", message.content);
+        let song = await bot.player.play(message, args.join(' '));
+  
+        // If there were no errors the Player#songAdd event will fire and the song will not be null.
+        if(song)
+            console.log(`Started playing ${song.name}`);
+        return;
+    }
+  }catch(err){
+    console.log("caught tne erroe");
+    message.channel.send("❌ You must be in a voice channel to use this command.");
   }
+  
 }
 
 export function refineContent(input){
