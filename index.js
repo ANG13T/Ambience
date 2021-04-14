@@ -154,10 +154,15 @@ bot.on('message', async (message) => {
     let contentArray = message.content.split(" ");
     let refinedContent = contentArray.slice(1, contentArray.length);
     content = refinedContent.join(" ");
-    console.log("gmm", parseInt(content));
-    let isDone = bot.player.setVolume(message, parseInt(content));
-        if(isDone)
-            message.channel.send(`🔊 Volume set to ${args[0]}!`);
+    try{
+      let isDone = await bot.player.setVolume(message, parseInt(content));
+      if(isDone)
+          message.channel.send(`🔊 Volume set to ${args[0]}!`);
+    }catch(err){
+      console.log("something went wrong");
+      message.channel.send("❌ You must play a sound to use this command.");
+    }
+    
 
     return;
   }

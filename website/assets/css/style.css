@@ -148,6 +148,12 @@ transition:0.25s;
   color: white;
 }
 
+.content-information .content .buttons .invite a{
+  text-decoration: none;
+  color: white;
+}
+
+
 .content-information .content .buttons .read:hover a{
   color: rgb(48, 65, 141);
 }
