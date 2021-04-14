@@ -296,35 +296,35 @@ export default {
             "songs":[
                 {
                     "name":"Cyberpunk",
-                    "link":"https://www.youtube.com/watch?v=BQrxsyGTztM"
+                    "link":"https://www.youtube.com/watch?v=zIpXoohOg44"
                 },
                 {
                     "name":"Minecraft",
-                    "link":"https://www.youtube.com/watch?v=4F7sdy2rZws"
+                    "link":"https://www.youtube.com/watch?v=0KvlwMd3C4Y"
                 },
                 {
                     "name":"Legend of Zelda",
-                    "link":"https://www.youtube.com/watch?v=XbS3tPO9sUs"
+                    "link":"https://www.youtube.com/watch?v=W5AZeNGB6Ds"
                 },
                 {
                     "name":"Undertale",
-                    "link":"https://www.youtube.com/watch?v=YF1eYbfbH5k"
+                    "link":"https://www.youtube.com/watch?v=TIokr8jJPkM"
                 },
                 {
                     "name":"Skyrim",
-                    "link":"https://www.youtube.com/watch?v=uBmbI8dzc-M"
+                    "link":"https://www.youtube.com/watch?v=nRe3xFeyhVY"
                 },
                 {
                     "name":"Mario Kart",
-                    "link":"https://www.youtube.com/watch?v=uBmbI8dzc-M"
+                    "link":"https://www.youtube.com/watch?v=uQ7zqtbsTcU"
                 },
                 {
                     "name":"Journey",
-                    "link":"https://www.youtube.com/watch?v=uBmbI8dzc-M"
+                    "link":"https://www.youtube.com/watch?v=M3hFN8UrBPw"
                 },
                 {
                     "name":"Celeste",
-                    "link":"https://www.youtube.com/watch?v=uBmbI8dzc-M"
+                    "link":"https://www.youtube.com/watch?v=2JsYHpiH2xs"
                 }
             ]
         }
