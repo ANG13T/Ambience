@@ -83,6 +83,32 @@ export default {
             ]
         },
         {
+            "name": "Desert",
+            "emoji":"🏜",
+            "songs":[
+                {
+                    "name":"Desert Night",
+                    "link":"youtube.com/watch?v=bNLPmzbh8Lg"
+                },
+                {
+                    "name":"Windy Desert",
+                    "link":"https://www.youtube.com/watch?v=4E-_Xpj0Mgo"
+                },
+                {
+                    "name":"Mojave Desert",
+                    "link":"https://www.youtube.com/watch?v=Je-4Okke4BE"
+                },
+                {
+                    "name":"Dark Desert",
+                    "link":"https://www.youtube.com/watch?v=Vo7n4j3OrNs"
+                },
+                {
+                    "name":"Desert Temple",
+                    "link":"https://www.youtube.com/watch?v=Zost8sfrQA8"
+                }
+            ]
+        },
+        {
             "name": "Home",
             "emoji":"🏠",
             "songs":[
@@ -259,12 +285,8 @@ export default {
                     "link":"https://www.youtube.com/watch?v=YF1eYbfbH5k"
                 },
                 {
-                    "name":"Requiem For a Dream",
-                    "link":"https://www.youtube.com/watch?v=yVIRcnlRKF8"
-                },
-                {
-                    "name":"Girl with a Dragon Tattoo",
-                    "link":"https://www.youtube.com/watch?v=m3QEaHmkSN0"
+                    "name":"Lord of the Rings",
+                    "link":"https://www.youtube.com/watch?v=uBmbI8dzc-M"
                 }
             ]
         },
@@ -272,14 +294,38 @@ export default {
             "name": "Video Games",
             "emoji":"🎮",
             "songs":[
-
-            ]
-        },
-        {
-            "name": "ASMR",
-            "emoji":"☺️",
-            "songs":[
-                
+                {
+                    "name":"Cyberpunk",
+                    "link":"https://www.youtube.com/watch?v=BQrxsyGTztM"
+                },
+                {
+                    "name":"Minecraft",
+                    "link":"https://www.youtube.com/watch?v=4F7sdy2rZws"
+                },
+                {
+                    "name":"Legend of Zelda",
+                    "link":"https://www.youtube.com/watch?v=XbS3tPO9sUs"
+                },
+                {
+                    "name":"Undertale",
+                    "link":"https://www.youtube.com/watch?v=YF1eYbfbH5k"
+                },
+                {
+                    "name":"Skyrim",
+                    "link":"https://www.youtube.com/watch?v=uBmbI8dzc-M"
+                },
+                {
+                    "name":"Mario Kart",
+                    "link":"https://www.youtube.com/watch?v=uBmbI8dzc-M"
+                },
+                {
+                    "name":"Journey",
+                    "link":"https://www.youtube.com/watch?v=uBmbI8dzc-M"
+                },
+                {
+                    "name":"Celeste",
+                    "link":"https://www.youtube.com/watch?v=uBmbI8dzc-M"
+                }
             ]
         }
     ]
