@@ -128,12 +128,9 @@ bot.on('message', async (message) => {
   }
 
   if(getKeyWord('easter', message.content)){
-    let easterEggs = ['alexis', 'angie', 'rick', 'sanic'];
     let content = refineContent(message.content);
-    if(easterEggs.includes(content.toLowerCase())){
-      playCustomSong(message, listEasterEggContent(message.content));
-      return;
-    }
+    playCustomSong(message, listEasterEggContent(content));
+    return;
   }
 
   if (getKeyWord('play', message.content)) {

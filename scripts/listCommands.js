@@ -147,17 +147,17 @@ export function listSettings(){
 
 export function listEasterEggContent(message){
    if(message == "alexis"){
-       return "!play ";
+       return "https://www.youtube.com/watch?v=NkMTKGM-efw";
    }
 
    if(message == "angie"){
-    return "";
+    return "https://www.youtube.com/playlist?list=PLwoti7tFAKHYAxt0xFptb4srCWhnc5JiF";
    }
 
     if(message == "sanic"){
-        return "";
+        return "https://www.youtube.com/watch?v=PX7zPlQjAr8";
     }
-    return "";
+    return "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 }
 
 export function listCustomSongInformation(name, url, thumbnail, volume, author, duration, username){
