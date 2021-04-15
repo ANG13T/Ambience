@@ -11,7 +11,7 @@
     A Discord Bot that provides quality music for work, productivity, and flow. Invite it on Discord to improve your focus!
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template" style="font-size: 25px;"><strong>Invite the Bot »</strong></a>
+    <a href="https://discord.com/api/oauth2/authorize?client_id=815700293609324555&permissions=3172352&scope=bot" style="font-size: 25px;"><strong>Invite the Bot »</strong></a>
     <br />
     <br />
     <a href="https://angelina-tsuboi.github.io/Ambience/">View Website</a>
