@@ -101,7 +101,7 @@ bot.on('message', async (message) => {
       message.channel.send(listCategorySongs(content));
       return;
     }
-    message.channel.send("Sound not found for " + content + ". \n Type `" + getCommandWithPrefix('commands') + "` to see all available sounds");
+    message.channel.send("Sound not found for **" + content + "**. \n Type `" + getCommandWithPrefix('commands') + "` to see all available sounds");
     return;
   }
 
