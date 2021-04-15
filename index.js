@@ -1,7 +1,6 @@
 import Discord from 'discord.js';
 import pkg from 'discord-music-player';
 const { Player } = pkg;
-import config from './data/config.js';
 import commandsInput from './data/commands.js';
 import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds, getIfValidCommand, getCommandWithPrefix} from './scripts/getCommands.js';
 import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation, listInvalidCommand, listEasterEggContent, listLoadingMessage} from './scripts/listCommands.js';
@@ -9,6 +8,8 @@ import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './
 
 const commandsData = commandsInput.commands;
 let commands = commandsData.map(c => c.command);
+let configToken = process.env.DJS_TOKEN;
+let configPrefix = process.env.PREFIX;
 
 var bot = new Discord.Client();
 const player = new Player(bot);
@@ -44,7 +45,7 @@ bot.on('message', async (message) => {
   const args = message.content.slice(getPrefix().length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
-  if(command && !getIfValidCommand(command) && command[0] != "*" && message.content[0] == config.prefix && command != "easter"){
+  if(command && !getIfValidCommand(command) && command[0] != "*" && message.content[0] == configPrefix && command != "easter"){
     message.channel.send(listInvalidCommand(command));
     return;
   }
@@ -135,7 +136,7 @@ bot.on('message', async (message) => {
       message.channel.send(listValidPrefixes());
       return;
     }
-    config.prefix = content;
+    process.env.PREFIX = content;
     message.channel.send(`✅ Prefix set to ${content}`);
   }
 
@@ -261,7 +262,7 @@ bot.on('message', async (message) => {
 });
 
 
-bot.login(config.token);
+bot.login(configToken);
 
 // Helper Functions
 
@@ -303,7 +304,7 @@ async function playAmbienceSong(message, args, musicLink) {
 async function playCustomSong(message, songValue){
   try{
     message.content = `!play ${songValue}`;
-    let args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    let args = message.content.slice(configPrefix.length).trim().split(/ +/g);
       if(bot.player.isPlaying(message)) {
         let song = await bot.player.addToQueue(message, args.join(' '));
   

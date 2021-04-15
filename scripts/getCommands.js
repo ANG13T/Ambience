@@ -5,9 +5,8 @@ import commandsData from "../data/commands.js";
 const categories = songsData.categories;;
 var songs = getSongsFromData(categories);
 var commands = commandsData.commands;
-import config from '../data/config.js';
-import { refineContent } from "../index.js";
-let prefix = config.prefix;
+let prefix = process.env.PREFIX;
+
 
 
 export function getKeyWord(keyword, command) {
@@ -21,7 +20,7 @@ export function getKeyWord(keyword, command) {
 }
 
 export function getCommandWithPrefix(command){
-    let currentPrefix = config.prefix;
+    let currentPrefix = prefix;
     return currentPrefix + command;
 }
 

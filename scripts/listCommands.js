@@ -2,13 +2,13 @@ import { matchCategoryByName } from "./matchCommands.js";
 import Discord from 'discord.js';
 import { getPurifiedInput, getSongsFromData, getCommandsForCategory, getCommandWithPrefix } from "./getCommands.js";
 import { refineContent } from '../index.js';
-import config from '../data/config.js';
 import commandsInput from '../data/commands.js';
 const commandsData = commandsInput.commands;
 let commands = commandsData.map(c => c.command);
 import songsData from '../data/songs.js';
 const categories = songsData.categories;;
 var songs = getSongsFromData(categories);
+let configPrefix = process.env.PREFIX;
 
 export function listSearchResults(searchResultOutput) {
     let text = "";
@@ -66,7 +66,7 @@ export function listInvalidCommand(command){
     const invalidEmbed = new Discord.MessageEmbed()
     .setColor('#0099ff')
     .setTitle('Invalid Command!')
-    .setDescription(`${config.prefix}${command} is an invalid command`)
+    .setDescription(`${configPrefix}${command} is an invalid command`)
     .addField(`To see all commands, please type: `,` \`\`\` ${getCommandWithPrefix("commands")} \`\`\` `)
     return invalidEmbed;
 }
