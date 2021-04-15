@@ -24,6 +24,14 @@ bot.on('guildCreate', guild => {
 
 bot.on("ready", () => {
   console.log("🎶 I am ready to Play with DMP 🎶");
+
+  bot.user.setStatus('available')
+    bot.user.setPresence({
+        game: {
+            name: 'Type $help for usage!',
+            type: "LISTENING TO TUNES"
+        }
+    });
 });
 
 bot.player.on('songAdd', (message, queue, song) => {
