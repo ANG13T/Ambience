@@ -23,7 +23,7 @@ bot.on('guildCreate', guild => {
 
 
 bot.on("ready", () => {
-  console.log("I am ready to Play with DMP 🎶");
+  console.log("🎶 I am ready to Play with DMP 🎶");
 });
 
 bot.player.on('songAdd', (message, queue, song) => {
