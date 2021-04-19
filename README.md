@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="./resources/icon.png" alt="Logo" width="100" height="100">
+    <img src="website/assets/icon2.png" alt="Logo" width="100" height="138">
   </a>
 
   <h3 align="center">Ambience</h3>
@@ -11,10 +11,12 @@
     A Discord Bot that provides quality music for work, productivity, and flow. Invite it on Discord to improve your focus!
     <br />
     <br />
-    <a href="https://discord.com/api/oauth2/authorize?client_id=815700293609324555&permissions=3172352&scope=bot" style="font-size: 25px;"><strong>Visit Website</strong></a>
+   <a href="https://discord.com/api/oauth2/authorize?client_id=815700293609324555&permissions=3172352&scope=bot" style="font-size: 25px;"><strong>Invite the Bot »</strong></a>
     <br />
     <br />
-    <a href="https://discord.com/invite/w3Tp9x88Nw">Donate</a>
+     <a href="https://angelina-tsuboi.github.io/Ambience/">View Website</a>
+    ·
+    <a href="https://discord.com/invite/w3Tp9x88Nw">Join the Community</a>
     ·
     <a href="https://github.com/angelina-tsuboi/Ambience/issues">Report Bug</a>
     ·
