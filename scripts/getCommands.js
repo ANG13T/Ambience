@@ -2,11 +2,13 @@ import { matchCategoryByName } from "./matchCommands.js";
 import Discord from 'discord.js';
 import songsData from '../data/songs.js';
 import commandsData from "../data/commands.js";
+import configInput from "../data/config.js";
 const categories = songsData.categories;;
 var songs = getSongsFromData(categories);
 var commands = commandsData.commands;
 let prefix = process.env.PREFIX;
-
+// use this for testing
+prefix = configInput["PREFIX"];
 
 
 export function getKeyWord(keyword, command) {
@@ -117,4 +119,10 @@ export function getAllSounds(){
         allSounds = allSounds.concat(categorySounds);
     }
     return allSounds;
+}
+
+export function getRandomSound(){
+    let allSounds = getAllSounds();
+    var item = allSounds[Math.floor(Math.random()*allSounds.length)];
+    return item;
 }

@@ -2,7 +2,8 @@ import Discord from 'discord.js';
 import pkg from 'discord-music-player';
 const { Player } = pkg;
 import commandsInput from './data/commands.js';
-import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds, getIfValidCommand, getCommandWithPrefix} from './scripts/getCommands.js';
+import configInputs from './data/config.js';
+import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds, getIfValidCommand, getCommandWithPrefix, getRandomSound} from './scripts/getCommands.js';
 import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation, listInvalidCommand, listEasterEggContent, listLoadingMessage} from './scripts/listCommands.js';
 import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
 
@@ -10,6 +11,9 @@ const commandsData = commandsInput.commands;
 let commands = commandsData.map(c => c.command);
 let configToken = process.env.DJS_TOKEN;
 let configPrefix = process.env.PREFIX;
+// USE this when running on your own for testing
+configToken = configInputs["DJS_TOKEN"];
+configPrefix = configInputs["PREFIX"];
 
 var bot = new Discord.Client();
 const player = new Player(bot);
@@ -181,6 +185,11 @@ bot.on('message', async (message) => {
       message.channel.send(listAllSounds(getAllSounds()));
       break;
       
+    case 'random':
+      let randomSound = getRandomSound();
+      playCommand(`${configPrefix}play ${randomSound}`, args);
+      break;
+
     case 'resume':
       let chosenSong2 = bot.player.resume(message);
       if (chosenSong2) {
@@ -303,7 +312,7 @@ async function playAmbienceSong(message, args, musicLink) {
       });
     }
   }catch(err){
-    console.log("caught tne erroe");
+    console.log("caught tne error");
     message.channel.send("❌ You must be in a voice channel to use this command.");
   }
   

@@ -43,6 +43,12 @@ export default {
             "code": "stop"
         },
         {
+            "command": "random",
+            "description": "Play a random calming sound",
+            "category": "music",
+            "code": "random"
+        },
+        {
             "command": "remove",
             "description": "Remove a song from the queue by position",
             "category": "music",
