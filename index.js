@@ -106,6 +106,7 @@ bot.on('message', async (message) => {
     }
 
     if(matchSongByCategoryIndex(content)){
+      console.log(message.content)
       playAmbienceSong(message, args, matchSongByCategoryIndex(content));
       return;
     }
@@ -142,7 +143,6 @@ bot.on('message', async (message) => {
   }
 
   if(getKeyWord(('prefix'), message.content)){
-    console.log("prefs", message.content)
     let content = refineContent(message.content);
     let validPrefixes = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '\\', '/', '.', '~'];
     if(!validPrefixes.includes(content)){
@@ -188,6 +188,7 @@ bot.on('message', async (message) => {
       
     case 'random':
       let randomSound = getRandomSound();
+      message.content = `!play ${randomSound.link}`
       playAmbienceSong(message, args, randomSound.link);
       break;
 

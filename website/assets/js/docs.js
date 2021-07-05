@@ -35,11 +35,9 @@ $('#toggle-button').change(function(event){
 $(document).ready(function() {
 
 	if(window.localStorage.getItem("darkMode")){
-		console.log(window.localStorage.getItem("darkMode"));
 		darkMode = window.localStorage.getItem("darkMode"); 
 
 		if(darkMode == "true"){
-			console.log("inside");
 			$('#toggle-button').attr('checked','checked');
 			$('body').addClass("darkModeContainer");
 			$(".docs-page").addClass("darkModeContainer");

@@ -16,7 +16,6 @@ export function matchSongByName(title) {
 
 export function matchSongByCategoryIndex(content) {
     let results = content.split(" ");
-    console.log("cat index results", results)
     if (matchCategoryByName(results[0])) {
         let categorySongs = getSongsForCategory(results[0]);
         if (categorySongs[results[1] - 1]) {
