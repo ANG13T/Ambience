@@ -35,9 +35,12 @@ export function changePrefix(newPrefix){
 }
 
 export function modifyMessageForMusic(message){
-    let refinedText = message.slice(1, message.length);
+    console.log("message is ", message);
+    let refinedText = message.content.slice(6, message.length);
     refinedText = "!play " + refinedText;
-    return refinedText;
+    console.log("rref", refinedText)
+    message.content = refinedText;
+    return message;
 }
 
 export function getQueueEmbed(songs){

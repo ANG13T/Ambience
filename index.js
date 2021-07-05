@@ -312,10 +312,13 @@ async function playAmbienceSong(message, args, musicLink) {
       await bot.player.addToQueue(message, { search: musicLink, requestedBy: musicLink });
     } else {
       message.channel.send(listLoadingMessage());
+      console.log("inside 1")
       await bot.player.play(message, {
         search: musicLink,
         requestedBy: musicLink
-      });
+      }).catch((err) => {
+        console.log("doop", err)
+      })
     }
   }catch(err){
     console.log("caught the error");

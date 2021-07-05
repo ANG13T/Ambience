@@ -19,9 +19,9 @@
   },
   "homepage": "https://github.com/angelina-tsuboi/DiscordBot#readme",
   "dependencies": {
-    "@discordjs/opus": "^0.5.0",
+    "@discordjs/opus": "^0.5.3",
     "cli-spinner": "^0.2.10",
-    "discord-music-player": "^7.1.2",
+    "discord-music-player": "^7.2.0",
     "discord.js": "^12.5.3"
   }
 }
