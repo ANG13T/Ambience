@@ -38,6 +38,7 @@ export function modifyMessageForMusic(message){
     let refinedText = message.content.slice(6, message.length);
     refinedText = "!play " + refinedText;
     message.content = refinedText;
+    console.log("dsahkjadsjksd", message.content )
     return message;
 }
 
