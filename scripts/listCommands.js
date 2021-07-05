@@ -112,7 +112,7 @@ export function listAllSounds(sounds){
 	.setColor('#0099ff')
 	.setTitle('🎶 Ambience Sounds: ')
     .setDescription(text)
-    .addFields({name: 'To play a sound type: ', value: ` \`\`\`${getCommandWithPrefix("sound [sound_name]")} \`\`\` ` });
+    .addFields({name: 'To play a sound type: ', value: ` \`\`\`${getCommandWithPrefix("play [sound_name]")} \`\`\` ` });
     return soundsEmbed;
 }
 

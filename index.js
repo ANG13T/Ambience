@@ -187,7 +187,9 @@ bot.on('message', async (message) => {
       
     case 'random':
       let randomSound = getRandomSound();
-      playCommand(`${configPrefix}play ${randomSound}`, args);
+      // let soundLink = matchSongByName(randomSound);
+      console.log("linekdin", randomSound);
+      playAmbienceSong(message, args, randomSound.link);
       break;
 
     case 'resume':
@@ -312,7 +314,7 @@ async function playAmbienceSong(message, args, musicLink) {
       });
     }
   }catch(err){
-    console.log("caught tne error");
+    console.log("caught the error");
     message.channel.send("❌ You must be in a voice channel to use this command.");
   }
   
