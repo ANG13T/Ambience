@@ -12,9 +12,10 @@ prefix = configInput["PREFIX"];
 
 
 export function getKeyWord(keyword, command) {
-    let prefixKeyword = prefix + keyword;
-    let split = command.split(" ");
-    if (split[0] == prefixKeyword && split.length > 1) {
+    let prefixKeyword = prefix + keyword + " ";
+    let prompt = command.slice(0, 6);
+    console.log("prrorp", prompt)
+    if (prompt == prefixKeyword && command.split(" ").length > 1) {
         return true;
     }
 
@@ -35,10 +36,8 @@ export function changePrefix(newPrefix){
 }
 
 export function modifyMessageForMusic(message){
-    console.log("message is ", message);
     let refinedText = message.content.slice(6, message.length);
     refinedText = "!play " + refinedText;
-    console.log("rref", refinedText)
     message.content = refinedText;
     return message;
 }

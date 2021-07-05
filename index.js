@@ -4,9 +4,9 @@ const { Player } = pkg;
 import commandsInput from './data/commands.js';
 import playlistTracks from './data/playlist.js';
 import configInputs from './data/config.js';
-import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds, getIfValidCommand, getCommandWithPrefix, getRandomSound} from './scripts/getCommands.js';
-import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation, listInvalidCommand, listEasterEggContent, listLoadingMessage} from './scripts/listCommands.js';
-import {matchSongByName, matchSongByCategoryIndex, matchCategoryByName} from './scripts/matchCommands.js';
+import { getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds, getIfValidCommand, getCommandWithPrefix, getRandomSound } from './scripts/getCommands.js';
+import { listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation, listInvalidCommand, listEasterEggContent, listLoadingMessage } from './scripts/listCommands.js';
+import { matchSongByName, matchSongByCategoryIndex, matchCategoryByName } from './scripts/matchCommands.js';
 
 const commandsData = commandsInput.commands;
 let commands = commandsData.map(c => c.command);
@@ -31,34 +31,34 @@ bot.on("ready", () => {
   console.log("🎶 I am ready to Play with DMP 🎶");
 
   bot.user.setStatus('available')
-    bot.user.setPresence({
-        game: {
-            name: 'Type $help for usage!',
-            type: "LISTENING TO TUNES"
-        }
-    });
+  bot.user.setPresence({
+    game: {
+      name: 'Type $help for usage!',
+      type: "LISTENING TO TUNES"
+    }
+  });
 });
 
 bot.player.on('songAdd', (message, queue, song) => {
-    message.channel.send(`**${getProperSoundContent(song)}** has been added to the queue!`);
-  })
+  message.channel.send(`**${getProperSoundContent(song)}** has been added to the queue!`);
+})
   .on('songFirst', (message, song) => {
-    let username = song.queue.initMessage.author.username  + "#" + song.queue.initMessage.author.discriminator;
+    let username = song.queue.initMessage.author.username + "#" + song.queue.initMessage.author.discriminator;
     let songName = song.name;
-    let selectedSong = getSongFromURL(song.requestedBy);   
-    if(selectedSong){
+    let selectedSong = getSongFromURL(song.requestedBy);
+    if (selectedSong) {
       songName = selectedSong.name;
-    } 
-    
+    }
+
     message.channel.send(listCustomSongInformation(songName, song.url, song.thumbnail, song.queue.volume, song.author, song.duration, username));
   })
-    
+
 
 bot.on('message', async (message) => {
   const args = message.content.slice(getPrefix().length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
-  if(command && !getIfValidCommand(command) && command[0] != "*" && message.content[0] == configPrefix && command != "easter"){
+  if (command && !getIfValidCommand(command) && command[0] != "*" && message.content[0] == configPrefix && command != "easter") {
     message.channel.send(listInvalidCommand(command));
     return;
   }
@@ -68,7 +68,7 @@ bot.on('message', async (message) => {
     let content = message.content.split(" ")[1];
     if (commands.includes(content)) {
       message.channel.send(getCommandInfo(getCommandByName(content)));
-     
+
     } else {
       message.channel.send("Command not found for " + content + ". \n Type `$help` to see all command names");
     }
@@ -77,7 +77,7 @@ bot.on('message', async (message) => {
   }
 
   if (getKeyWord('categories', message.content)) {
-   let content = refineContent(message.content);
+    let content = refineContent(message.content);
     // check categories - compile early
     if (matchCategoryByName(content)) {
       message.channel.send(listCategorySongs(content));
@@ -87,52 +87,35 @@ bot.on('message', async (message) => {
     return;
   }
 
-  if(getKeyWord('custom', message.content)){
+  if (getKeyWord('custom', message.content)) {
     playCustomSong(message, refineContent(message.content));
   }
 
-  if(getKeyWord('easter', message.content)){
+  if (getKeyWord('easter', message.content)) {
     let content = refineContent(message.content);
     playCustomSong(message, listEasterEggContent(content));
     return;
   }
 
-  if (getKeyWord('play', message.content)) {
-    let content = refineContent(message.content);
-    // check all songs - compile early
-    if (matchSongByName(content)) {
-      playAmbienceSong(message, args, matchSongByName(content));
-      return;
-    }
+  // if (getKeyWord('play', message.content)) {
 
-    if(matchSongByCategoryIndex(content)){
-      console.log(message.content)
-      playAmbienceSong(message, args, matchSongByCategoryIndex(content));
-      return;
-    }
-    // check categories - compile early
-    if (matchCategoryByName(content)) {
-      message.channel.send(listCategorySongs(content));
-      return;
-    }
-    message.channel.send("Sound not found for **" + content + "**. \n Type `" + getCommandWithPrefix('commands') + "` to see all available sounds");
-    return;
-  }
+  //   return;
+  // }
 
   if (getKeyWord(('setvolume'), message.content)) {
     let content = message.content.split(" ")[1];
     let contentArray = message.content.split(" ");
     let refinedContent = contentArray.slice(1, contentArray.length);
     content = refinedContent.join(" ");
-    try{
+    try {
       let isDone = await bot.player.setVolume(message, parseInt(content));
-      if(isDone)
-          message.channel.send(`🔊 Volume set to ${args[0]}!`);
-    }catch(err){
+      if (isDone)
+        message.channel.send(`🔊 Volume set to ${args[0]}!`);
+    } catch (err) {
       console.log("something went wrong");
       message.channel.send("❌ You must play a sound to use this command.");
     }
-    
+
 
     return;
   }
@@ -142,10 +125,10 @@ bot.on('message', async (message) => {
     return;
   }
 
-  if(getKeyWord(('prefix'), message.content)){
+  if (getKeyWord(('prefix'), message.content)) {
     let content = refineContent(message.content);
     let validPrefixes = ['!', '@', '#', '$', '%', '&', '*', '(', ')', '\\', '/', '.', '~'];
-    if(!validPrefixes.includes(content)){
+    if (!validPrefixes.includes(content)) {
       message.channel.send(listValidPrefixes());
       return;
     }
@@ -164,11 +147,11 @@ bot.on('message', async (message) => {
       break;
 
     case 'settings':
-        message.channel.send(listSettings());
+      message.channel.send(listSettings());
       break;
 
     case 'commands':
-        message.channel.send(listCommands());
+      message.channel.send(listCommands());
       break;
 
     case 'categories':
@@ -185,7 +168,7 @@ bot.on('message', async (message) => {
     case 'sounds':
       message.channel.send(listAllSounds(getAllSounds()));
       break;
-      
+
     case 'random':
       let randomSound = getRandomSound();
       message.content = `!play ${randomSound.link}`
@@ -212,15 +195,15 @@ bot.on('message', async (message) => {
 
     case 'stop':
       let isComplete = bot.player.stop(message);
-      if(isComplete){
+      if (isComplete) {
         message.channel.send('🛑 Sounds stopped, the Queue has been cleared');
       }
       break;
 
     case 'loop':
       let toggle = bot.player.toggleLoop(message);
-      if(toggle === null) return;
-      else if(toggle) message.channel.send(`🔁 ${getProperSoundContent(song)} is now on loop`)
+      if (toggle === null) return;
+      else if (toggle) message.channel.send(`🔁 ${getProperSoundContent(song)} is now on loop`)
       else message.channel.send(`✋ **${getProperSoundContent(song)}** will no longer be on loop`)
       break;
 
@@ -229,45 +212,45 @@ bot.on('message', async (message) => {
         size: 40,
         block: '\u2588',
         arrow: '\u2591'
-    });
-    if(progressBar)
+      });
+      if (progressBar)
         message.channel.send(progressBar);
-    break;
+      break;
 
     case 'repeatqueue':
       let status = bot.player.setQueueRepeatMode(message, true);
-        if(status === null)
-          break;
-        message.channel.send(`🔁 Queue will be repeated!`);
+      if (status === null)
+        break;
+      message.channel.send(`🔁 Queue will be repeated!`);
       break;
 
-    
+
     case 'disablerepeatqueue':
       let result = bot.player.setQueueRepeatMode(message, false);
-      if(result === null)
-          break;
+      if (result === null)
+        break;
       message.channel.send(`✋ Queue will not be longer repeated!`);
       break;
 
     case 'remove':
-      let songID = parseInt(args[0])-1; 
-        
-        let chosenSong4 = bot.player.remove(message, songID);
-        if(chosenSong4)
-            message.channel.send(`🗑 Removed song **${getProperSoundContent(chosenSong4)}** (${args[0]}) from the Queue!`);
+      let songID = parseInt(args[0]) - 1;
+
+      let chosenSong4 = bot.player.remove(message, songID);
+      if (chosenSong4)
+        message.channel.send(`🗑 Removed song **${getProperSoundContent(chosenSong4)}** (${args[0]}) from the Queue!`);
       break;
 
     case 'shuffle':
       let songs = bot.player.shuffle(message);
-        if(songs)
-            message.channel.send('🔀 Server Queue was shuffled.');
+      if (songs)
+        message.channel.send('🔀 Server Queue was shuffled.');
       break;
-    
-    
+
+
     case 'queue':
       let queue = bot.player.getQueue(message);
-        if(queue)
-            message.channel.send(getQueueEmbed(queue.songs));
+      if (queue)
+        message.channel.send(getQueueEmbed(queue.songs));
       break;
 
     case 'resume':
@@ -278,9 +261,26 @@ bot.on('message', async (message) => {
       break;
 
     case 'play':
-      playCommand(message, args);
-    break;
+      // playCommand(message, args);
+      let content = refineContent(message.content);
+      // check all songs - compile early
+      if (matchSongByName(content)) {
+        playAmbienceSong(message, args, matchSongByName(content));
+        return;
+      }
 
+      if (matchSongByCategoryIndex(content)) {
+        console.log(message.content)
+        playAmbienceSong(message, args, matchSongByCategoryIndex(content));
+        return;
+      }
+      // check categories - compile early
+      if (matchCategoryByName(content)) {
+        message.channel.send(listCategorySongs(content));
+        return;
+      }
+      message.channel.send("Sound not found for **" + content + "**. \n Type `" + getCommandWithPrefix('commands') + "` to see all available sounds");
+      break;
   }
 });
 
@@ -307,7 +307,7 @@ async function playCommand(message, args) {
 }
 
 async function playAmbienceSong(message, args, musicLink) {
-  try{
+  try {
     if (bot.player.isPlaying(message)) {
       await bot.player.addToQueue(message, { search: musicLink, requestedBy: musicLink });
     } else {
@@ -320,90 +320,91 @@ async function playAmbienceSong(message, args, musicLink) {
         console.log("doop", err)
       })
     }
-  }catch(err){
+  } catch (err) {
     console.log("caught the error");
     message.channel.send("❌ You must be in a voice channel to use this command.");
-  } 
+  }
 }
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
 }
 
 async function playPlaylist(message) {
   let shuffledPlaylist = shuffleArray(playlistTracks);
-  try{
+  try {
     message.content = `!play ${shuffledPlaylist[0]}`
     let args = message.content.slice(configPrefix.length).trim().split(/ +/g);
 
     if (bot.player.isPlaying(message)) {
       await bot.player.addToQueue(message, args.join(' '));
 
-      if(song)
-            console.log(`Added ${song.name} to the queue`);
-    }else{
+      if (song)
+        console.log(`Added ${song.name} to the queue`);
+    } else {
       message.channel.send(listLoadingMessage());
       let song = await bot.player.play(message, args.join(' '));
 
       // If there were no errors the Player#songAdd event will fire and the song will not be null.
-      if(song)
-          console.log(`Started playing ${song.name}`);
+      if (song)
+        console.log(`Started playing ${song.name}`);
       return;
     }
 
-    for(let i = 1; i < shuffledPlaylist.length; i++){
+    for (let i = 1; i < shuffledPlaylist.length; i++) {
       message.content = `!play ${shuffledPlaylist[i]}`;
       await bot.player.addToQueue(message, args.join(' '));
     }
 
-  }catch(err){
+  } catch (err) {
     console.log("caught the error");
     message.channel.send("❌ You must be in a voice channel to use this command.");
-  } 
+  }
 }
 
-async function playCustomSong(message, songValue){
-  try{
+async function playCustomSong(message, songValue) {
+  try {
     message.content = `!play ${songValue}`;
     let args = message.content.slice(configPrefix.length).trim().split(/ +/g);
-      if(bot.player.isPlaying(message)) {
-        let song = await bot.player.addToQueue(message, args.join(' '));
-  
-        // If there were no errors the Player#songAdd event will fire and the song will not be null.
-        if(song)
-            console.log(`Added ${song.name} to the queue`);
-        return;
+    if (bot.player.isPlaying(message)) {
+      let song = await bot.player.addToQueue(message, args.join(' '));
+
+      // If there were no errors the Player#songAdd event will fire and the song will not be null.
+      if (song)
+        console.log(`Added ${song.name} to the queue`);
+      return;
     } else {
-        message.channel.send(listLoadingMessage());
-        let song = await bot.player.play(message, args.join(' '));
-  
-        // If there were no errors the Player#songAdd event will fire and the song will not be null.
-        if(song)
-            console.log(`Started playing ${song.name}`);
-        return;
+      message.channel.send(listLoadingMessage());
+      let song = await bot.player.play(message, args.join(' '));
+
+      // If there were no errors the Player#songAdd event will fire and the song will not be null.
+      if (song)
+        console.log(`Started playing ${song.name}`);
+      return;
     }
-  }catch(err){
+  } catch (err) {
     console.log("caught tne erroe");
     message.channel.send("❌ You must be in a voice channel to use this command.");
   }
-  
+
 }
 
-export function refineContent(input){
-    let content = input.split(" ")[1];
-    let contentArray = input.split(" ");
-    let refinedContent = contentArray.slice(1, contentArray.length);
-    content = refinedContent.join(" ");
-    return content;
+export function refineContent(input) {
+  let content = input.split(" ")[1];
+  let contentArray = input.split(" ");
+  let refinedContent = contentArray.slice(1, contentArray.length);
+  content = refinedContent.join(" ");
+  console.log("refine", content)
+  return content;
 }
 
-export function getProperSoundContent(song){
+export function getProperSoundContent(song) {
   let selectedSong = getSongFromURL(song.requestedBy);
-  if(selectedSong){
+  if (selectedSong) {
     return selectedSong.name;
-  } 
+  }
   return song.name;
 }
