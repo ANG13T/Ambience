@@ -2,6 +2,7 @@ import Discord from 'discord.js';
 import pkg from 'discord-music-player';
 const { Player } = pkg;
 import commandsInput from './data/commands.js';
+import playlistTracks from './data/playlist.js';
 import configInputs from './data/config.js';
 import {getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds, getIfValidCommand, getCommandWithPrefix, getRandomSound} from './scripts/getCommands.js';
 import {listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation, listInvalidCommand, listEasterEggContent, listLoadingMessage} from './scripts/listCommands.js';
@@ -191,7 +192,7 @@ bot.on('message', async (message) => {
       break;
 
     case 'playlist':
-      console.log("playing playlist")
+      playPlaylist(message)
       break;
 
     case 'resume':
@@ -318,8 +319,46 @@ async function playAmbienceSong(message, args, musicLink) {
   }catch(err){
     console.log("caught the error");
     message.channel.send("❌ You must be in a voice channel to use this command.");
+  } 
+}
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
   }
-  
+}
+
+async function playPlaylist(message) {
+  let shuffledPlaylist = shuffleArray(playlistTracks);
+  try{
+    message.content = `!play ${shuffledPlaylist[0]}`
+    let args = message.content.slice(configPrefix.length).trim().split(/ +/g);
+
+    if (bot.player.isPlaying(message)) {
+      await bot.player.addToQueue(message, args.join(' '));
+
+      if(song)
+            console.log(`Added ${song.name} to the queue`);
+    }else{
+      message.channel.send(listLoadingMessage());
+      let song = await bot.player.play(message, args.join(' '));
+
+      // If there were no errors the Player#songAdd event will fire and the song will not be null.
+      if(song)
+          console.log(`Started playing ${song.name}`);
+      return;
+    }
+
+    for(let i = 1; i < shuffledPlaylist.length; i++){
+      message.content = `!play ${shuffledPlaylist[i]}`;
+      await bot.player.addToQueue(message, args.join(' '));
+    }
+
+  }catch(err){
+    console.log("caught the error");
+    message.channel.send("❌ You must be in a voice channel to use this command.");
+  } 
 }
 
 async function playCustomSong(message, songValue){
