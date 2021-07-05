@@ -12,9 +12,8 @@ prefix = configInput["PREFIX"];
 
 
 export function getKeyWord(keyword, command) {
-    let prefixKeyword = prefix + keyword + " ";
-    let prompt = command.slice(0, 6);
-    console.log("prrorp", prompt)
+    let prefixKeyword = prefix + keyword;
+    let prompt = command.slice(0, keyword.length + 1);
     if (prompt == prefixKeyword && command.split(" ").length > 1) {
         return true;
     }
