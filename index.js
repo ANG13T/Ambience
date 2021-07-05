@@ -58,6 +58,11 @@ bot.on('message', async (message) => {
   const args = message.content.slice(getPrefix().length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
+  if(message.content[0] != getPrefix()) {
+    return;
+  }
+  
+
   if (command && !getIfValidCommand(command) && command[0] != "*" && message.content[0] == configPrefix && command != "easter") {
     message.channel.send(listInvalidCommand(command));
     return;
@@ -312,12 +317,9 @@ async function playAmbienceSong(message, args, musicLink) {
       await bot.player.addToQueue(message, { search: musicLink, requestedBy: musicLink });
     } else {
       message.channel.send(listLoadingMessage());
-      console.log("inside 1")
       await bot.player.play(message, {
         search: musicLink,
         requestedBy: musicLink
-      }).catch((err) => {
-        console.log("doop", err)
       })
     }
   } catch (err) {
@@ -397,7 +399,6 @@ export function refineContent(input) {
   let contentArray = input.split(" ");
   let refinedContent = contentArray.slice(1, contentArray.length);
   content = refinedContent.join(" ");
-  console.log("refine", content)
   return content;
 }
 
