@@ -49,6 +49,12 @@ export default {
             "code": "random"
         },
         {
+            "command": "playlist",
+            "description": "Plays a playlist of calming sounds",
+            "category": "music",
+            "code": "playlist"
+        },
+        {
             "command": "remove",
             "description": "Remove a song from the queue by position",
             "category": "music",

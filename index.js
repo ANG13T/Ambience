@@ -187,9 +187,11 @@ bot.on('message', async (message) => {
       
     case 'random':
       let randomSound = getRandomSound();
-      // let soundLink = matchSongByName(randomSound);
-      console.log("linekdin", randomSound);
       playAmbienceSong(message, args, randomSound.link);
+      break;
+
+    case 'playlist':
+      console.log("playing playlist")
       break;
 
     case 'resume':
