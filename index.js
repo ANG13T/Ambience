@@ -266,7 +266,6 @@ bot.on('message', async (message) => {
       break;
 
     case 'play':
-      // playCommand(message, args);
       let content = refineContent(message.content);
       // check all songs - compile early
       if (matchSongByName(content)) {
@@ -295,7 +294,9 @@ bot.login(configToken);
 // Helper Functions
 
 async function playCommand(message, args) {
+  console.log("top", message.content)
   if (bot.player.isPlaying(message)) {
+    console.log("resume", modifyMessageForMusic(message).c);
     let song = await bot.player.addToQueue(modifyMessageForMusic(message), args.join(' '));
     // If there were no errors the Player#songAdd event will fire and the song will not be null.
     if (song)
@@ -303,6 +304,7 @@ async function playCommand(message, args) {
     return;
   } else {
     message.channel.send(listLoadingMessage());
+    console.log("resume", modifyMessageForMusic(message));
     let song = await bot.player.play(modifyMessageForMusic(message), args.join(' '));
     // If there were no errors the Player#songAdd event will fire and the song will not be null.
     if (song)
@@ -343,8 +345,7 @@ async function playPlaylist(message, args) {
   // console.log("adshdsajk", shuffledPlaylist[0])
   // message.content = `!play `
   // await playCommand(message, args)
-  message.content = `!play ${shuffledPlaylist[0]}`
-  await playCommand(message, args)
+  await playCustomSong(message, shuffledPlaylist[0])
 }
 
 async function playCustomSong(message, songValue) {
