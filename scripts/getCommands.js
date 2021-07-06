@@ -8,7 +8,7 @@ var songs = getSongsFromData(categories);
 var commands = commandsData.commands;
 let prefix = process.env.PREFIX;
 // use this for testing
-prefix = configInput["PREFIX"];
+// prefix = configInput["PREFIX"];
 
 
 export function getKeyWord(keyword, command) {

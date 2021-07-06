@@ -12,9 +12,10 @@ const commandsData = commandsInput.commands;
 let commands = commandsData.map(c => c.command);
 let configToken = process.env.DJS_TOKEN;
 let configPrefix = process.env.PREFIX;
-// USE this when running on your own for testing
+/* USE this when running on your own for testing
 configToken = configInputs["DJS_TOKEN"];
 configPrefix = configInputs["PREFIX"];
+*/
 
 var bot = new Discord.Client();
 const player = new Player(bot);
