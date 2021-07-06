@@ -2,7 +2,7 @@ import { matchCategoryByName } from "./matchCommands.js";
 import Discord from 'discord.js';
 import songsData from '../data/songs.js';
 import commandsData from "../data/commands.js";
-import configInput from "../data/config.js";
+// import configInput from "../data/config.js";
 const categories = songsData.categories;;
 var songs = getSongsFromData(categories);
 var commands = commandsData.commands;

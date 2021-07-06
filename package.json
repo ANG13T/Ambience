@@ -1,7 +1,7 @@
 {
-  "name": "discordbotspeak",
+  "name": "Ambience",
   "version": "1.0.0",
-  "description": "Coming Soon... Spring 2021",
+  "description": "Ambience is a Discord bot designated to help you focus and work with the use of calming and soothing background noise.",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/angelina-tsuboi/DiscordBot.git"
+    "url": "git+https://github.com/angelina-tsuboi/Ambience"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/angelina-tsuboi/DiscordBot/issues"
+    "url": "https://github.com/angelina-tsuboi/Ambience/issues"
   },
-  "homepage": "https://github.com/angelina-tsuboi/DiscordBot#readme",
+  "homepage": "https://github.com/angelina-tsuboi/Ambience/blob/master/README.md",
   "dependencies": {
     "@discordjs/opus": "^0.5.3",
     "cli-spinner": "^0.2.10",

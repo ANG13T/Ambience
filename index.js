@@ -3,7 +3,7 @@ import pkg from 'discord-music-player';
 const { Player } = pkg;
 import commandsInput from './data/commands.js';
 import playlistTracks from './data/playlist.js';
-import configInputs from './data/config.js';
+// import configInputs from './data/config.js';
 import { getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds, getIfValidCommand, getCommandWithPrefix, getRandomSound } from './scripts/getCommands.js';
 import { listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation, listInvalidCommand, listEasterEggContent, listLoadingMessage } from './scripts/listCommands.js';
 import { matchSongByName, matchSongByCategoryIndex, matchCategoryByName, matchPlaylistSong } from './scripts/matchCommands.js';
