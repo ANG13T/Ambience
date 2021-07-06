@@ -6,7 +6,7 @@ import playlistTracks from './data/playlist.js';
 import configInputs from './data/config.js';
 import { getKeyWord, getSongFromURL, getQueueEmbed, getCommandByName, getPrefix, modifyMessageForMusic, getAllSounds, getIfValidCommand, getCommandWithPrefix, getRandomSound } from './scripts/getCommands.js';
 import { listSearchResults, listCategorySongs, listCategories, listCommands, soundSearch, listSettings, listHelpSettings, getCommandInfo, listValidPrefixes, listInvite, listAllSounds, listCustomSongInformation, listInvalidCommand, listEasterEggContent, listLoadingMessage } from './scripts/listCommands.js';
-import { matchSongByName, matchSongByCategoryIndex, matchCategoryByName } from './scripts/matchCommands.js';
+import { matchSongByName, matchSongByCategoryIndex, matchCategoryByName, matchPlaylistSong } from './scripts/matchCommands.js';
 
 const commandsData = commandsInput.commands;
 let commands = commandsData.map(c => c.command);
@@ -40,6 +40,7 @@ bot.on("ready", () => {
 });
 
 bot.player.on('songAdd', (message, queue, song) => {
+  if(matchPlaylistSong(message.content.slice(6, message.content.length))) return;
   message.channel.send(`**${getProperSoundContent(song)}** has been added to the queue!`);
 })
   .on('songFirst', (message, song) => {
@@ -345,19 +346,24 @@ async function playPlaylist(message, args) {
   // console.log("adshdsajk", shuffledPlaylist[0])
   // message.content = `!play `
   // await playCommand(message, args)
-  await playCustomSong(message, shuffledPlaylist[0])
+  for(let i = 0; i < shuffledPlaylist.length; i++){
+    await playCustomSong(message, shuffledPlaylist[i], "play");
+  }
+  
 }
 
-async function playCustomSong(message, songValue) {
+async function playCustomSong(message, songValue, isPlaylist) {
   try {
     message.content = `!play ${songValue}`;
     let args = message.content.slice(configPrefix.length).trim().split(/ +/g);
     if (bot.player.isPlaying(message)) {
-      let song = await bot.player.addToQueue(message, args.join(' '));
+      let song = await bot.player.play(message, args.join(' '));
+      console.log("is", isPlaylist)
 
-      // If there were no errors the Player#songAdd event will fire and the song will not be null.
-      if (song)
+      if (song && (isPlaylist !== "play")){
         console.log(`Added ${song.name} to the queue`);
+      }
+        
       return;
     } else {
       message.channel.send(listLoadingMessage());

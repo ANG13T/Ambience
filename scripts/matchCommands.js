@@ -1,5 +1,6 @@
 import { getPurifiedInput, getSongsFromData, getSongsForCategory } from "./getCommands.js";
 import songsData from '../data/songs.js';
+import playlistData from '../data/playlist.js';
 const categories = songsData.categories;
 var songs = getSongsFromData(categories);
 
@@ -9,6 +10,15 @@ export function matchSongByName(title) {
         let purifiedSongName = getPurifiedInput(song.name);
         if (purifiedSongName == purifiedTitle) {
             return song.link;
+        }
+    }
+    return false;
+}
+
+export function matchPlaylistSong(songLink){
+    for(let i = 0; i < playlistData.length; i++){
+        if(playlistData[i] == songLink.trim()){
+            return true;
         }
     }
     return false;
