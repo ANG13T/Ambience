@@ -18,7 +18,7 @@
     ·
     <a href="https://discord.com/invite/w3Tp9x88Nw">Join the Community</a>
     ·
-    <a href="https://github.com/angelina-tsuboi/Ambience/issues">Report Bug</a>
+    <a href="https://forms.gle/oNr6sBoLndMGfx4M9">Recommend a Song</a>
     ·
     <a href="https://github.com/angelina-tsuboi/Ambience/issues">Request Feature</a>
   </p>
